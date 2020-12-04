@@ -4,10 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>+ mamma store +</title>
+<title>Insert title here</title>
 </head>
 <body>
-
-
+회원탈퇴폼
 </body>
 </html>

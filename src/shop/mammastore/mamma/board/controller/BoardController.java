@@ -11,7 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import shop.mammastore.common.Action;
 import shop.mammastore.common.ActionForward;
-import shop.mammastore.mamma.home.action.HomeAction;
+import shop.mammastore.mamma.board.action.ReviewListAction;
+import shop.mammastore.mamma.board.action.ReviewDeleteAction;
+import shop.mammastore.mamma.board.action.ReviewDetailAction;
+import shop.mammastore.mamma.board.action.ReviewModifyAction;
+import shop.mammastore.mamma.board.action.ReviewModifyProcAction;
+import shop.mammastore.mamma.board.action.ReviewRegisterAction;
+import shop.mammastore.mamma.board.action.ReviewWriteAction;
 
 @WebServlet("/board/*")
 //웹서블릿 어노테이션으로 모든 .do 파일이 이쪽으로 온다
@@ -25,19 +31,62 @@ public class BoardController extends HttpServlet {
 		String requestURI = request.getRequestURI();
 		String contextPath = request.getContextPath();
 		String command = requestURI.substring(contextPath.length()).replaceAll("/board", "");// 여기에 우리가 들고올 마지막 경로를 가져온다
-		
 		ActionForward forward = null;
-		if (command.equals("/")) {
-			Action action = new HomeAction();
+
+		// reviewBbs
+		if (command.equals("/reviewList")) {
+			Action action = new ReviewListAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} 
-		
-		
-		
+		} else if (command.equals("/reviewDetail")) {
+			Action action = new ReviewDetailAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/reviewWrite")) {
+			Action action = new ReviewWriteAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/reviewRegister")) {
+			Action action = new ReviewRegisterAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/reviewModify")) {
+			Action action = new ReviewModifyAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/reviewModifyProc")) {
+			Action action = new ReviewModifyProcAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/reviewDelete")) {
+			Action action = new ReviewDeleteAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		//
+
+		// redirect or dispatch
 		if (forward != null) {
 			if (forward.isRedirect()) { // 리다이렉트 -요청값 바뀜 리퀘스트 정보 안남음
 				response.sendRedirect(forward.getPath());

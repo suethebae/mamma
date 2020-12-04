@@ -4,10 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>+ mamma store +</title>
+<title>Insert title here</title>
 </head>
 <body>
-
-
+장바구니 페이지
 </body>
 </html>

@@ -4,10 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>+ mamma store +</title>
+<title>Insert title here</title>
 </head>
 <body>
-
-
+글작성 게시판입니다
 </body>
 </html>

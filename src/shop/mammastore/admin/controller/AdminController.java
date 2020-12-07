@@ -9,11 +9,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import shop.mammastore.admin.action.AboardAction;
+import shop.mammastore.admin.action.AitemAction;
 import shop.mammastore.admin.action.AmainAction;
 import shop.mammastore.admin.action.AmemberAction;
+import shop.mammastore.admin.action.AorderAction;
+import shop.mammastore.admin.action.AstoreAction;
 import shop.mammastore.common.Action;
 import shop.mammastore.common.ActionForward;
-
 
 @WebServlet("/admin/*")
 //웹서블릿 어노테이션으로 모든 .do 파일이 이쪽으로 온다
@@ -29,16 +32,34 @@ public class AdminController extends HttpServlet {
 		String command = requestURI.substring(contextPath.length()).replaceAll("/admin", "");// 여기에 우리가 들고올 마지막 경로를 가져온다
 		ActionForward forward = null;
 
-		//admin main 페이지 가기
-		if (command.equals("/amain")) {
+		// admin main 페이지 가기
+		if (command.equals("/")) {
 			Action action = new AmainAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} 
-		//admin member 관리페이지 가기
+		}
+		// admin store 관리페이지 가기
+		else if (command.equals("/astore")) {
+			Action action = new AstoreAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		// admin order 관리페이지 가기
+		else if (command.equals("/aorder")) {
+			Action action = new AorderAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		// admin member 관리페이지 가기
 		else if (command.equals("/amember")) {
 			Action action = new AmemberAction();
 			try {
@@ -46,7 +67,25 @@ public class AdminController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} 
+		}
+		// admin item 관리페이지 가기
+		else if (command.equals("/aitem")) {
+			Action action = new AitemAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		// admin board 관리페이지 가기
+		else if (command.equals("/aboard")) {
+			Action action = new AboardAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 
 		// redirect or dispatch
 		if (forward != null) {

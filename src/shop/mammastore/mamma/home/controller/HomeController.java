@@ -14,7 +14,6 @@ import shop.mammastore.common.ActionForward;
 import shop.mammastore.mamma.home.action.HomeAction;
 
 @WebServlet("/main.do")
-//웹서블릿 어노테이션으로 모든 .do 파일이 이쪽으로 온다
 public class HomeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

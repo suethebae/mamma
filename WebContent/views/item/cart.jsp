@@ -8,5 +8,6 @@
 </head>
 <body>
 장바구니 페이지
+<a href='/'>홈으로</a>
 </body>
 </html>

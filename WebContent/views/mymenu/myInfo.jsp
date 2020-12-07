@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+내 정보 페이지
+<a href='/'>홈으로</a>
 </body>
 </html>

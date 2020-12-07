@@ -8,5 +8,7 @@
 </head>
 <body>
 로그인 페이지
+<br>
+<a href='/'>홈으로</a>
 </body>
 </html>

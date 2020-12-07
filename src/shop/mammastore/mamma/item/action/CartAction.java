@@ -12,7 +12,7 @@ public ActionForward execute(HttpServletRequest request, HttpServletResponse res
 	
 	//경로설정
 	ActionForward forward = new ActionForward();
-	forward.setPath("/views/index.jsp");
+	forward.setPath("/views/item/cart.jsp");
 	return forward;
 }
 }

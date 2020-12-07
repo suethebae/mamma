@@ -8,5 +8,6 @@
 </head>
 <body>
 아이디 찾기 페이지
+<a href='/'>홈으로</a>
 </body>
 </html>

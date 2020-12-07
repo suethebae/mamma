@@ -13,6 +13,7 @@ import shop.mammastore.common.Action;
 import shop.mammastore.common.ActionForward;
 import shop.mammastore.mamma.mymenu.action.MyInfoAction;
 import shop.mammastore.mamma.mymenu.action.MyOrderAction;
+import shop.mammastore.mamma.mymenu.action.MyPageAction;
 import shop.mammastore.mamma.mymenu.action.MyQuestionAction;
 import shop.mammastore.mamma.mymenu.action.MyReviewAction;
 
@@ -31,8 +32,17 @@ public class MyMenuController extends HttpServlet {
 																								// 가져온다
 
 		ActionForward forward = null;
+		//
+		if (command.equals("/myPage")) {
+			Action action = new MyPageAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		// 마이주문내역
-		if (command.equals("/myOrder")) {
+		else if (command.equals("/myOrder")) {
 			Action action = new MyOrderAction();
 			try {
 				forward = action.execute(request, response);
@@ -58,7 +68,7 @@ public class MyMenuController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		// 일대일 문의
+		// 내정보
 		else if (command.equals("/myInfo")) {
 			Action action = new MyInfoAction();
 			try {

@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-회워정보 수정 페이지
+회원정보 수정 페이지
+<a href='/'>홈으로</a>
 </body>
 </html>

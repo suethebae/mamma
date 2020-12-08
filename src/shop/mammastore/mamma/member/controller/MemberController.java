@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import shop.mammastore.common.Action;
 import shop.mammastore.common.ActionForward;
-import shop.mammastore.mamma.member.action.IdFindAction;
-import shop.mammastore.mamma.member.action.IdFindProcAction;
+import shop.mammastore.mamma.member.action.FindIdAction;
+import shop.mammastore.mamma.member.action.FindIdProcAction;
 import shop.mammastore.mamma.member.action.LeaveAction;
 import shop.mammastore.mamma.member.action.LeaveProcAction;
 import shop.mammastore.mamma.member.action.LoginAction;
@@ -20,8 +20,8 @@ import shop.mammastore.mamma.member.action.LoginProcAction;
 import shop.mammastore.mamma.member.action.LogoutAction;
 import shop.mammastore.mamma.member.action.ModifyAction;
 import shop.mammastore.mamma.member.action.ModifyProcAction;
-import shop.mammastore.mamma.member.action.PwdFindAction;
-import shop.mammastore.mamma.member.action.PwdFindProcAction;
+import shop.mammastore.mamma.member.action.FindPwdAction;
+import shop.mammastore.mamma.member.action.FindPwdProcAction;
 import shop.mammastore.mamma.member.action.RegisterAction;
 import shop.mammastore.mamma.member.action.RegisterProcAction;
 
@@ -113,15 +113,15 @@ public class MemberController extends HttpServlet {
 			}
 		}
 		// 아이디찾기
-		else if (command.equals("/idFind")) {
-			Action action = new IdFindAction();
+		else if (command.equals("/findId")) {
+			Action action = new FindIdAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if (command.equals("/idFindProc")) {
-			Action action = new IdFindProcAction();
+		} else if (command.equals("/findIdProc")) {
+			Action action = new FindIdProcAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
@@ -129,15 +129,15 @@ public class MemberController extends HttpServlet {
 			}
 		}
 		// 비밀번호찾기
-		else if (command.equals("/pwdFind")) {
-			Action action = new PwdFindAction();
+		else if (command.equals("/findPwd")) {
+			Action action = new FindPwdAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if (command.equals("/pwdFindProc")) {
-			Action action = new PwdFindProcAction();
+		} else if (command.equals("/findPwdProc")) {
+			Action action = new FindPwdProcAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

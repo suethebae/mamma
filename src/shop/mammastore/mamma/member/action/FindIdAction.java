@@ -6,13 +6,13 @@ import javax.servlet.http.HttpServletResponse;
 import shop.mammastore.common.Action;
 import shop.mammastore.common.ActionForward;
 
-public class PwdFindAction implements Action{
+public class FindIdAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		// 경로설정
 		ActionForward forward = new ActionForward();
-		forward.setPath("/views/member/pwdFindForm.jsp");
+		forward.setPath("/views/member/idFindForm.jsp");
 		return forward;
 	}
 }

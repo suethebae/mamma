@@ -28,9 +28,15 @@ public class RegExp {
 			isValid = Pattern.matches("^[0-9]*$", data);
 			break;
 		case REGEXP_EMAIL:
+<<<<<<< HEAD
 			isValid = Pattern.matches("^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i", data);
 			break;
 		} 
+=======
+			isValid = Pattern.matches("/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i", data);
+			break;
+		}
+>>>>>>> 6d321c2bc5463021d9ad80b1f0e416e3e65d3e76
 		return isValid;
 	}
 

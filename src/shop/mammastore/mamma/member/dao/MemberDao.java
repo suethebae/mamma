@@ -2,7 +2,10 @@ package shop.mammastore.mamma.member.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+<<<<<<< HEAD
 import java.sql.ResultSet;
+=======
+>>>>>>> 6d321c2bc5463021d9ad80b1f0e416e3e65d3e76
 
 import shop.mammastore.common.BCrypt;
 import shop.mammastore.mamma.vo.MemberVo;
@@ -52,6 +55,7 @@ public class MemberDao {
 		}
 		return count;
 	}
+<<<<<<< HEAD
 
 	public MemberVo getLoginInfo(String id) {
 		PreparedStatement pstmt = null; 
@@ -76,4 +80,6 @@ public class MemberDao {
 		return memberVo;
 	}
 
+=======
+>>>>>>> 6d321c2bc5463021d9ad80b1f0e416e3e65d3e76
 }

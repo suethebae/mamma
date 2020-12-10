@@ -27,6 +27,7 @@
 </script>
 </head>
 <body>
+<<<<<<< HEAD
 	<form action="/member/loginProc" method="post"
 		onsubmit="return login()">
 		<div>
@@ -41,6 +42,11 @@
 		<button type="submit">로그인</button>
 		<button onclick="location.href='/'">취소</button>
 	</form>
+=======
+로그인 페이지
+<br>
+<a href='/'>홈으로</a>
+>>>>>>> 6d321c2bc5463021d9ad80b1f0e416e3e65d3e76
 
 
 </body>

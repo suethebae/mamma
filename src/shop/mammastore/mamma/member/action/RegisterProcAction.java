@@ -34,7 +34,11 @@ public class RegisterProcAction implements Action {
 				|| RegExp.isEmpty(phone) || !magre.equals("1") || !pagre.equals("1")) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter(); // html에서 alert창을 직접 사용하겠다. + 자바
+<<<<<<< HEAD
 			out.println("<script>alert('잘못된 접근입니다.'); location.href='/'; </script>"); // 데이터를 받아서 접근하는게 아니라 강제로 들어왔을때 접근을 막기위해서 씀
+=======
+			out.println("<script>alert('잘못된 접근입니다.') location.href='/'; </script>"); // 데이터를 받아서 접근하는게 아니라 강제로 들어왔을때 접근을 막기위해서 씀
+>>>>>>> 6d321c2bc5463021d9ad80b1f0e416e3e65d3e76
 			out.close();
 			return null;
 		}

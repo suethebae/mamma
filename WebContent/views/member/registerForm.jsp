@@ -80,7 +80,11 @@
 			return;
 		}
 		regExp = new RegExp("/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i", "g");
+<<<<<<< HEAD
 		if (!regExp.exec(email.val()) == null) {
+=======
+		if (regExp.exec(email.val()) == null) {
+>>>>>>> 6d321c2bc5463021d9ad80b1f0e416e3e65d3e76
 			alert("잘못된 이메일 형식 입니다.")
 			email.val('');
 			email.focus();

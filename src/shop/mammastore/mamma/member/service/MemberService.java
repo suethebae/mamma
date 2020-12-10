@@ -23,6 +23,7 @@ public class MemberService {
 		close(con);
 		return isSuccess;
 	}
+<<<<<<< HEAD
 
 	public MemberVo getLoginInfo(String id) {
 		MemberDao dao = MemberDao.getInstance();
@@ -32,4 +33,6 @@ public class MemberService {
 		close(con);
 		return memberVo;
 	}
+=======
+>>>>>>> 6d321c2bc5463021d9ad80b1f0e416e3e65d3e76
 }

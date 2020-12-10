@@ -12,7 +12,7 @@ public class FindPwdAction implements Action{
 
 		// 경로설정
 		ActionForward forward = new ActionForward();
-		forward.setPath("/views/member/pwdFindForm.jsp");
+		forward.setPath("/views/member/findPwdForm.jsp");
 		return forward;
 	}
 }

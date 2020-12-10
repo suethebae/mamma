@@ -24,6 +24,7 @@ import shop.mammastore.mamma.member.action.FindPwdAction;
 import shop.mammastore.mamma.member.action.FindPwdProcAction;
 import shop.mammastore.mamma.member.action.RegisterAction;
 import shop.mammastore.mamma.member.action.RegisterProcAction;
+import shop.mammastore.mamma.member.action.RegisterResultAction;
 
 @WebServlet("/member/*")
 //웹서블릿 어노테이션으로 모든 .do 파일이 이쪽으로 온다
@@ -36,7 +37,8 @@ public class MemberController extends HttpServlet {
 		// 도메인뒤에 붙어있는 경로 가져온다. 다 있던 메소드 사용
 		String requestURI = request.getRequestURI();
 		String contextPath = request.getContextPath();
-		String command = requestURI.substring(contextPath.length()).replaceAll("/member", "");// 여기에 우리가 들고올 마지막 경로를 가져온다
+		String command = requestURI.substring(contextPath.length()).replaceAll("/member", "");// 여기에 우리가 들고올 마지막 경로를
+																								// 가져온다
 
 		ActionForward forward = null;
 		// 로그인
@@ -80,6 +82,15 @@ public class MemberController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
+		// 회원가입 결과
+		else if (command.equals("/registerResult")) {
+			Action action = new RegisterResultAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} 
 		// 회원정보수정
 		else if (command.equals("/modify")) {
 			Action action = new ModifyAction();
@@ -148,11 +159,11 @@ public class MemberController extends HttpServlet {
 		// redirect or dispatch
 		if (forward != null) {
 			if (forward.isRedirect()) { // 리다이렉트 -요청값 바뀜 리퀘스트 정보 안남음
-				response.sendRedirect(forward.getPath());
+				response.sendRedirect(forward.getPath()); // 정보 처리
 
 			} else { // 디스패치 -데이터 유지시키려면 디스패치로 이동해야함
 				RequestDispatcher dispatcher = request.getRequestDispatcher(forward.getPath());
-				dispatcher.forward(request, response);
+				dispatcher.forward(request, response); // 정보 보내기
 			}
 		}
 	}

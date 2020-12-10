@@ -14,7 +14,7 @@ public class JdbcUtil {
 		try {
 			Context initCtx = new InitialContext();
 			Context envCtx = (Context) initCtx.lookup("java:comp/env"); // �뤃�뜑寃쎈줈 �꽕�젙
-			DataSource ds = (DataSource) envCtx.lookup("jdbc/oracle"); // name�씠 �씠嫄곗씤 �젙蹂� 媛��졇�샂
+			DataSource ds = (DataSource) envCtx.lookup("jdbc/mariaDB"); // name�씠 �씠嫄곗씤 �젙蹂� 媛��졇�샂
 			con = ds.getConnection();// �떎�젣濡� �뿰寃곕맂 媛앹껜瑜� 媛��졇�샂
 			con.setAutoCommit(false);// �옄�룞 Commit �걫
 

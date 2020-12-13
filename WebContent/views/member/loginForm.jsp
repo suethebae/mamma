@@ -39,9 +39,8 @@
 			<a href='/member/findId'>아이디찾기</a> <a href='/member/findPwd'>비밀번호찾기</a>
 		</div>
 		<button type="submit">로그인</button>
-		<button onclick="location.href='/'">취소</button>
 	</form>
-
+	<button onclick="location.href='/'">취소</button>
 
 </body>
 </html>

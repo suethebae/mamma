@@ -95,4 +95,48 @@ public class MemberDao {
 		}
 		return memberVo;
 	}
+	
+	public MemberVo findPwd(MemberVo memberVo) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null; 
+		MemberVo vo = null;
+		try {
+			pstmt = con.prepareStatement("select * from inf_mber_tb where del_fl=0 and id=? and name=? and email=?");
+			pstmt.setString(1, memberVo.getId());
+			pstmt.setString(2, memberVo.getName());
+			pstmt.setString(3, memberVo.getEmail());
+			rs = pstmt.executeQuery();
+			while (rs.next()) { 
+				vo = new MemberVo();
+				vo.setId(rs.getString("id"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rs);
+		}
+		return vo;
+	}
+	
+	public int setPwd(MemberVo memberVo) {
+		PreparedStatement pstmt = null; // 쿼리문 작성할 메소드
+		int count = 0;
+		try {
+			pstmt = con.prepareStatement(
+					"update inf_mber_tb set pwd = ? where del_fl=0 and id=? and name=? and email=? ");
+			pstmt.setString(1, memberVo.getPwd());
+			pstmt.setString(2, memberVo.getId());
+			pstmt.setString(3, memberVo.getName());
+			pstmt.setString(4, memberVo.getEmail());
+
+			count = pstmt.executeUpdate(); // 데이터가 정확히 입력되었으면 카운트가 올라감.
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return count;
+	}
 }

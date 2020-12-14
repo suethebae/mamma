@@ -34,7 +34,7 @@ public class AjaxDao {
 		ResultSet rs = null;
 		int count = 0;
 		try {
-			pstmt = con.prepareStatement("select count(*) from inf_mber_tb where id = ?");
+			pstmt = con.prepareStatement("select count(*) from inf_mber_tb where id = ? and del_fl=0");
 			pstmt.setString(1, memberVo.getId());
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
@@ -52,7 +52,7 @@ public class AjaxDao {
 		ResultSet rs = null;
 		int count = 0;
 		try {
-			pstmt = con.prepareStatement("select count(*) from inf_mber_tb where email = ?");
+			pstmt = con.prepareStatement("select count(*) from inf_mber_tb where email = ? and del_fl=0");
 			pstmt.setString(1, memberVo.getEmail());
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
@@ -70,7 +70,7 @@ public class AjaxDao {
 		ResultSet rs = null;
 		int count = 0;
 		try {
-			pstmt = con.prepareStatement("select count(*) from inf_mber_tb where phone = ?");
+			pstmt = con.prepareStatement("select count(*) from inf_mber_tb where phone = ? and del_fl=0");
 			pstmt.setString(1, memberVo.getPhone());
 			rs = pstmt.executeQuery();
 			while(rs.next()) {

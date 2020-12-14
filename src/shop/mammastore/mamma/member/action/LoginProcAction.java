@@ -6,6 +6,8 @@ import static shop.mammastore.common.RegExp.REGEXP_NAME;
 import static shop.mammastore.common.RegExp.REGEXP_PWD;
 
 import java.io.PrintWriter;
+import java.net.Inet4Address;
+import java.net.InetAddress;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -39,6 +41,14 @@ public class LoginProcAction implements Action {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('로그인 실패'); history.back(); </script>");
+			out.close();
+			return null;
+		}
+		
+		if(!svc.registerHistory(memberVo)){
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('로그인 히스토리 실패'); history.back(); </script>");
 			out.close();
 			return null;
 		}

@@ -58,7 +58,7 @@ public class MemberDao {
 		ResultSet rs = null; // DB의 결과문(쿼리값)을 받아와야함. 우선 빈값으로 설정하자.
 		MemberVo memberVo = null;
 		try {
-			pstmt = con.prepareStatement("select mber_sq, id, pwd from inf_mber_tb where id=? and del_fl=false");
+			pstmt = con.prepareStatement("select mber_sq, id, pwd from inf_mber_tb where id=? and del_fl=0");
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			while (rs.next()) { // 다음줄이 null(false) 될떄까지 반복실행
@@ -74,6 +74,23 @@ public class MemberDao {
 			close(rs);
 		}
 		return memberVo;
+	}
+	
+	public int registerHistory(MemberVo memberVo) {
+		PreparedStatement pstmt = null; // 쿼리문 작성할 메소드
+		int count = 0;
+		try {
+			pstmt = con.prepareStatement(
+					"insert into hist_lgn_tb (mber_sq) values(?)");
+			pstmt.setInt(1, memberVo.getMber_sq());
+			count = pstmt.executeUpdate(); // 데이터가 정확히 입력되었으면 카운트가 올라감.
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return count;
 	}
 
 	public MemberVo findId(String query) {

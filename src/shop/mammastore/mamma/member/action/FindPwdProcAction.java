@@ -58,7 +58,7 @@ public class FindPwdProcAction implements Action {
 				"j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
 		int selectPwd = 0;
 		String tempPwd = "";
-		for (int i = 0; i < 7; i++) {
+		for (int i = 0; i < 8; i++) {
 			selectPwd = (int) Math.floor(Math.random() * list.length);
 			tempPwd+=list[selectPwd];
 		}

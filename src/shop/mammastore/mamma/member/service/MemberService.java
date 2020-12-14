@@ -42,44 +42,4 @@ public class MemberService {
 		return memberVo;
 	}
 	
-	public MemberVo findPwd(MemberVo memberVo) {
-		MemberDao dao = MemberDao.getInstance();
-		Connection con = getConnection();
-		dao.setConnection(con);
-		MemberVo vo = dao.findPwd(memberVo); //
-		close(con);
-		return vo;
-	}
-	
-	public boolean setPwd(MemberVo memberVo) {
-		MemberDao dao = MemberDao.getInstance();
-		Connection con = getConnection();
-		dao.setConnection(con);
-		int count = dao.setPwd(memberVo);
-		boolean isSuccess = true;
-		if (count > 0) {
-			commit(con);
-		} else {
-			rollback(con);
-			isSuccess = false;
-		}
-		close(con);
-		return isSuccess;
-	}
-	
-	public boolean registerHistory(MemberVo memberVo) {
-		MemberDao dao = MemberDao.getInstance();
-		Connection con = getConnection();
-		dao.setConnection(con);
-		int count = dao.registerHistory(memberVo);
-		boolean isSuccess = true;
-		if (count > 0) {
-			commit(con);
-		} else {
-			rollback(con);
-			isSuccess = false;
-		}
-		close(con);
-		return isSuccess;
-	}
 }

@@ -8,7 +8,6 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js"
 	integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
 	crossorigin="anonymous"></script>
-
 <script>
 	//아이디 체크
 	var isIdChecked = false;
@@ -264,7 +263,8 @@
 			$('#phone').focus();
 			return;
 		}
-		
+
+		var magre = $('#magre');
 		if (magre.is(":checked")) {
 			magre.val(1); /* jquery에서 ()이 비었으면 : get, ()에 값이 있다면 : set + 체크가 되어 있으면 1 아니면 0*/
 		} else {

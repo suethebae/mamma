@@ -15,6 +15,6 @@ public class RegisterAction implements Action {
 		forward.setPath("/views/member/registerForm.jsp");
 		return forward;
 		
-		
+	
 	}
 }

@@ -17,6 +17,7 @@ public class LogoutAction implements Action {
 		HttpSession session = request.getSession();
 		LoginManager lm = LoginManager.getInstance();
 		String mber_sq = lm.getMemberId(session);
+		
 		if (mber_sq != null) {
 			lm.removeSession(mber_sq);
 		}

@@ -83,7 +83,7 @@ public class MyMenuController extends HttpServlet {
 			if (forward.isRedirect()) { // 리다이렉트 -요청값 바뀜 리퀘스트 정보 안남음
 				response.sendRedirect(forward.getPath());
 
-			} else { // 디스패치 -데이터 유지시키려면 디스패치로 이동해야함
+			} else { // 디스패치 -데이터 유지시키려면 디스패치로 이동해야함.
 				RequestDispatcher dispatcher = request.getRequestDispatcher(forward.getPath());
 				dispatcher.forward(request, response);
 			}

@@ -337,7 +337,7 @@
 			<div>개인정보 처리 방침 안내</div>
 			<div>처리방침 내용입니다</div>
 			<div>
-				개인정보 처리 방침에 동의합니다.<input type="checkbox" id="pagre" name="pagre">
+				개인정보 처리 방침에 동의합니다..<input type="checkbox" id="pagre" name="pagre">
 			</div>
 		</div>
 	</form>

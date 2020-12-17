@@ -11,9 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import shop.mammastore.admin.action.AboardAction;
 import shop.mammastore.admin.action.AitemAction;
+import shop.mammastore.admin.action.AloginAction;
+import shop.mammastore.admin.action.AlogoutAction;
 import shop.mammastore.admin.action.AmainAction;
 import shop.mammastore.admin.action.AmemberAction;
 import shop.mammastore.admin.action.AorderAction;
+import shop.mammastore.admin.action.AregisterAction;
+import shop.mammastore.admin.action.AregisterProcAction;
 import shop.mammastore.admin.action.AstoreAction;
 import shop.mammastore.common.Action;
 import shop.mammastore.common.ActionForward;
@@ -32,9 +36,54 @@ public class AdminController extends HttpServlet {
 		String command = requestURI.substring(contextPath.length()).replaceAll("/admin", "");// 여기에 우리가 들고올 마지막 경로를 가져온다
 		ActionForward forward = null;
 
-		// admin main 페이지 가기
-		if (command.equals("/")) {
+		// admin 로그인 페이지 가기
+		if (command.equals("")) {
+			Action action = new AloginAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		// admin 메인 페이지 이동
+		else if (command.equals("/amain")) {
 			Action action = new AmainAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		// admin member 관리페이지 가기
+		else if (command.equals("/amember")) {
+			Action action = new AmemberAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		// admin 관리자 회원가입 롬이동
+		else if (command.equals("/aregister")) {
+			Action action = new AregisterAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		// admin 관리자 회원가입 절차
+		else if (command.equals("/aregisterProc")) {
+			Action action = new AregisterProcAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		// admin 로그아웃 절차
+		else if (command.equals("/alogout")) {
+			Action action = new AlogoutAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
@@ -59,15 +108,7 @@ public class AdminController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		// admin member 관리페이지 가기
-		else if (command.equals("/amember")) {
-			Action action = new AmemberAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+
 		// admin item 관리페이지 가기
 		else if (command.equals("/aitem")) {
 			Action action = new AitemAction();
@@ -86,7 +127,6 @@ public class AdminController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-
 		// redirect or dispatch
 		if (forward != null) {
 			if (forward.isRedirect()) { // 리다이렉트 -요청값 바뀜 리퀘스트 정보 안남음

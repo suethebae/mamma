@@ -13,5 +13,6 @@
 <a href='/admin/aitem'>상품관리</a><br>
 <a href='/admin/aorder'>주문관리</a><br>
 <a href='/admin/aboard'>게시판관리</a><br>
+<a href="/admin/alogout">로그아웃</a>
 </body>
 </html>

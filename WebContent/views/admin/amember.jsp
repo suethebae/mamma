@@ -8,5 +8,12 @@
 </head>
 <body>
 회원관리
+<a href="#">관리자</a>
+<a href="/admin/aregister">관리자 회원가입</a>
+<a href="">관리자 회원정보 보기</a>
+<a href="">관리자 탈퇴</a>
+<a href="#">회원</a>
+<a href="">회원 목록</a>
+
 </body>
 </html>

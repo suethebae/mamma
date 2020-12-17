@@ -75,14 +75,14 @@ public class MemberDao {
 		}
 		return memberVo;
 	}
-	
+
 	public int registerHistory(MemberVo memberVo) {
 		PreparedStatement pstmt = null; // 쿼리문 작성할 메소드
 		int count = 0;
 		try {
-			pstmt = con.prepareStatement(
-					"insert into hist_lgn_tb (mber_sq) values(?)");
+			pstmt = con.prepareStatement("insert into hist_lgn_tb (mber_sq) values(?)");
 			pstmt.setInt(1, memberVo.getMber_sq());
+
 			count = pstmt.executeUpdate(); // 데이터가 정확히 입력되었으면 카운트가 올라감.
 
 		} catch (Exception e) {
@@ -95,12 +95,12 @@ public class MemberDao {
 
 	public MemberVo findId(String query) {
 		PreparedStatement pstmt = null;
-		ResultSet rs = null; 
+		ResultSet rs = null;
 		MemberVo memberVo = null;
 		try {
-			pstmt = con.prepareStatement("select id from inf_mber_tb where del_fl=0"+query);
+			pstmt = con.prepareStatement("select id from inf_mber_tb where del_fl=0" + query);
 			rs = pstmt.executeQuery();
-			while (rs.next()) { 
+			while (rs.next()) {
 				memberVo = new MemberVo();
 				memberVo.setId(rs.getString("id"));
 			}
@@ -112,10 +112,10 @@ public class MemberDao {
 		}
 		return memberVo;
 	}
-	
+
 	public MemberVo findPwd(MemberVo memberVo) {
 		PreparedStatement pstmt = null;
-		ResultSet rs = null; 
+		ResultSet rs = null;
 		MemberVo vo = null;
 		try {
 			pstmt = con.prepareStatement("select * from inf_mber_tb where del_fl=0 and id=? and name=? and email=?");
@@ -123,7 +123,7 @@ public class MemberDao {
 			pstmt.setString(2, memberVo.getName());
 			pstmt.setString(3, memberVo.getEmail());
 			rs = pstmt.executeQuery();
-			while (rs.next()) { 
+			while (rs.next()) {
 				vo = new MemberVo();
 				vo.setId(rs.getString("id"));
 			}
@@ -135,13 +135,13 @@ public class MemberDao {
 		}
 		return vo;
 	}
-	
+
 	public int setPwd(MemberVo memberVo) {
 		PreparedStatement pstmt = null; // 쿼리문 작성할 메소드
 		int count = 0;
 		try {
-			pstmt = con.prepareStatement(
-					"update inf_mber_tb set pwd = ? where del_fl=0 and id=? and name=? and email=? ");
+			pstmt = con
+					.prepareStatement("update inf_mber_tb set pwd = ? where del_fl=0 and id=? and name=? and email=? ");
 			pstmt.setString(1, memberVo.getPwd());
 			pstmt.setString(2, memberVo.getId());
 			pstmt.setString(3, memberVo.getName());
@@ -156,4 +156,92 @@ public class MemberDao {
 		}
 		return count;
 	}
+
+	public int modify(MemberVo memberVo) {
+		PreparedStatement pstmt = null;
+		int count = 0;
+		try {
+			pstmt = con.prepareStatement("update inf_mber_tb set pwd=?, email=?, phone=? where mber_sq=? and del_fl=0"); 
+			pstmt.setString(1, memberVo.getPwd());
+			pstmt.setString(2, memberVo.getEmail());
+			pstmt.setString(3, memberVo.getPhone());
+			pstmt.setInt(4, memberVo.getMber_sq());
+
+			count = pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return count;
+	}
+
+	public MemberVo getUserData(int mber_sq) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		MemberVo memberVo = null;
+		try {
+			pstmt = con.prepareStatement("select * from inf_mber_tb where mber_sq=? and del_fl=0");
+			pstmt.setInt(1, mber_sq);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				memberVo = new MemberVo();
+				memberVo.setMber_sq(rs.getInt("mber_sq"));
+				memberVo.setDttm(rs.getString("dttm"));
+				memberVo.setId(rs.getString("id"));
+				memberVo.setPwd(rs.getString("pwd"));
+				memberVo.setName(rs.getString("name"));
+				memberVo.setEmail(rs.getString("email"));
+				memberVo.setPhone(rs.getString("phone"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rs);
+		}
+		return memberVo;
+	}
+
+	public int leaveMember(MemberVo memberVo) {
+		PreparedStatement pstmt = null;
+		int count = 0;
+		try {
+			pstmt = con.prepareStatement("update inf_mber_tb set del_fl=? where mber_sq=?");
+			pstmt.setBoolean(1, memberVo.isDel_fl());
+			pstmt.setInt(2, memberVo.getMber_sq());
+			
+			count = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return count;
+	}
+
+	public MemberVo getMemberLoginInfo(String mber_sq) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		MemberVo vo = null;
+		try {
+			pstmt = con.prepareStatement("select id, pwd from inf_mber_tb where id=? and del_fl=0");
+			pstmt.setString(1, mber_sq);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				vo = new MemberVo();
+				vo.setId(rs.getString("id"));
+				vo.setPwd(rs.getString("pwd"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return vo;
+
+	}
+
 }

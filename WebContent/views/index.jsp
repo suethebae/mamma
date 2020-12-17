@@ -49,6 +49,6 @@ String member_sq = lm.getMemberId(session);
 	<hr>
 	<a href='/mymenu/myPage'>나의메뉴 메인</a>
 	<br>
-
+	<a href='/views/board/review/writeForm.jsp'>리뷰쓰기</a>
 </body>
 </html>

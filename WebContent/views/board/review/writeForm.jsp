@@ -4,21 +4,25 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title> 
+<title>Insert title here</title>
 <script>
 function submit(){
-	saveContent();
-}
+		saveContent();
+	}
+	//getParameter에 content로 받아야 한다.
+	//태그를 문자열로 바꿔서 저장
+	// 뿌릴때는 태그로 바꿔서 뿌려
+	//수정할때는 바꿀필요 없다.
 </script>
 </head>
 <body>
-	글작성 게시판입니다
+	글작성 게시판입니다.
 	<form action="/board/reviewRegister" method="post" id="editorForm">
-		내용
-		<div>
-			<jsp:include page="/editor/editorSkinForRegister.jsp" flush="false"></jsp:include>
+		제목<input type="text" name="subject" id="subject" maxlength="100">
+		<div style="width: 1000px">
+			<jsp:include page="/editor/editorSkinForRegister.jsp" flush="false" />
 		</div>
+		<input type="button" onclick="sumit()" value="등록">
 	</form>
-	<button type="button" onclick="submit()">등록</button>
 </body>
 </html>

@@ -17,7 +17,7 @@ function leave() {
 <body>
 <a href="/">mamma store</a>
 	<h1>회원탈퇴</h1>
-	<p>회원타로티하면 어쩌구저쩌구 어절시구 저쩌구 어저구저쩌구 합니다.</p>
+	<p>회원탈퇴하면 어쩌구저쩌구 어절시구 저쩌구 어저구저쩌구 합니다.</p>
 	<hr>
 	<form action="/member/leaveProc" method="post" id="lForm">
 		비밀번호 <input type="password" id="pwd" name="pwd">

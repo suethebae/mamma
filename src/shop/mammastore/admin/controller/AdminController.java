@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import shop.mammastore.admin.action.AboardAction;
 import shop.mammastore.admin.action.AitemAction;
 import shop.mammastore.admin.action.AloginAction;
+import shop.mammastore.admin.action.AloginProcAction;
 import shop.mammastore.admin.action.AlogoutAction;
 import shop.mammastore.admin.action.AmainAction;
 import shop.mammastore.admin.action.AmemberAction;
@@ -19,6 +20,7 @@ import shop.mammastore.admin.action.AorderAction;
 import shop.mammastore.admin.action.AregisterAction;
 import shop.mammastore.admin.action.AregisterProcAction;
 import shop.mammastore.admin.action.AstoreAction;
+import shop.mammastore.admin.action.registerItemAction;
 import shop.mammastore.common.Action;
 import shop.mammastore.common.ActionForward;
 
@@ -81,6 +83,15 @@ public class AdminController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
+		// admin 로그d인 절차
+		else if (command.equals("/aloginProc")) {
+			Action action = new AloginProcAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		// admin 로그아웃 절차
 		else if (command.equals("/alogout")) {
 			Action action = new AlogoutAction();
@@ -93,6 +104,15 @@ public class AdminController extends HttpServlet {
 		// admin store 관리페이지 가기
 		else if (command.equals("/astore")) {
 			Action action = new AstoreAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		// admin registerItem 페이지 가기
+		else if (command.equals("/registerItem")) {
+			Action action = new registerItemAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

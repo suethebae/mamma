@@ -4,10 +4,12 @@ import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import shop.mammastore.common.Action;
 import shop.mammastore.common.ActionForward;
 import shop.mammastore.common.BCrypt;
+import shop.mammastore.common.LoginManager;
 import shop.mammastore.common.RegExp;
 import shop.mammastore.mamma.member.service.MemberService;
 import shop.mammastore.mamma.vo.MemberVo;
@@ -20,18 +22,29 @@ import static shop.mammastore.common.RegExp.REGEXP_EMAIL;
 public class RegisterProcAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
+		HttpSession session = request.getSession();
+		LoginManager lm = LoginManager.getInstance();
+		String mber_sq = lm.getMemberId(session);
+		
+		if (mber_sq != null) {
+			response.setContentType("text/html;charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('잘못된 접근입니다.'); location.href='/'; </script>");
+			out.close();
+			return null;
+		}
+		
 		String id = request.getParameter("id"); // id가 id인 value값을 가져오겠다. "id" : key값 . 후에 key값을 호출할 예정임.
 		String pwd = request.getParameter("pwd");
 		String pwdc = request.getParameter("pwdc");
-		String name = request.getParameter("name");
+		String nm = request.getParameter("nm");
 		String email = request.getParameter("email");
 		String phone = request.getParameter("phone");
 		String magre = request.getParameter("magre");
 		String pagre = request.getParameter("pagre");
 		if (!RegExp.isValidExp(id, REGEXP_ID) 
 				|| !RegExp.isValidExp(pwd, REGEXP_PWD)
-				|| !RegExp.isValidExp(name, REGEXP_NAME) 
+				|| !RegExp.isValidExp(nm, REGEXP_NAME) 
 				|| !pwd.equals(pwdc) 
 				|| !RegExp.isValidExp(email, REGEXP_EMAIL)
 				|| RegExp.isEmpty(phone) 
@@ -56,7 +69,7 @@ public class RegisterProcAction implements Action {
 		MemberVo memberVo = new MemberVo();
 		memberVo.setId(id);
 		memberVo.setPwd(BCrypt.hashpw(pwd, BCrypt.gensalt(12)));
-		memberVo.setName(name);
+		memberVo.setNm(nm);
 		memberVo.setEmail(email);
 		memberVo.setPhone(phone);
 		memberVo.setMagre_fl(bMagre);

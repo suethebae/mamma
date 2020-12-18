@@ -27,7 +27,7 @@ function modify() {
 	<form action="">
 		<p>
 			이름
-			<%=memberVo.getName()%>
+			<%=memberVo.getNm()%>
 		</p>
 		<p>
 			아이디

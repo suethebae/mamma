@@ -2,12 +2,14 @@ package shop.mammastore.mamma.member.action;
 
 import static shop.mammastore.common.RegExp.REGEXP_EMAIL;
 import static shop.mammastore.common.RegExp.REGEXP_PWD;
+import static shop.mammastore.common.RegExp.REGEXP_PHONE;
 
 import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.regex.Pattern;
 
 import shop.mammastore.common.Action;
 import shop.mammastore.common.ActionForward;
@@ -25,13 +27,29 @@ public class ModifyProcAction implements Action {
 		LoginManager lm = LoginManager.getInstance();
 		String mber_sq = lm.getMemberId(session);
 
+		if (mber_sq == null) {
+			response.setContentType("text/html;charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('잘못된 접근입니다.'); location.href='/'; </script>");
+			out.close();
+			return null;
+		}
+
 		String pwd = request.getParameter("pwd");
 		String pwdc = request.getParameter("pwdc");
 		String email = request.getParameter("email");
 		String phone = request.getParameter("phone");
 
-		if (!RegExp.isValidExp(pwd, REGEXP_PWD) || !pwd.equals(pwdc) || !RegExp.isValidExp(email, REGEXP_EMAIL)
-				|| RegExp.isEmpty(phone)) {
+		if (!pwd.equals("")) {
+			if (!pwd.equals(pwdc) || !Pattern.matches("^[a-zA-Z0-9!@#$%^&*]{4,20}$", pwd)) {
+				response.setContentType("text/html; charset=UTF-8");
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert('잘못된 접근입니다.'); location.href='/'; </script>");
+				out.close();
+				return null;
+			}
+		}
+		if (!RegExp.isValidExp(email, REGEXP_EMAIL) || !RegExp.isValidExp(phone, REGEXP_PHONE)) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('잘못된 접근입니다.'); location.href='/'; </script>");
@@ -40,7 +58,11 @@ public class ModifyProcAction implements Action {
 		}
 
 		MemberVo memberVo = new MemberVo();
-		memberVo.setPwd(BCrypt.hashpw(pwd, BCrypt.gensalt(12)));
+		if (pwd == null || pwd.equals("")) {
+			memberVo.setPwd(null);
+		} else {
+			memberVo.setPwd(BCrypt.hashpw(pwd, BCrypt.gensalt(12)));
+		}
 		memberVo.setEmail(email);
 		memberVo.setPhone(phone);
 		memberVo.setMber_sq(Integer.parseInt(mber_sq));

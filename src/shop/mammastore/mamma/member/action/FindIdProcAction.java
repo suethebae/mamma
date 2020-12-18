@@ -4,9 +4,11 @@ import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import shop.mammastore.common.Action;
 import shop.mammastore.common.ActionForward;
+import shop.mammastore.common.LoginManager;
 import shop.mammastore.common.RegExp;
 import shop.mammastore.mamma.member.service.MemberService;
 import shop.mammastore.mamma.vo.MemberVo;
@@ -14,16 +16,26 @@ import shop.mammastore.mamma.vo.MemberVo;
 public class FindIdProcAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		// TODO Auto-generated method stub
+		HttpSession session = request.getSession();
+		LoginManager lm = LoginManager.getInstance();
+		String mber_sq = lm.getMemberId(session);
+		
+		if (mber_sq != null) {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('잘못된 접근입니다.'); loaction.href='/'; </script>"); 
+			out.close();
+			return null;
+		}
 
-		String name = request.getParameter("name");
+		String nm = request.getParameter("nm");
 		String email = request.getParameter("email");
 		String phone = request.getParameter("phone");
 		String radio = request.getParameter("radio");
 
 		String query = "";
 
-		if (RegExp.isEmpty(name) || RegExp.isEmpty(radio)) {
+		if (RegExp.isEmpty(nm) || RegExp.isEmpty(radio)) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('잘못된 접근입니다.'); location.href='/'; </script>");
@@ -39,7 +51,7 @@ public class FindIdProcAction implements Action {
 				out.close();
 				return null;
 			} else {
-				query = " and name =\'" + name + "\'and email =\'" + email + "\'";
+				query = " and nm =\'" + nm + "\'and email =\'" + email + "\'";
 				// where뒤에 붙을 쿼리문.
 			}
 		} else if (radio.equals("phone")) {
@@ -50,7 +62,7 @@ public class FindIdProcAction implements Action {
 				out.close();
 				return null;
 			} else {
-				query = " and name =\'" + name + "\'and phone=\'" + phone + "\'";
+				query = " and nm =\'" + nm + "\'and phone=\'" + phone + "\'";
 			}
 		}
 

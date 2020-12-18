@@ -8,7 +8,7 @@
 </head>
 <body>
 	상품등록하는 페이지
-	<form action="/admin/registerItemProc" method="post" id="irForm">
+	<form action="/aitem/registerItemProc" method="post" id="irForm">
 		<div>
 			<input type="text" id="itemName" name="itemName" placeholder="상품명"
 				oninput="">

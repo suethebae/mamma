@@ -37,9 +37,9 @@ public class AloginProcAction implements Action {
 			return null;
 		}
 
-		String admin_sq = Integer.toString(amanagerVo.getAdmin_sq());
+		String mngr_sq = Integer.toString(amanagerVo.getMngr_sq());
 		LoginManager lm = LoginManager.getInstance();
-		lm.setSession(request.getSession(), admin_sq);
+		lm.setSession(request.getSession(), mngr_sq);
 
 		ActionForward forward = new ActionForward();
 		forward.setPath("/views/admin/ahome.jsp");

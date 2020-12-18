@@ -33,12 +33,12 @@ public class AmanagerDao {
 		ResultSet rs = null; // DB의 결과문(쿼리값)을 받아와야함. 우선 빈값으로 설정하자.
 		AmanagerVo amanagerVo = null;
 		try {
-			pstmt = con.prepareStatement("select admin_sq, id, pwd from inf_admin_tb where id=? and del_fl=0");
+			pstmt = con.prepareStatement("select mngr_sq, id, pwd from inf_mngr_tb where id=? and del_fl=0");
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			while (rs.next()) { // 다음줄이 null(false) 될떄까지 반복실행
 				amanagerVo = new AmanagerVo();
-				amanagerVo.setAdmin_sq(rs.getInt("admin_sq"));
+				amanagerVo.setMngr_sq(rs.getInt("mngr_sq"));
 				amanagerVo.setId(rs.getString("id"));
 				amanagerVo.setPwd(rs.getString("pwd"));
 			}

@@ -1,7 +1,7 @@
 package shop.mammastore.admin.vo;
 
 public class AmanagerVo {
-	private int admin_sq;
+	private int mngr_sq;
 	private boolean del_fl;
 	private boolean author;
 	private String dttm;
@@ -10,11 +10,12 @@ public class AmanagerVo {
 	private String nm;
 	private String email;
 	private String phone;
-	public int getAdmin_sq() {
-		return admin_sq;
+
+	public int getMngr_sq() {
+		return mngr_sq;
 	}
-	public void setAdmin_sq(int admin_sq) {
-		this.admin_sq = admin_sq;
+	public void setMngr_sq(int mngr_sq) {
+		this.mngr_sq = mngr_sq;
 	}
 	public boolean isDel_fl() {
 		return del_fl;

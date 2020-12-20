@@ -138,4 +138,30 @@ public class AjaxDao {
 		}
 		return count;
 	}
+	
+	public AmanagerVo detailMngr(int mngr_sq) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		AmanagerVo amanagerVo = new AmanagerVo(); 
+		try {
+			pstmt = con.prepareStatement("select * from inf_mngr_tb where mngr_sq=? and del_fl=0");
+			pstmt.setInt(1, mngr_sq);;
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				amanagerVo.setMngr_sq(rs.getInt("mngr_sq"));
+				amanagerVo.setAuthor(rs.getBoolean("author"));
+				amanagerVo.setId(rs.getString("id"));
+				amanagerVo.setNm(rs.getString("nm"));
+				amanagerVo.setDttm(rs.getString("dttm"));
+				amanagerVo.setPhone(rs.getString("phone"));
+				amanagerVo.setEmail(rs.getString("email"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return amanagerVo;
+	}
+	
 }

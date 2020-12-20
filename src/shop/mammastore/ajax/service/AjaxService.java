@@ -81,5 +81,13 @@ public class AjaxService {
 		close(con);
 		return isDuplicate;
 	}
+	public AmanagerVo detailMngr(int mngr_sq) {
+		AjaxDao dao = AjaxDao.getInstance();
+		Connection con = getConnection();
+		dao.setConnection(con);
+		AmanagerVo amanagerVo = dao.detailMngr(mngr_sq);
+		close(con);
+		return amanagerVo;
+	}
 	
 }

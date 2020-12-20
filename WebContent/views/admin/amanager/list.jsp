@@ -1,7 +1,7 @@
 <%@page import="shop.mammastore.admin.vo.AmanagerVo"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%
 	ArrayList<AmanagerVo> list = (ArrayList<AmanagerVo>) request.getAttribute("list");
 %>
@@ -10,27 +10,91 @@
 <head>
 <meta charset="UTF-8">
 <title>관리자 목록</title>
+<script src="https://code.jquery.com/jquery-3.5.1.js"
+	integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+	crossorigin="anonymous"></script>
+<script>
+	function showDetail(sq){
+		var mngr_sq = $('#mngr_sq');
+		var id = $('#id');
+		var nm = $('#nm');
+		var dttm = $('#dttm');
+		var phone = $('#phone');
+		var email = $('#email');
+
+		$.ajax({
+			url : "/ajax/detailMngr",
+			type : "post",
+			dataType : "json",
+			data : {
+				sq : sq
+			},
+			error : function() {
+				alert("통신 실패");
+			},
+			success : function(data) {
+				mngr_sq.val(data.mngr_sq);
+				id.val(data.id+"("+data.author+")");
+				nm.val(data.nm);
+				dttm.val(data.dttm);
+				phone.val(data.phone);
+				email.val(data.email);
+			}
+		});
+	}
+	function modifyMngr(){
+		location.href="/amanager/amodify?mngr_sq="+$('mngr_sq').val();
+	}
+</script>
 </head>
 <body>
-	<table border=1>
-	<tr>
-		<th>관리자 번호</th>
-		<th>관리자 권한</th>
-		<th>아이디</th>
-		<th>이름</th>
-		<th>이메일</th>
-		<th>전화번호</th>
-	</tr>
-	<%for(int i=0; i<list.size(); i++) {%>
-	<tr>
-		<th><%=list.get(i).getMngr_sq() %></th>
-		<th><%=list.get(i).isAuthor() %></th>
-		<th><%=list.get(i).getId() %></th>
-		<th><%=list.get(i).getNm() %></th>
-		<th><%=list.get(i).getEmail() %></th>
-		<th><%=list.get(i).getPhone() %></th>
-	</tr>
-	<%} %>
-	</table>
+	<!-- 직원 이름 표시  -->
+	<div>
+		<table border=1>
+			<tr>
+				<th>직원 목록</th>
+			</tr>
+			<%
+				for (int i = 0; i < list.size(); i++) {
+			%>
+			<tr>
+				<td><button onclick="showDetail(<%=list.get(i).getMngr_sq()%>)"><%=list.get(i).getNm()%></button></td>
+			</tr>
+			<%
+				}
+			%>
+		</table>
+	</div>
+	<button onclick="registerMngr()">관리자 회원 가입</button>
+	<!-- 상세 내용 표시 -->
+	<div>
+		<table>
+			<tr>
+				<th>매니저 정보</th>
+			</tr>
+			<tr>
+				<th><input type="text" id="mngr_sq" readonly="readonly">
+				</th>
+			</tr>
+			<tr>
+				<th><input type="text" id="id" readonly="readonly"></th>
+			</tr>
+			<tr>
+				<th><input type="text" id="nm" readonly="readonly"></th>
+			</tr>
+			<tr>
+				<th><input type="text" id="dttm" readonly="readonly"></th>
+			</tr>
+			<tr>
+				<th><input type="text" id="phone" readonly="readonly"></th>
+			</tr>
+			<tr>
+				<th><input type="text" id="email" readonly="readonly"></th>
+			</tr>
+		</table>
+	</div>
+	<button onclick="modifyMngr()">관리자 회원 수정</button>
+	<button onclick="leaveMngr()">관리자 회원 탈퇴</button>
+
 </body>
 </html>

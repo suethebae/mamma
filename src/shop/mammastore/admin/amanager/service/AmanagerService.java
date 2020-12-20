@@ -61,4 +61,29 @@ public class AmanagerService {
 		close(con);
 		return list;
 	}
+	//관리자 회원가입
+	public boolean aregister(AmanagerVo amanagerVo) {
+		AmanagerDao dao = AmanagerDao.getInstance();
+		Connection con = getConnection();
+		dao.setConnection(con);
+		int count = dao.aregister(amanagerVo);
+		boolean isSuccess = true;
+		if (count > 0) {
+			commit(con);
+		} else {
+			rollback(con);
+			isSuccess = false;
+		}
+		close(con);
+		return isSuccess;
+	}
+	//관리자 회원정보 수정 이동
+	public AmanagerVo getDetailMngr(int mngr_sq) {
+		AmanagerDao dao = AmanagerDao.getInstance();
+		Connection con = getConnection();
+		dao.setConnection(con);
+		AmanagerVo amanagerVo = dao.getDetailMngr(mngr_sq); 
+		close(con);
+		return amanagerVo;
+	}
 }

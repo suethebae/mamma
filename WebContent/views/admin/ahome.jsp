@@ -13,10 +13,15 @@
 	function showAmngrList(){
 		location.href = "/amanager/list";
 	}
+	function registerMngr(){
+		location.href = "/amanager/aregister"
+	}
 </script>
 </head>
 <body>
 	<button onclick="showAmngrList()">관리자목록</button>
+	
+	
 	<button onclick="registerItem()">상품등록</button>
 </body>
 </html>

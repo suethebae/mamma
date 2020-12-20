@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import shop.mammastore.ajax.action.DetailMngrAction;
 import shop.mammastore.ajax.action.checkAEmailAction;
 import shop.mammastore.ajax.action.checkAIdAction;
 import shop.mammastore.ajax.action.checkAPhoneAction;
@@ -69,6 +70,13 @@ public class AjaxController extends HttpServlet {
 			}
 		} else if (command.equals("/checkAPhone")) {
 			Action action = new checkAPhoneAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/detailMngr")) {
+			Action action = new DetailMngrAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

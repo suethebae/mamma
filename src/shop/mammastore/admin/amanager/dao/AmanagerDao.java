@@ -120,4 +120,53 @@ public class AmanagerDao {
 		}
 		return list;
 	}
+	//관리자 회원가입
+	public int aregister(AmanagerVo amanagerVo) {
+		PreparedStatement pstmt = null; // 쿼리문 작성할 메소드
+		int count = 0;
+		try {
+			pstmt = con.prepareStatement(
+					"insert into inf_mngr_tb(id, pwd, nm, email, phone) values(?, ?, ?, ?, ?)");
+			pstmt.setString(1, amanagerVo.getId());
+			pstmt.setString(2, amanagerVo.getPwd());
+			pstmt.setString(3, amanagerVo.getNm());
+			pstmt.setString(4, amanagerVo.getEmail());
+			pstmt.setString(5, amanagerVo.getPhone());
+			count = pstmt.executeUpdate(); // 데이터가 정확히 입력되었으면 카운트가 올라감.
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return count;
+	}
+	
+	//회원정보 수정 이동
+	public AmanagerVo getDetailMngr(int mngr_sq) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null; // DB의 결과문(쿼리값)을 받아와야함. 우선 빈값으로 설정하자.
+		AmanagerVo amanagerVo = null;
+		try {
+			pstmt = con.prepareStatement("select * from inf_mngr_tb where mngr_sq=? and del_fl=0");
+			pstmt.setInt(1, mngr_sq);;
+			rs = pstmt.executeQuery();
+			while (rs.next()) { // 다음줄이 null(false) 될떄까지 반복실행
+				amanagerVo = new AmanagerVo();
+				amanagerVo.setMngr_sq(rs.getInt("mngr_sq"));
+				amanagerVo.setId(rs.getString("id"));
+				amanagerVo.setAuthor(rs.getBoolean("author"));
+				amanagerVo.setDttm(rs.getString("dttm"));
+				amanagerVo.setEmail(rs.getString("email"));
+				amanagerVo.setNm(rs.getString("nm"));
+				amanagerVo.setPhone(rs.getString("phone"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rs);
+		}
+		return amanagerVo;
+	}
 }

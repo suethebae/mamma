@@ -39,6 +39,7 @@ public class AitemController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
+		
 
 		// redirect or dispatch
 		if (forward != null) {

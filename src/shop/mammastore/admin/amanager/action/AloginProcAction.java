@@ -29,14 +29,14 @@ public class AloginProcAction implements Action {
 
 		AmanagerService svc = new AmanagerService();
 		AmanagerVo amanagerVo = svc.getLoginInfo(id);
-		if (amanagerVo == null || !pwd.equals(amanagerVo.getPwd())) {
+		if (amanagerVo == null || !BCrypt.checkpw(pwd, amanagerVo.getPwd())) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('로그인 실패'); history.back(); </script>");
 			out.close();
 			return null;
 		}
-
+		//일반 로그인과 관리자 로그인 세션 분리 어떻게 할지 물어봐야함
 		String mngr_sq = Integer.toString(amanagerVo.getMngr_sq());
 		LoginManager lm = LoginManager.getInstance();
 		lm.setSession(request.getSession(), mngr_sq);

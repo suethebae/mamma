@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import shop.mammastore.admin.vo.AmanagerVo;
 import shop.mammastore.common.BCrypt;
 import shop.mammastore.mamma.vo.MemberVo;
 
@@ -72,6 +73,60 @@ public class AjaxDao {
 		try {
 			pstmt = con.prepareStatement("select count(*) from inf_mber_tb where phone = ? and del_fl=0");
 			pstmt.setString(1, memberVo.getPhone());
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				count = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return count;
+	}
+	public int checkAId(AmanagerVo amanagerVo) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int count = 0;
+		try {
+			pstmt = con.prepareStatement("select count(*) from inf_mngr_tb where id = ? and del_fl=0");
+			pstmt.setString(1, amanagerVo.getId());
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				count = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return count;
+	}
+	public int checkAEmail(AmanagerVo amanagerVo) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int count = 0;
+		try {
+			pstmt = con.prepareStatement("select count(*) from inf_mngr_tb where email = ? and del_fl=0");
+			pstmt.setString(1, amanagerVo.getEmail());
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				count = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return count;
+	}
+	public int checkAPhone(AmanagerVo amanagerVo) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int count = 0;
+		try {
+			pstmt = con.prepareStatement("select count(*) from inf_mngr_tb where phone = ? and del_fl=0");
+			pstmt.setString(1, amanagerVo.getPhone());
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				count = rs.getInt(1);

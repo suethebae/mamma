@@ -1,12 +1,13 @@
 package shop.mammastore.admin.amanager.dao;
 
+import static shop.mammastore.common.JdbcUtil.close;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import shop.mammastore.admin.vo.AmanagerVo;
-
-import static shop.mammastore.common.JdbcUtil.close;
 
 public class AmanagerDao {
 
@@ -26,6 +27,26 @@ public class AmanagerDao {
 
 	public void setConnection(Connection con) {
 		this.con = con;
+	}
+	
+	//최고관리자 있는지 여부 확인
+	public int isSManager() {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int count = 0;
+		try {
+			pstmt = con.prepareStatement("select count(*) from inf_mngr_tb where author=1 and del_fl=0");
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				count = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rs);
+		}
+		return count;
 	}
 
 	public AmanagerVo getLoginInfo(String id) {
@@ -49,5 +70,54 @@ public class AmanagerDao {
 			close(rs);
 		}
 		return amanagerVo;
+	}
+	//최고관리자 등록
+	public int asregister(AmanagerVo amanagerVo) {
+		PreparedStatement pstmt = null; // 쿼리문 작성할 메소드
+		int count = 0;
+		try {
+			pstmt = con.prepareStatement(
+					"insert into inf_mngr_tb(id, pwd, nm, email, phone, author) values(?, ?, ?, ?, ?, 1)");
+			pstmt.setString(1, amanagerVo.getId());
+			pstmt.setString(2, amanagerVo.getPwd());
+			pstmt.setString(3, amanagerVo.getNm());
+			pstmt.setString(4, amanagerVo.getEmail());
+			pstmt.setString(5, amanagerVo.getPhone());
+			count = pstmt.executeUpdate(); // 데이터가 정확히 입력되었으면 카운트가 올라감.
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return count;
+	}
+	
+	//관리자 목록 가져오기
+	public ArrayList<AmanagerVo> getMngrList() {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null; // DB의 결과문(쿼리값)을 받아와야함. 우선 빈값으로 설정하자.
+		ArrayList<AmanagerVo> list = new ArrayList<AmanagerVo>();
+		try {
+			pstmt = con.prepareStatement("select * from inf_mngr_tb where del_fl=0");
+			rs = pstmt.executeQuery();
+			while (rs.next()) { // 다음줄이 null(false) 될떄까지 반복실행
+				AmanagerVo amanagerVo = new AmanagerVo();
+				amanagerVo.setMngr_sq(rs.getInt("mngr_sq"));
+				amanagerVo.setAuthor(rs.getBoolean("author"));
+				amanagerVo.setDttm(rs.getString("dttm"));
+				amanagerVo.setId(rs.getString("id"));
+				amanagerVo.setNm(rs.getString("nm"));
+				amanagerVo.setEmail(rs.getString("email"));
+				amanagerVo.setPhone(rs.getString("phone"));
+				list.add(amanagerVo);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rs);
+		}
+		return list;
 	}
 }

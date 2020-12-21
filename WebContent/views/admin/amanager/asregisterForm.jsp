@@ -273,7 +273,7 @@
 </script>
 </head>
 <body>
-	<form action="/amanager/aregisterProc" id="ARForm" method="post">
+	<form action="/amanager/asregisterProc" id="ARForm" method="post">
 		<div class="join_title">
 			<img alt="X" src="/views/img/join.png">
 		</div>

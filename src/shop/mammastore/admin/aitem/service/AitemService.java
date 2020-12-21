@@ -5,6 +5,7 @@ import static shop.mammastore.common.JdbcUtil.getConnection;
 import static shop.mammastore.common.JdbcUtil.*;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
 import shop.mammastore.admin.aitem.dao.AitemDao;
 import shop.mammastore.admin.vo.AitemVo;
@@ -23,11 +24,20 @@ public class AitemService {
 		}
 		else {
 			rollback(con);
+			isSuccess=false;
 		}
 		close(con);
 		
-
 		return isSuccess;
+	}
+	public ArrayList<AitemVo> getItemList() {
+		AitemDao dao = AitemDao.getInstance();
+		Connection con = getConnection();
+		ArrayList<AitemVo> list = null;
+		dao.setConnection(con);
+		list = dao.getItemList();
+		close(con);
+		return list;
 	}
 
 }

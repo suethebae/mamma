@@ -43,7 +43,21 @@
 		});
 	}
 	function modifyMngr(){
-		location.href="/amanager/amodify?mngr_sq="+$('mngr_sq').val();
+		location.href="/amanager/amodify?mngr_sq="+$('#mngr_sq').val();
+	}
+
+	function leaveMngr(){
+		var con = confirm("정말로 탈퇴 하시겠습니까?");
+		if(con){
+			location.href="/amanager/leave?mngr_sq="+$('#mngr_sq').val();
+		}
+		else{
+			return;
+		}
+	}
+
+	function registerMngr(){
+		location.href="/amanager/aregister"
 	}
 </script>
 </head>

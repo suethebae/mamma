@@ -1,4 +1,4 @@
-package shop.mammastore.admin.amanager.service;
+package shop.mammastore.admin.actgry.service;
 
 import static shop.mammastore.common.JdbcUtil.close;
 import static shop.mammastore.common.JdbcUtil.commit;

@@ -40,17 +40,16 @@
 </head>
 <body>
 	상품등록하는 페이지
-	<form action="/aitem/registerItemProc" method="post" id="editorForm" enctype="multipare/form-data">
+	<form action="/aitem/registerItemProc" method="post" id="editorForm" enctype="Multipart/form-data">
 		<div>
-			<input type="text" id="nm" name="nm" placeholder="상품이름" oninput=""
-				maxlength="25">
+			<input type="text" id="nm" name="nm" placeholder="상품이름" maxlength="25">
 		</div>
 		<div>
 			<input type="file" id="image" name="image" accept="image/*">
 		</div>
 		<div>
-			<input type="text" id="pc" name="pc" placeholder="상품가격" oninput=""><input
-				type="text" id="stock" name="stock" placeholder="재고">
+			<input type="text" id="pc" name="pc" placeholder="상품가격">
+			<input type="text" id="stock" name="stock" placeholder="재고">
 		</div>
 		<div style="width: 1000px">
 			<jsp:include page="/editor/editorSkinForRegister.jsp" flush="false" />

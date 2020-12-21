@@ -56,7 +56,7 @@ public class AregisterProcAction implements Action {
 		}
 
 		ActionForward forward = new ActionForward();
-		forward.setPath("/admin/list");
+		forward.setPath("/amanager/list");
 		return forward;
 	}
 }

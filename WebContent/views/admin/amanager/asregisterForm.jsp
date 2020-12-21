@@ -4,17 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>JOIN</title>
-<link rel="stylesheet" href="/views/css/registerForm.css"
-	type="text/css">
-
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap"
-	rel="stylesheet">
-<script src="https://kit.fontawesome.com/1920467f5c.js"
-	crossorigin="anonymous"></script>
-
+<title>슈퍼관리자 회원가입</title>
 <script src="https://code.jquery.com/jquery-3.5.1.js"
 	integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
 	crossorigin="anonymous"></script>
@@ -47,7 +37,7 @@
 		}
 
 		$.ajax({
-			url : "/ajax/checkId",
+			url : "/ajax/checkAId",
 			type : "post",
 			dataType : "json",
 			data : {
@@ -180,7 +170,7 @@
 		}
 
 		$.ajax({
-			url : "/ajax/checkEmail",
+			url : "/ajax/checkAEmail",
 			type : "post",
 			dataType : "json",
 			data : {
@@ -227,7 +217,7 @@
 		}
 
 		$.ajax({
-			url : "/ajax/checkPhone",
+			url : "/ajax/checkAPhone",
 			type : "post",
 			dataType : "json",
 			data : {
@@ -274,27 +264,7 @@
 			$('#phone').focus();
 			return;
 		}
-		var magre = $('#magre');
-		if (magre.is(":checked")) {
-			magre.val(1); /* jquery에서 ()이 비었으면 : get, ()에 값이 있다면 : set + 체크가 되어 있으면 1 아니면 0*/
-		} else {
-			magre.val(0);
-		}
-		var pagre = $('#pagre');
-		if (pagre.is(":checked")) {
-			pagre.val(1);
-		} else {
-			pagre.val(0);
-		}
-		if (magre.val() != 1) {
-			alert("약관에 동의해 주세요.");
-			return;
-		}
-		if (pagre.val() != 1) {
-			alert("개인정보 처리방침에 동의해 주세요.");
-			return;
-		}
-		$('#mrForm').submit();
+		$('#ARForm').submit();
 	}
 
 	function cancel() {
@@ -303,66 +273,45 @@
 </script>
 </head>
 <body>
-	<jsp:include page="/views/navbar.jsp"></jsp:include>
-	<section>
-		<main>
-			<form action="/member/registerProc" method="post" id="mrForm">
-				<div class="join_title">
-					<img alt="X" src="/views/img/join.png">
-				</div>
-				<!-- 엔터눌러서 데이터 전송 안시키려면 form안에 데이터 전송 있으면X -->
-				<!-- 1. 컨트롤러 타고 들어가야함. /registerProc (RegisterProcAction()) 경로 : member/registerProc -->
-				<div class="join_box">
-					<input class="join_box2" type="text" id="id" name="id"
-						placeholder="아이디 입력" oninput="checkId()"> <span
-						class="join_check" id="idMessage">영어 소문자,숫자 4~16자</span>
-				</div>
-				<div class="join_box">
-					<input class="join_box2" type="password" id="pwd" name="pwd"
-						placeholder="비밀번호 입력" oninput="checkPwd()"> <span
-						class="join_check" id="pwdMessage">영어 대소문자, 숫자,
-						특수문자(!@#$%^&*) 4~20자</span>
-				</div>
-				<div class="join_box">
-					<input class="join_box2" type="password" id="pwdc" name="pwdc"
-						placeholder="비밀번호 확인" oninput="checkPwdc()"> <span
-						class="join_check" id="pwdcMessage">비밀번호 확인을 입력해 주십시오.</span>
-				</div>
-				<div class="join_box">
-					<input class="join_box2" type="text" id="nm" name="nm"
-						placeholder="이름 입력" oninput="checkName()"> <span
-						class="join_check" id="nameMessage">이름을 입력해 주십시오.</span>
-				</div>
-				<div class="join_box">
-					<input class="join_box2" type="email" id="email" name="email"
-						placeholder="이메일" oninput="checkEmail()"> <span
-						class="join_check" id="emailMessage">이메일을 입력해주십시오.</span>
-				</div>
-				<div class="join_box">
-					<input class="join_box2" type="tel" id="phone" name="phone"
-						placeholder="전화번호 입력" oninput="checkPhone()"> <span
-						class="join_check" id="phoneMessage">휴대폰 번호를 입력해주십시오.</span>
-				</div>
-				<div>
-					<div>회원가입약관</div>
-					<div>약관내용입니다 ㅎ</div>
-					<div>
-						약관 내용에 동의합니다.<input type="checkbox" id="magre" name="magre">
-					</div>
-				</div>
-				<div>
-					<div>개인정보 처리 방침 안내</div>
-					<div>처리방침 내용입니다</div>
-					<div>
-						개인정보 처리 방침에 동의합니다.<input type="checkbox" id="pagre" name="pagre">
-					</div>
-				</div>
-			</form>
-			<div class="join_button2">
-					<button class="join_button" onclick="register()">등록</button>
-					<button class="join_button" onclick="cancel()">취소</button>
-				</div>
-		</main>
-	</section>
+	<form action="/amanager/aregisterProc" id="ARForm" method="post">
+		<div class="join_title">
+			<img alt="X" src="/views/img/join.png">
+		</div>
+		<div class="join_box">
+			<input class="join_box2" type="text" id="id" name="id"
+				placeholder="아이디 입력" oninput="checkId()"> <span
+				class="join_check" id="idMessage">영어 소문자,숫자 4~16자</span>
+		</div>
+		<div class="join_box">
+			<input class="join_box2" type="password" id="pwd" name="pwd"
+				placeholder="비밀번호 입력" oninput="checkPwd()"> <span
+				class="join_check" id="pwdMessage">영어 대소문자, 숫자,
+				특수문자(!@#$%^&*) 4~20자</span>
+		</div>
+		<div class="join_box">
+			<input class="join_box2" type="password" id="pwdc" name="pwdc"
+				placeholder="비밀번호 확인" oninput="checkPwdc()"> <span
+				class="join_check" id="pwdcMessage">비밀번호 확인을 입력해 주십시오.</span>
+		</div>
+		<div class="join_box">
+			<input class="join_box2" type="text" id="nm" name="nm"
+				placeholder="이름 입력" oninput="checkName()"> <span
+				class="join_check" id="nameMessage">이름을 입력해 주십시오.</span>
+		</div>
+		<div class="join_box">
+			<input class="join_box2" type="email" id="email" name="email"
+				placeholder="이메일" oninput="checkEmail()"> <span
+				class="join_check" id="emailMessage">이메일을 입력해주십시오.</span>
+		</div>
+		<div class="join_box">
+			<input class="join_box2" type="tel" id="phone" name="phone"
+				placeholder="전화번호 입력" oninput="checkPhone()"> <span
+				class="join_check" id="phoneMessage">휴대폰 번호를 입력해주십시오.</span>
+		</div>
+	</form>
+	<div class="join_button2">
+		<button class="join_button" onclick="register()">등록</button>
+		<button class="join_button" onclick="cancel()">취소</button>
+	</div>
 </body>
 </html>

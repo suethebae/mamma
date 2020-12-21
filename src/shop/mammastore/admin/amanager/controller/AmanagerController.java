@@ -12,6 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 import shop.mammastore.admin.aitem.action.registerItemAction;
 import shop.mammastore.admin.amanager.action.AloginProcAction;
 import shop.mammastore.admin.amanager.action.AlogoutAction;
+import shop.mammastore.admin.amanager.action.AmodifyAction;
+import shop.mammastore.admin.amanager.action.AmodifyProcAction;
+import shop.mammastore.admin.amanager.action.AregisterAction;
+import shop.mammastore.admin.amanager.action.AregisterProcAction;
+import shop.mammastore.admin.amanager.action.AsregisterProcAction;
+import shop.mammastore.admin.amanager.action.ListAction;
 import shop.mammastore.common.Action;
 import shop.mammastore.common.ActionForward;
 
@@ -27,7 +33,7 @@ public class AmanagerController extends HttpServlet {
 		String requestURI = request.getRequestURI();
 		String contextPath = request.getContextPath();
 		String command = requestURI.substring(contextPath.length()).replaceAll("/amanager", "");// 여기에 우리가 들고올 마지막
-																										// 경로를 가져온다
+																								// 경로를 가져온다
 		ActionForward forward = null;
 
 		// manager 로그인 절차
@@ -48,8 +54,60 @@ public class AmanagerController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-	
-
+		// 최고 관리자 회원가입
+		else if (command.equals("/asregisterProc")) {
+			Action action = new AsregisterProcAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		// 관리자 목록 보기
+		else if (command.equals("/list")) {
+			Action action = new ListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		// 관리자 회원 가입
+		else if (command.equals("/aregister")) {
+			Action action = new AregisterAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		// 관리자 회원 가입 절차
+		else if (command.equals("/aregisterProc")) {
+			Action action = new AregisterProcAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		// 관리자 회원 수정
+		else if (command.equals("/amodify")) {
+			Action action = new AmodifyAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		// 관리자 회원 수정 절차
+		else if (command.equals("/amodifyProc")) {
+			Action action = new AmodifyProcAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		// redirect or dispatch
 		if (forward != null) {
 			if (forward.isRedirect()) { // 리다이렉트 -요청값 바뀜 리퀘스트 정보 안남음

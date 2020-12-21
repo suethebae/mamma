@@ -9,9 +9,22 @@
 	function registerItem() {
 		location.href = "/aitem/registerItem";
 	}
+
+	function showAmngrList(){
+		location.href = "/amanager/list";
+	}
+	function registerMngr(){
+		location.href = "/amanager/aregister"
+	}
+	function showAitemList(){
+		location.href = "/aitem/list";
+		}
 </script>
 </head>
 <body>
+	<button onclick="showAmngrList()">관리자목록</button>
+	<button onclick="showAitemList()">상품목록 리스트</button>
+	
 	<button onclick="registerItem()">상품등록</button>
 </body>
 </html>

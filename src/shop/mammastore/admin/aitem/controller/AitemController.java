@@ -9,11 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import shop.mammastore.admin.aitem.action.listAction;
 import shop.mammastore.admin.aitem.action.registerItemAction;
 import shop.mammastore.admin.amanager.action.AloginProcAction;
 import shop.mammastore.admin.amanager.action.AlogoutAction;
 import shop.mammastore.common.Action;
 import shop.mammastore.common.ActionForward;
+import shop.mammastore.mamma.member.action.LogoutAction;
 
 @WebServlet("/aitem/*")
 //웹서블릿 어노테이션으로 모든 .do 파일이 이쪽으로 온다
@@ -38,7 +40,15 @@ public class AitemController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}else if (command.equals("/list")) {
+			Action action = new listAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
+		
 
 		// redirect or dispatch
 		if (forward != null) {

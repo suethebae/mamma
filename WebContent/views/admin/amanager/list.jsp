@@ -45,6 +45,8 @@
 	function modifyMngr(){
 		location.href="/amanager/amodify?mngr_sq="+$('mngr_sq').val();
 	}
+
+	
 </script>
 </head>
 <body>

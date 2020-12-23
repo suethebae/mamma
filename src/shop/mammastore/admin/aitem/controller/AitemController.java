@@ -2,6 +2,7 @@ package shop.mammastore.admin.aitem.controller;
 
 import java.io.IOException;
 
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import shop.mammastore.admin.aitem.action.aModifyProcAction;
+import shop.mammastore.admin.aitem.action.aDeleteAction;
+import shop.mammastore.admin.aitem.action.aItemDetailAction;
+import shop.mammastore.admin.aitem.action.aModifyAction;
 import shop.mammastore.admin.aitem.action.listAction;
 import shop.mammastore.admin.aitem.action.registerItemAction;
 import shop.mammastore.admin.amanager.action.AloginProcAction;
@@ -47,9 +52,36 @@ public class AitemController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}else if (command.equals("/detail")) {
+			Action action = new aItemDetailAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if (command.equals("/amodifyProc")) {
+			Action action = new aModifyProcAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if (command.equals("/amodify")) {
+			Action action = new aModifyAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if (command.equals("/delete")) {
+			Action action = new aDeleteAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
-
 		// redirect or dispatch
 		if (forward != null) {
 			if (forward.isRedirect()) { // 리다이렉트 -요청값 바뀜 리퀘스트 정보 안남음

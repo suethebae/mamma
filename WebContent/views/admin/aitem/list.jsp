@@ -27,6 +27,7 @@
 			<tr>
 				
 				<th>상품번호</th>
+				<th>이미지</th>
 				<th>판매상태</th>
 				<th>상품이름</th>
 				<th>가격</th>
@@ -35,11 +36,11 @@
 			<%
 				for (int i = 0; i < list.size(); i++) {
 			%>
-			<tr>
-				<td><img alt="" src="<%=list.get(i).getFl_pth() %>" width="200px" height="200px"></td>
+			<tr onclick="location.href='/aitem/detail?sq=<%=list.get(i).getItem_sq() %>'">
 				<td><%=list.get(i).getItem_sq() %></td>
+				<td><img alt="" src="<%=list.get(i).getFl_pth() %>" width="200px" height="200px"></td>
 				<td><%=list.get(i).isSttus_fl() %></td>
-				<td><%=list.get(i).getNm() %>
+				<td><%=list.get(i).getNm() %></td>
 				<td><%=list.get(i).getPc() %>
 				<td><%=list.get(i).getStock()%>
 			</tr>

@@ -16,7 +16,9 @@ import shop.mammastore.admin.aitem.service.AitemService;
 import shop.mammastore.admin.vo.AitemVo;
 import shop.mammastore.common.Action;
 import shop.mammastore.common.ActionForward;
+import shop.mammastore.common.FileUpload;
 import shop.mammastore.common.LoginManager;
+import shop.mammastore.common.Parser;
 import shop.mammastore.common.RegExp;
 
 public class registerItemProcAction implements Action {
@@ -33,67 +35,17 @@ public class registerItemProcAction implements Action {
 			out.close();
 			return null;
 		}
+		FileUpload fileUpload = new FileUpload();
+		AitemVo aitemVo = fileUpload.fileUpload(request);
 
-		String path="/uploadFile";
-		ServletContext context= request.getSession().getServletContext();
-		String uploadPath = context.getRealPath(path);
-		int maxSize = 1024 * 1024 * 10;
-		String nm = "";
-		String pc = "";
-		String stock = "";
-		String cntnt = "";
-
-		String fileName1 = "";
-		String originalName1 = "";
-		long fileSize = 0;
-		String fileType = "";
-
-		MultipartRequest multi = null;
-		try {
-			multi = new MultipartRequest(request, uploadPath, maxSize,"utf-8",new DefaultFileRenamePolicy());
-			nm = multi.getParameter("nm");
-			pc = multi.getParameter("pc");
-			stock = multi.getParameter("stock");
-			cntnt = multi.getParameter("content");
-			
-			Enumeration files = multi.getFileNames();
-			
-			while(files.hasMoreElements()) {
-				String file1 = (String)files.nextElement();
-				originalName1 = multi.getOriginalFileName(file1);
-				fileName1 = multi.getFilesystemName(file1);
-				fileType = multi.getContentType(file1);
-				File file = multi.getFile(file1);
-				fileSize = file.length();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
+		if (RegExp.isEmpty(aitemVo.getNm()) || RegExp.isEmpty(Integer.toString(aitemVo.getPc()))
+				|| RegExp.isEmpty(Integer.toString(aitemVo.getStock())) || RegExp.isEmpty(aitemVo.getCntnt())) {
+			response.setContentType("text/html;charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('잘못된 접근입니다.'); location.href='/'; </script>");
+			out.close();
+			return null;
 		}
-		String fl_pth = uploadPath+"\\"+fileName1;
-//	String nm = request.getParameter("nm");
-//	String pc = request.getParameter("pc");
-//	String stock = request.getParameter("stock");
-//	String cntnt = request.getParameter("content");
-//	
-//	if(RegExp.isEmpty(nm)||RegExp.isEmpty(pc)||RegExp.isEmpty(stock)||RegExp.isEmpty(cntnt)) {
-//		response.setContentType("text/html;charset=UTF-8");
-//		PrintWriter out = response.getWriter();
-//		out.println("<script>alert('잘못된 접근입니다.'); location.href='/'; </script>");
-//		out.close();
-//		return null;
-//	}
-
-		cntnt = cntnt.replaceAll("&", "&amp");
-		cntnt = cntnt.replaceAll("<", "&lt");
-		cntnt = cntnt.replaceAll(">", "&gt");
-		cntnt = cntnt.replaceAll("/", "&quot");
-
-		AitemVo aitemVo = new AitemVo();
-		aitemVo.setFl_pth(fl_pth);
-		aitemVo.setNm(nm);
-		aitemVo.setPc(Integer.parseInt(pc));
-		aitemVo.setStock(Integer.parseInt(stock));
-		aitemVo.setCntnt(cntnt);
 
 		AitemService svc = new AitemService();
 		if (!svc.register(aitemVo)) {

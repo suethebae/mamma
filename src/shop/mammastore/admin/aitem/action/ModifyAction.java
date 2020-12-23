@@ -16,10 +16,12 @@ public class ModifyAction implements Action {
 		
 		// Vo에 정보가 저장되어 있음
 		// Vo에서 치환
-		vo.setContent(vo.getContent().replaceAll("&amp", "&"));
-		vo.setContent(vo.getContent().replaceAll("&lt", "<"));
-		vo.setContent(vo.getContent().replaceAll("&gt", ">"));
-		vo.setContent(vo.getContent().replaceAll("&quot", "/"));
+		/*
+		 * vo.setContent(vo.getContent().replaceAll("&amp", "&"));
+		 * vo.setContent(vo.getContent().replaceAll("&lt", "<"));
+		 * vo.setContent(vo.getContent().replaceAll("&gt", ">"));
+		 * vo.setContent(vo.getContent().replaceAll("&quot", "/"));
+		 */
 
 		ActionForward forward = new ActionForward();
 		forward.setPath("view/admin/aitem/updateForm.jsp");

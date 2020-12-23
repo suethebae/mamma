@@ -10,6 +10,8 @@ import shop.mammastore.common.ActionForward;
 public class AhomeAction implements Action{
 @Override
 public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	
+	
 	AmanagerService svc = new AmanagerService();
 	//슈퍼 관리자 계정가 있을 시
 	if(svc.isSManager()) {

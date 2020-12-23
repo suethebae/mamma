@@ -63,7 +63,7 @@ String member_sq = lm.getMemberId(session);
 				</div>
 
 				<div class="login_find">
-					<a href='/member/findId'>아이디 찾기 |</a> <a href='/member/findPwd'>비밀번호
+					<a href='/member/findId'>아이디 찾기 </a> <a href='/member/findPwd'>비밀번호
 						찾기</a>
 				</div>
 			</form>

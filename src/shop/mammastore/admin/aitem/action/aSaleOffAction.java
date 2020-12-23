@@ -15,7 +15,7 @@ import shop.mammastore.common.ActionForward;
 import shop.mammastore.common.LoginManager;
 import shop.mammastore.common.RegExp;
 
-public class aDeleteAction implements Action{
+public class aSaleOffAction implements Action{
 @Override
 public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 	HttpSession session = request.getSession();
@@ -48,7 +48,7 @@ public ActionForward execute(HttpServletRequest request, HttpServletResponse res
 	   
 	/* AitemVo aitemVo = new AitemVo(); */
 	 AitemService svc = new AitemService();
-	if (!svc.deleteItem(aitemVo)) {
+	if (!svc.saleOff(aitemVo)) {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		out.println("<script>alert('상품 삭제에 실패하였습니다..); history.back(); </script>");
@@ -65,11 +65,7 @@ public ActionForward execute(HttpServletRequest request, HttpServletResponse res
 	 */
 	
 	
-	request.setAttribute("aitemVo", aitemVo);
-	
-	
-	
-	aitemVo.setDel_fl(true);
+
 	
 	//경로설정
 	ActionForward forward = new ActionForward();

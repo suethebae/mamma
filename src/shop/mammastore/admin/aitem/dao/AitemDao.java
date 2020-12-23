@@ -137,4 +137,36 @@ public class AitemDao {
 		}
 		return count;
 	}
+	
+	public int saleOn(AitemVo aitemVo) {
+		PreparedStatement pstmt = null;
+		int count = 0;
+		try {									
+				pstmt = con.prepareStatement("update inf_itm_tb set sttus_fl=1 where itm_sq=? and del_fl=0"); 
+				pstmt.setInt(1, aitemVo.getItem_sq());
+				count = pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return count;
+	}
+
+	public int saleOff(AitemVo aitemVo) {
+		PreparedStatement pstmt = null;
+		int count = 0;
+		try {									
+				pstmt = con.prepareStatement("update inf_itm_tb set sttus_fl=0 where itm_sq=? and del_fl=0"); 
+				pstmt.setInt(1, aitemVo.getItem_sq());
+				count = pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return count;
+	}
 }

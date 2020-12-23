@@ -79,4 +79,36 @@ public class AitemService {
 		close(con);
 		return isSuccess;
 	}
+	
+	public boolean saleOn(AitemVo aitemVo) {
+		AitemDao dao = AitemDao.getInstance();
+		Connection con = getConnection();
+		dao.setConnection(con);
+		int count = dao.saleOn(aitemVo);
+		boolean isSuccess = true;
+		if(count > 0) {
+			commit(con);
+		}else {
+			rollback(con);
+			isSuccess = false;
+		}
+		close(con);
+		return isSuccess;
+	}
+	public boolean saleOff(AitemVo aitemVo) {
+		AitemDao dao = AitemDao.getInstance();
+		Connection con = getConnection();
+		dao.setConnection(con);
+		int count = dao.saleOff(aitemVo);
+		boolean isSuccess = true;
+		if(count > 0) {
+			commit(con);
+		}else {
+			rollback(con);
+			isSuccess = false;
+		}
+		close(con);
+		return isSuccess;
+	}
+	
 }

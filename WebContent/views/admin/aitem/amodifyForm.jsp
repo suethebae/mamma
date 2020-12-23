@@ -1,3 +1,4 @@
+<%@page import="shop.mammastore.common.Parser"%>
 <%@page import="shop.mammastore.admin.vo.AitemVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -11,10 +12,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript">
-	function modify() {
+<!-- <!-- <script type="text/javascript">
+	/* function modify() {
 		location.href = "/aitem/amodify";
-	}
+	} */ -->
 </script>
 </head>
 <body>
@@ -22,6 +23,8 @@
 		integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
 		crossorigin="anonymous"></script>
 	<script>
+		var content = '<%=Parser.chgToHTML(vo.getCntnt())%>';
+	
 		function register() {
 			var nm = $('#nm');
 			var pc = $('#pc');
@@ -69,7 +72,7 @@
 		</div>
 		<div>
 			판매상태
-			<%=vo.isSttus_fl() %>>
+			<%=vo.isSttus_fl() %>
 		</div>
 		<%-- <div>
 			카테고리 <%=vo.getCtgry_sq() %>
@@ -79,17 +82,17 @@
 				maxlength="25" value="<%=vo.getNm() %>">
 		</div>
 		<div>
-			<input type="text" id="pc" name="pc" placeholder="상품가격" oninput=""
+			가격<input type="text" id="pc" name="pc" placeholder="상품가격" oninput=""
 				value="<%=vo.getPc()%>">
 		</div>
 		<div>
 			날짜 <input type="date" id="dttm" name="dttm" oninput=""
 				value="<%=vo.getDttm()%>">
 		</div>
-		<div>
+		<%-- <div>
 			상품 상세 내용 <input type="text" id="cntnt" name="cntnt" oninput=""
 				value="<%=vo.getCntnt()%>">
-		</div>
+		</div>  --%>
 		<div>
 			재고 <input type="text" id="stock" name="stock" placeholder="재고"
 				value="<%=vo.getStock()%>">
@@ -99,7 +102,8 @@
 		</div>
 
 		<div style="width: 1000px">
-			<jsp:include page="/editor/editorSkinForRegister.jsp" flush="false" />
+			<jsp:include page="/editor/editorSkinForModify.jsp" flush="false" />
+			
 		</div>
 	</form>
 	<button onclick="register()">등록</button>

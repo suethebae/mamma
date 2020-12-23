@@ -2,11 +2,13 @@ package shop.mammastore.admin.aitem.action;
 
 import static shop.mammastore.common.RegExp.REGEXP_NUMBER;
 
+
 import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 
 import shop.mammastore.admin.aitem.service.AitemService;
 import shop.mammastore.admin.amanager.service.AmanagerService;
@@ -15,6 +17,7 @@ import shop.mammastore.admin.vo.AmanagerVo;
 import shop.mammastore.common.Action;
 import shop.mammastore.common.ActionForward;
 import shop.mammastore.common.LoginManager;
+import shop.mammastore.common.Parser;
 import shop.mammastore.common.RegExp;
 import shop.mammastore.mamma.member.service.MemberService;
 
@@ -56,23 +59,26 @@ public class aModifyProcAction implements Action {
 			return null;
 		}
 		
-		AitemVo itemVo = new AitemVo();
-		itemVo.setItem_sq(Integer.parseInt(itm_sq));
-		itemVo.setNm(nm);
-		itemVo.setPc(Integer.parseInt(pc));
-		itemVo.setStock(Integer.parseInt(stock));
-		itemVo.setCntnt(cntnt);
+		AitemVo aitemVo = new AitemVo();
+		aitemVo.setItem_sq(Integer.parseInt(itm_sq));
+		aitemVo.setNm(nm);
+		aitemVo.setPc(Integer.parseInt(pc));
+		aitemVo.setStock(Integer.parseInt(stock));
+		aitemVo.setCntnt(Parser.chgToStr(cntnt));
 		
 		AitemService svc = new AitemService();
-		if (!svc.modify(itemVo)) {
+		if (!svc.modify(aitemVo)) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('상품정보 수정에 실패하였습니다..'); history.back(); </script>");
 			out.close();
 			return null;
 		}
-		
 
+		
+		request.setAttribute("aitemVo", aitemVo);
+		
+		
 		// 경로설정
 	ActionForward forward = new ActionForward();
 	forward.setPath("/views/admin/aitem/detail.jsp");

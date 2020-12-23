@@ -19,8 +19,8 @@ public class aModifyAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// 로그인 확인
 		
-	
-		String itm_sq = request.getParameter("item_sq");
+	 
+		String itm_sq = request.getParameter("sq");
 		if (itm_sq == null || itm_sq.equals("")) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();

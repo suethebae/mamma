@@ -1,8 +1,11 @@
+<%@page import="shop.mammastore.admin.vo.AitemVo"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <link rel="stylesheet" href="/editor/css/editor.css" type="text/css"/>
 <script src="/editor/js/editor_loader.js" type="text/javascript"></script>
 <script src="/editor/js/saveContentM.js" defer></script>
-
+<%-- <%
+	AitemVo vo= (AitemVo) request.getAttribute("aitemVo");
+%> --%>
 <script>
     // 에디터
     var cn_wi = 1500;

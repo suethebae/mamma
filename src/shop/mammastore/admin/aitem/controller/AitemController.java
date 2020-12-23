@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import shop.mammastore.admin.aitem.action.aModifyProcAction;
+import shop.mammastore.admin.aitem.action.aSaleOffAction;
+import shop.mammastore.admin.aitem.action.aSaleOnAction;
 import shop.mammastore.admin.aitem.action.aDeleteAction;
 import shop.mammastore.admin.aitem.action.aItemDetailAction;
 import shop.mammastore.admin.aitem.action.aModifyAction;
@@ -66,7 +68,7 @@ public class AitemController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if (command.equals("/amodify")) {
+		}else if (command.equals("/modify")) {
 			Action action = new aModifyAction();
 			try {
 				forward = action.execute(request, response);
@@ -75,6 +77,20 @@ public class AitemController extends HttpServlet {
 			}
 		}else if (command.equals("/delete")) {
 			Action action = new aDeleteAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/saleOn")) {
+			Action action = new aSaleOnAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if (command.equals("/saleOff")) {
+			Action action = new aSaleOffAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

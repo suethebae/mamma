@@ -17,6 +17,7 @@ import shop.mammastore.admin.vo.AmanagerVo;
 import shop.mammastore.common.Action;
 import shop.mammastore.common.ActionForward;
 import shop.mammastore.common.LoginManager;
+import shop.mammastore.common.Parser;
 import shop.mammastore.common.RegExp;
 
 public class aItemDetailAction implements Action{
@@ -46,7 +47,7 @@ public ActionForward execute(HttpServletRequest request, HttpServletResponse res
 	}
 	
 	
-	
+	aitemVo.setCntnt(Parser.chgToHTML(aitemVo.getCntnt()));
 	
 	request.setAttribute("aitemVo", aitemVo);
 	

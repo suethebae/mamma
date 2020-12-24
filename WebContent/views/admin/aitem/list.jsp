@@ -20,18 +20,18 @@
 </head>
 <body>
 	<jsp:include page="/views/navbar.jsp"></jsp:include>
-	»óÇ°¸®½ºÆ® ÆäÀÌÁö ¿©±â ¼¥ Àü¿ë ³×ºñ°ÔÀÌ¼Ç ¶ç¿ì±â(Ä«Å×°í¸®)
+	ìƒí’ˆë¦¬ìŠ¤íŠ¸ íŽ˜ì´ì§€ ì—¬ê¸° ìƒµ ì „ìš© ë„¤ë¹„ê²Œì´ì…˜ ë„ìš°ê¸°(ì¹´í…Œê³ ë¦¬)
 	<br>
 	<div>
 		<table border=1>
 			<tr>
 				
-				<th>»óÇ°¹øÈ£</th>
-				<th>ÀÌ¹ÌÁö</th>
-				<th>ÆÇ¸Å»óÅÂ</th>
-				<th>»óÇ°ÀÌ¸§</th>
-				<th>°¡°Ý</th>
-				<th>Àç°í</th>
+				<th>ìƒí’ˆë²ˆí˜¸</th>
+				<th>ì´ë¯¸ì§€</th>
+				<th>íŒë§¤ìƒíƒœ</th>
+				<th>ìƒí’ˆì´ë¦„</th>
+				<th>ê°€ê²©</th>
+				<th>ìž¬ê³ </th>
 			</tr>
 			<%
 				for (int i = 0; i < list.size(); i++) {
@@ -49,10 +49,10 @@
 			%>
 		</table>
 	</div>
-	<button onclick="register()">µî·Ï</button>
+	<button onclick="register()">ë“±ë¡</button>
 
-	<a href='/item/detail'>»óÇ°»ó¼¼ÆäÀÌÁö</a>
+	<a href='/item/detail'>ìƒí’ˆìƒì„¸íŽ˜ì´ì§€</a>
 	<br>
-	<a href='/'>È¨À¸·Î</a>
+	<a href='/'>í™ˆìœ¼ë¡œ</a>
 </body>
 </html>

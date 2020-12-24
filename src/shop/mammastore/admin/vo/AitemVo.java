@@ -2,7 +2,7 @@ package shop.mammastore.admin.vo;
 
 public class AitemVo {
 	private int item_sq;
-	private boolean ctgry_sq;
+	private int ctgry_sq;
 	private boolean del_fl;
 	private boolean sttus_fl;
 	private int pc;
@@ -11,17 +11,25 @@ public class AitemVo {
 	private String cntnt;
 	private String fl_pth;
 	private String thumb_pth;
+	private String dttm;
+		
 	
+	public String getDttm() {
+		return dttm;
+	}
+	public void setDttm(String dttm) {
+		this.dttm = dttm;
+	}
 	public int getItem_sq() {
 		return item_sq;
 	}
 	public void setItem_sq(int item_sq) {
 		this.item_sq = item_sq;
 	}
-	public boolean isCtgry_sq() {
+	public int getCtgry_sq() {
 		return ctgry_sq;
 	}
-	public void setCtgry_sq(boolean ctgry_sq) {
+	public void setCtgry_sq(int ctgry_sq) {
 		this.ctgry_sq = ctgry_sq;
 	}
 	public boolean isDel_fl() {

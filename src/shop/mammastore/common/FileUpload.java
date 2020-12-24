@@ -53,12 +53,11 @@ public class FileUpload {
 		String fl_pth = "http://" + domain + path + "/" + fileName1;
 		AitemVo aitemVo = new AitemVo();
 		Parser parser = new Parser();
-		aitemVo.setFl_pth(parser.changeHtmlToText(fl_pth));
+		aitemVo.setFl_pth(parser.chgToStr(fl_pth));
 		aitemVo.setNm(nm);
 		aitemVo.setPc(Integer.parseInt(pc));
 		aitemVo.setStock(Integer.parseInt(stock));
-		aitemVo.setCntnt(parser.changeHtmlToText(cntnt));
-		fl_pth = parser.changeHtmlToText(fl_pth);
+		aitemVo.setCntnt(parser.chgToStr(cntnt));
 		return aitemVo;
 	}
 }

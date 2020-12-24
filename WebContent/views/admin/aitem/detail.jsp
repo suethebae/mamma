@@ -1,4 +1,3 @@
-<%@page import="shop.mammastore.common.Parser"%>
 <%@page import="shop.mammastore.admin.vo.AitemVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>

@@ -6,29 +6,56 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import shop.mammastore.admin.actgry.service.ActgryService;
+import shop.mammastore.admin.vo.ActgryVo;
 import shop.mammastore.common.Action;
 import shop.mammastore.common.ActionForward;
 import shop.mammastore.common.LoginManager;
+import shop.mammastore.common.RegExp;
 
-public class DeleteAction implements Action{
-@Override
-public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-	//로그인 확인
-	HttpSession session = request.getSession();
-	LoginManager lm = LoginManager.getInstance();
-	String mngr_sq = lm.getMemberId(session);
-	
-	if (mngr_sq == null||mngr_sq.equals("")) {
-		response.setContentType("text/html; charset=UTF-8");
-		PrintWriter out = response.getWriter();
-		out.println("<script>alert('잘못된 접근입니다.'); loaction.href='/'; </script>"); 
-		out.close();
-		return null;
+import static shop.mammastore.common.RegExp.REGEXP_CTGRY_NM;
+
+public class DeleteAction implements Action {
+	@Override
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		// 로그인 확인
+		HttpSession session = request.getSession();
+		LoginManager lm = LoginManager.getInstance();
+		String mngr_sq = lm.getMemberId(session);
+
+		if (mngr_sq == null || mngr_sq.equals("")) {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('잘못된 접근입니다.'); loaction.href='/'; </script>");
+			out.close();
+			return null;
+		}
+		// 넘어온 sq확인
+		String ctgry_sq = request.getParameter("ctgry_sq");
+		if (RegExp.isEmpty(ctgry_sq)) {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('잘못된 접근입니다.'); loaction.href='/'; </script>");
+			out.close();
+			return null;
+		}
+		
+		// ctgry_sq 데이터 vo에 넣기
+		ActgryVo actgryVo = new ActgryVo();
+		actgryVo.setCtgry_sq(Integer.parseInt(ctgry_sq));
+
+		// db에 Vo전달하여 del_fl 업데이트
+		ActgryService svc = new ActgryService();
+		if (!svc.delete(actgryVo)) {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('카테고리 등록에 실패했습니다.'); history.back(); </script>");
+			out.close();
+			return null;
+		}
+		// 경로설정
+		ActionForward forward = new ActionForward();
+		forward.setPath("/actgry/list");
+		return forward;
 	}
-	
-	//경로설정
-	ActionForward forward = new ActionForward();
-	forward.setPath("/views/admin/actgry/aregisterForm.jsp");
-	return forward;
-}
 }

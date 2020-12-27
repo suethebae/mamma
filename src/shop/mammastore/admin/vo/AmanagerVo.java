@@ -65,6 +65,6 @@ public class AmanagerVo {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-
+	
 
 }

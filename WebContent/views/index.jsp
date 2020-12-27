@@ -19,21 +19,7 @@ String member_sq = lm.getMemberId(session);
 </head>
 <body>
 	<jsp:include page="/views/navbar.jsp"></jsp:include>
-	<!-- <div>
-		<div>
-			<img src="/views/css/img/1.png">
-		</div>
-		<div>
-			<img src="/views/css/img/2.png">
-		</div>
-		<div>
-			<img src="/views/css/img/3.png">
-		</div>
-		<div>
-			<img src="/views/css/img/4.png">
-		</div>
-	</div>
- -->
+
 메인페이지
 </body>
 </html>

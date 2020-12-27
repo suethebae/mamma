@@ -1,4 +1,4 @@
-package shop.mammastore.mamma.item.controller;
+package shop.mammastore.mamma.reivew.controller;
 
 import java.io.IOException;
 
@@ -11,14 +11,17 @@ import javax.servlet.http.HttpServletResponse;
 
 import shop.mammastore.common.Action;
 import shop.mammastore.common.ActionForward;
-import shop.mammastore.mamma.item.action.CartAction;
-import shop.mammastore.mamma.item.action.DetailAction;
-import shop.mammastore.mamma.item.action.ListAction;
-import shop.mammastore.mamma.item.action.OrderAction;
+import shop.mammastore.mamma.board.action.ListAction;
+import shop.mammastore.mamma.board.action.DeleteAction;
+import shop.mammastore.mamma.board.action.DetailAction;
+import shop.mammastore.mamma.board.action.ModifyAction;
+import shop.mammastore.mamma.board.action.ModifyProcAction;
+import shop.mammastore.mamma.board.action.RegisterAction;
+import shop.mammastore.mamma.board.action.WriteAction;
 
-@WebServlet("/item/*")
+@WebServlet("/review/*")
 //웹서블릿 어노테이션으로 모든 .do 파일이 이쪽으로 온다
-public class ItemrController extends HttpServlet {
+public class ReviewController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response)
@@ -27,11 +30,10 @@ public class ItemrController extends HttpServlet {
 		// 도메인뒤에 붙어있는 경로 가져온다. 다 있던 메소드 사용
 		String requestURI = request.getRequestURI();
 		String contextPath = request.getContextPath();
-		String command = requestURI.substring(contextPath.length()).replaceAll("/item", "");// 여기에 우리가 들고올 마지막 경로를 가져온다
-
+		String command = requestURI.substring(contextPath.length()).replaceAll("/review", "");// 여기에 우리가 들고올 마지막 경로를 가져온다
 		ActionForward forward = null;
 
-		// 네비이게이션 선택시 상품페이지 들어가기
+		// review 게시판 첫페이지
 		if (command.equals("/list")) {
 			Action action = new ListAction();
 			try {
@@ -39,8 +41,8 @@ public class ItemrController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
-		// 상품 상세페이지 들어가기
+		} 
+		//review 게시판 상세 페이지
 		else if (command.equals("/detail")) {
 			Action action = new DetailAction();
 			try {
@@ -48,7 +50,53 @@ public class ItemrController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}	
+		}
+		//review 게시판 글쓰기 폼으로 가기
+		else if (command.equals("/write")) {
+			Action action = new WriteAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} 
+		//review 게시판 글 등록
+		else if (command.equals("/register")) {
+			Action action = new RegisterAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		//review 게시판 글 수정 폼으로 가기
+		else if (command.equals("/modify")) {
+			Action action = new ModifyAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} 
+		//review 게시판 글 수정 완료하기
+		else if (command.equals("/modifyProc")) {
+			Action action = new ModifyProcAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} 
+		//review 게시판 글 삭제하기
+		else if (command.equals("/delete")) {
+			Action action = new DeleteAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
 
 		// redirect or dispatch
 		if (forward != null) {

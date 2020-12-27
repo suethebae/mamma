@@ -14,14 +14,14 @@ MemberVo memberVo = (MemberVo) request.getAttribute("memberVo");
 	integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
 	crossorigin="anonymous"></script>
 <script type="text/javascript">
-function modify() {
-	location.href="/member/modify"
-}
+	function modify() {
+		location.href = "/member/modify"
+	}
 </script>
 </head>
 <body>
 	<a href='/'>Mamma store</a>
-	<hr> 
+	<hr>
 	<h1>회원정보</h1>
 	<hr>
 	<form action="">

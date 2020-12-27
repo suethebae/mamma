@@ -1,4 +1,4 @@
-package shop.mammastore.ajax.controller;
+package shop.mammastore.admin.actgry.controller;
 
 import java.io.IOException;
 
@@ -9,18 +9,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import shop.mammastore.ajax.action.DetailMngrAction;
-import shop.mammastore.ajax.action.checkAEmailAction;
-import shop.mammastore.ajax.action.checkAIdAction;
-import shop.mammastore.ajax.action.checkAPhoneAction;
-import shop.mammastore.ajax.action.checkEmailAction;
-import shop.mammastore.ajax.action.checkIdAction;
-import shop.mammastore.ajax.action.checkPhoneAction;
+import shop.mammastore.admin.actgry.action.DeleteAction;
+import shop.mammastore.admin.actgry.action.ListAction;
+import shop.mammastore.admin.actgry.action.ModifyAction;
+import shop.mammastore.admin.actgry.action.ModifyProcAction;
+import shop.mammastore.admin.actgry.action.RegisterAction;
+import shop.mammastore.admin.actgry.action.RegisterProcAction;
 import shop.mammastore.common.Action;
 import shop.mammastore.common.ActionForward;
 
-@WebServlet("/ajax/*")
-public class AjaxController extends HttpServlet {
+@WebServlet("/actgry/*")
+//웹서블릿 어노테이션으로 모든 .do 파일이 이쪽으로 온다
+public class ActgryController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response)
@@ -28,67 +28,70 @@ public class AjaxController extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		String requestURI = request.getRequestURI();
 		String contextPath = request.getContextPath();
-		String command = requestURI.substring(contextPath.length()).replaceAll("/ajax", "");// 여기에 우리가 들고올 마지막 경로를
-																								// 가져온다
+		String command = requestURI.substring(contextPath.length()).replaceAll("/actgry", "");
 
 		ActionForward forward = null;
-		//아이디 체크
-		if (command.equals("/checkId")) {
-			Action action = new checkIdAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else if (command.equals("/checkEmail")) {
-			Action action = new checkEmailAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else if (command.equals("/checkPhone")) {
-			Action action = new checkPhoneAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else if (command.equals("/checkAId")) {
-			Action action = new checkAIdAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else if (command.equals("/checkAEmail")) {
-			Action action = new checkAEmailAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else if (command.equals("/checkAPhone")) {
-			Action action = new checkAPhoneAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else if (command.equals("/detailMngr")) {
-			Action action = new DetailMngrAction();
+		// 카테고리 목록
+		if (command.equals("/list")) {
+			Action action = new ListAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
+		// 카테고리 등록 폼
+		else if (command.equals("/register")) {
+			Action action = new RegisterAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		// 카테고리 등록 진행
+		else if (command.equals("/registerProc")) {
+			Action action = new RegisterProcAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		// 카테고리 수정 폼
+		else if (command.equals("/modify")) {
+			Action action = new ModifyAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		// 카테고리 수정 진행
+		else if (command.equals("/modifyProc")) {
+			Action action = new ModifyProcAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		//카테고리 삭제
+		else if (command.equals("/delete")) {
+			Action action = new DeleteAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+		// redirect or dispatch
 		if (forward != null) {
-			if (forward.isRedirect()) {
-				// 리다이렉트
+			if (forward.isRedirect()) { // 리다이렉트 -요청값 바뀜 리퀘스트 정보 안남음
 				response.sendRedirect(forward.getPath());
-			} else {
-				// 디스패치
+
+			} else { // 디스패치 -데이터 유지시키려면 디스패치로 이동해야함
 				RequestDispatcher dispatcher = request.getRequestDispatcher(forward.getPath());
 				dispatcher.forward(request, response);
 			}

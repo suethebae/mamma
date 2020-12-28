@@ -9,14 +9,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import shop.mammastore.admin.aitem.action.registerItemAction;
-import shop.mammastore.admin.amanager.action.AloginProcAction;
-import shop.mammastore.admin.amanager.action.AlogoutAction;
-import shop.mammastore.admin.amanager.action.AmodifyAction;
-import shop.mammastore.admin.amanager.action.AmodifyProcAction;
-import shop.mammastore.admin.amanager.action.AregisterAction;
-import shop.mammastore.admin.amanager.action.AregisterProcAction;
-import shop.mammastore.admin.amanager.action.AsregisterProcAction;
+
+import shop.mammastore.admin.amanager.action.LoginProcAction;
+import shop.mammastore.admin.amanager.action.LogoutAction;
+import shop.mammastore.admin.amanager.action.ModifyAction;
+import shop.mammastore.admin.amanager.action.ModifyProcAction;
+import shop.mammastore.admin.amanager.action.RegisterAction;
+import shop.mammastore.admin.amanager.action.RegisterProcAction;
+import shop.mammastore.admin.amanager.action.SRegisterProcAction;
+import shop.mammastore.admin.amanager.action.LeaveAction;
 import shop.mammastore.admin.amanager.action.ListAction;
 import shop.mammastore.common.Action;
 import shop.mammastore.common.ActionForward;
@@ -36,34 +37,52 @@ public class AmanagerController extends HttpServlet {
 																								// 경로를 가져온다
 		ActionForward forward = null;
 
-		// manager 로그인 절차
-		if (command.equals("/aloginProc")) {
-			Action action = new AloginProcAction();
+		// 매니저 로그인 진행
+		if (command.equals("/loginProc")) {
+			Action action = new LoginProcAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-		// manager 로그아웃 절차
-		else if (command.equals("/alogout")) {
-			Action action = new AlogoutAction();
+		// 매니저 로그아웃 진행
+		else if (command.equals("/logout")) {
+			Action action = new LogoutAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-		// 최고 관리자 회원가입
-		else if (command.equals("/asregisterProc")) {
-			Action action = new AsregisterProcAction();
+		//슈퍼 매니저 등록 진행
+		else if (command.equals("/sRegisterProc")) {
+			Action action = new SRegisterProcAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-		// 관리자 목록 보기
+		// 매니저 등록 폼
+		else if (command.equals("/register")) {
+			Action action = new RegisterAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		// 매니저 등록 진행
+		else if (command.equals("/registerProc")) {
+			Action action = new RegisterProcAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		// 매니저 리스트 보기
 		else if (command.equals("/list")) {
 			Action action = new ListAction();
 			try {
@@ -72,42 +91,40 @@ public class AmanagerController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		// 관리자 회원 가입
-		else if (command.equals("/aregister")) {
-			Action action = new AregisterAction();
+		/*
+		 * // 매니저 상세정보 보기 else if (command.equals("/detail")) { Action action = new
+		 * DetialAction(); try { forward = action.execute(request, response); } catch
+		 * (Exception e) { e.printStackTrace(); } }
+		 */
+		// 매니저 수정 폼
+		else if (command.equals("/modify")) {
+			Action action = new ModifyAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-		// 관리자 회원 가입 절차
-		else if (command.equals("/aregisterProc")) {
-			Action action = new AregisterProcAction();
+		// 매니저 수정 진행
+		else if (command.equals("/modifyProc")) {
+			Action action = new ModifyProcAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-		// 관리자 회원 수정
-		else if (command.equals("/amodify")) {
-			Action action = new AmodifyAction();
+		//매니저 삭제(탈퇴)
+		else if (command.equals("/leave")) {
+			Action action = new LeaveAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-		// 관리자 회원 수정 절차
-		else if (command.equals("/amodifyProc")) {
-			Action action = new AmodifyProcAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+		
+		
 		// redirect or dispatch
 		if (forward != null) {
 			if (forward.isRedirect()) { // 리다이렉트 -요청값 바뀜 리퀘스트 정보 안남음

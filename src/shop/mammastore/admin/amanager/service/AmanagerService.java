@@ -9,9 +9,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import shop.mammastore.admin.amanager.dao.AmanagerDao;
-import shop.mammastore.admin.vo.AitemVo;
 import shop.mammastore.admin.vo.AmanagerVo;
-
 
 public class AmanagerService {
 
@@ -19,12 +17,12 @@ public class AmanagerService {
 		AmanagerDao dao = AmanagerDao.getInstance();
 		Connection con = getConnection();
 		dao.setConnection(con);
-		AmanagerVo amanagerVo = dao.getLoginInfo(id); 
+		AmanagerVo amanagerVo = dao.getLoginInfo(id);
 		close(con);
 		return amanagerVo;
 	}
-	
-	//ï¿½Ö°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ È®ï¿½ï¿½
+
+	// ÃÖ°í °ü¸®ÀÚ ÀÖ´Â Áö È®ÀÎ
 	public boolean isSManager() {
 		AmanagerDao dao = AmanagerDao.getInstance();
 		Connection con = getConnection();
@@ -37,7 +35,8 @@ public class AmanagerService {
 		close(con);
 		return isSManager;
 	}
-	//ï¿½Ö°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+
+	// ÃÖ°í °ü¸®ÀÚ µî·Ï
 	public boolean asregister(AmanagerVo amanagerVo) {
 		AmanagerDao dao = AmanagerDao.getInstance();
 		Connection con = getConnection();
@@ -53,7 +52,8 @@ public class AmanagerService {
 		close(con);
 		return isSuccess;
 	}
-	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½
+
+	// °ü¸®ÀÚ ¸®½ºÆ® ºÒ·¯¿À±â
 	public ArrayList<AmanagerVo> getMngrList() {
 		AmanagerDao dao = AmanagerDao.getInstance();
 		Connection con = getConnection();
@@ -62,7 +62,8 @@ public class AmanagerService {
 		close(con);
 		return list;
 	}
-	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+
+	// °ü¸®ÀÚ È¸¿ø°¡ÀÔ
 	public boolean aregister(AmanagerVo amanagerVo) {
 		AmanagerDao dao = AmanagerDao.getInstance();
 		Connection con = getConnection();
@@ -78,15 +79,47 @@ public class AmanagerService {
 		close(con);
 		return isSuccess;
 	}
-	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
+
+	// °ü¸®ÀÚ È¸¿øÁ¤º¸ ¼öÁ¤ ÀÌµ¿
 	public AmanagerVo getDetailMngr(int mngr_sq) {
 		AmanagerDao dao = AmanagerDao.getInstance();
 		Connection con = getConnection();
 		dao.setConnection(con);
-		AmanagerVo amanagerVo = dao.getDetailMngr(mngr_sq); 
+		AmanagerVo amanagerVo = dao.getDetailMngr(mngr_sq);
 		close(con);
 		return amanagerVo;
 	}
 
+	// °ü¸®ÀÚ È¸¿øÁ¤º¸ ¼öÁ¤ ÀýÂ÷
+	public boolean modify(AmanagerVo amanagerVo) {
+		AmanagerDao dao = AmanagerDao.getInstance();
+		Connection con = getConnection();
+		dao.setConnection(con);
+		int count = dao.modify(amanagerVo);
+		boolean isSuccess = true;
+		if (count > 0) {
+			commit(con);
+		} else {
+			rollback(con);
+			isSuccess = false;
+		}
+		close(con);
+		return isSuccess;
 	}
-
+	// °ü¸®ÀÚ È¸¿ø Å»Åð
+	public boolean leave(AmanagerVo amanagerVo) {
+		AmanagerDao dao = AmanagerDao.getInstance();
+		Connection con = getConnection();
+		dao.setConnection(con);
+		int count = dao.leave(amanagerVo);
+		boolean isSuccess = true;
+		if (count > 0) {
+			commit(con);
+		} else {
+			rollback(con);
+			isSuccess = false;
+		}
+		close(con);
+		return isSuccess;
+	}
+}

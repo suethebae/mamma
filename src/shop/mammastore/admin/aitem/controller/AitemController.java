@@ -10,19 +10,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import shop.mammastore.admin.aitem.action.aModifyProcAction;
-import shop.mammastore.admin.aitem.action.aSaleOffAction;
-import shop.mammastore.admin.aitem.action.aSaleOnAction;
-import shop.mammastore.admin.aitem.action.aDeleteAction;
-import shop.mammastore.admin.aitem.action.aItemDetailAction;
-import shop.mammastore.admin.aitem.action.aModifyAction;
-import shop.mammastore.admin.aitem.action.listAction;
-import shop.mammastore.admin.aitem.action.registerItemAction;
-import shop.mammastore.admin.amanager.action.AloginProcAction;
-import shop.mammastore.admin.amanager.action.AlogoutAction;
+import shop.mammastore.admin.aitem.action.ModifyProcAction;
+import shop.mammastore.admin.aitem.action.SaleOffAction;
+import shop.mammastore.admin.aitem.action.SaleOnAction;
+import shop.mammastore.admin.aitem.action.DeleteAction;
+import shop.mammastore.admin.aitem.action.DetailAction;
+import shop.mammastore.admin.aitem.action.ModifyAction;
+import shop.mammastore.admin.aitem.action.ListAction;
+import shop.mammastore.admin.aitem.action.RegisterAction;
+import shop.mammastore.admin.aitem.action.RegisterProcAction;
 import shop.mammastore.common.Action;
 import shop.mammastore.common.ActionForward;
-import shop.mammastore.mamma.member.action.LogoutAction;
 
 @WebServlet("/aitem/*")
 //웹서블릿 어노테이션으로 모든 .do 파일이 이쪽으로 온다
@@ -36,68 +34,91 @@ public class AitemController extends HttpServlet {
 		String requestURI = request.getRequestURI();
 		String contextPath = request.getContextPath();
 		String command = requestURI.substring(contextPath.length()).replaceAll("/aitem", "");// 여기에 우리가 들고올 마지막
-																										// 경로를 가져온다
+																								// 경로를 가져온다
 		ActionForward forward = null;
 
-		// 상품등록 페이지 가기
-		if (command.equals("/registerItem")) {
-			Action action = new registerItemAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}else if (command.equals("/list")) {
-			Action action = new listAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}else if (command.equals("/detail")) {
-			Action action = new aItemDetailAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}else if (command.equals("/amodifyProc")) {
-			Action action = new aModifyProcAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}else if (command.equals("/modify")) {
-			Action action = new aModifyAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}else if (command.equals("/delete")) {
-			Action action = new aDeleteAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else if (command.equals("/saleOn")) {
-			Action action = new aSaleOnAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}else if (command.equals("/saleOff")) {
-			Action action = new aSaleOffAction();
+		// 상품 등록 폼
+		if (command.equals("/register")) {
+			Action action = new RegisterAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-		
+		// 상품 등록 진행
+		else if (command.equals("/registerProc")) {
+			Action action = new RegisterProcAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		// 상품 리스트 보기
+		else if (command.equals("/list")) {
+			Action action = new ListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		// 상품 상세페이지 보기
+		else if (command.equals("/detail")) {
+			Action action = new DetailAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		// 상품 정보 수정 폼
+		else if (command.equals("/modify")) {
+			Action action = new ModifyAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		// 상품 정보 수정 진행
+		else if (command.equals("/modifyProc")) {
+			Action action = new ModifyProcAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		// 상품 삭제
+		else if (command.equals("/delete")) {
+			Action action = new DeleteAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		// 상품 판매 개시
+		else if (command.equals("/saleOn")) {
+			Action action = new SaleOnAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		// 상품 판매 대기
+		else if (command.equals("/saleOff")) {
+			Action action = new SaleOffAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
 		// redirect or dispatch
 		if (forward != null) {
 			if (forward.isRedirect()) { // 리다이렉트 -요청값 바뀜 리퀘스트 정보 안남음

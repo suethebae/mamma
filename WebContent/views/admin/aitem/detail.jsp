@@ -1,9 +1,11 @@
-<%@page import="shop.mammastore.common.Parser"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="shop.mammastore.admin.vo.ActgryVo"%>
 <%@page import="shop.mammastore.admin.vo.AitemVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
 	AitemVo vo = (AitemVo) request.getAttribute("aitemVo");
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -31,17 +33,16 @@ function aDelete(){
 	<table border=1>
 		<tr>
 			<td>상품번호</td>
-			<td><input type="text" id="nm" name="nm"
-				value=<%=vo.getItem_sq()%>></td>
+			<td><%=vo.getItem_sq()%></td>
 		</tr>
 		<tr>
 			<td>판매상태</td>
 			<td><%=vo.isSttus_fl()%></td>
 		</tr>
-		<%-- <tr>
+	 <tr>
 		<td>카테고리</td>
-		<td><%=vo.getCtgry_sq() %></td>
-	</tr> --%>
+		<td><%=vo.getCtgry_sq()%></td>
+	</tr>   
 		<tr>
 			<td>상품이름</td>
 			<td><%=vo.getNm()%></td>
@@ -60,7 +61,7 @@ function aDelete(){
 		</tr>
 		<tr>
 			<td>이미지</td>
-			<td><%=vo.getThumb_pth()%></td>
+			<td><img src="<%=vo.getFl_pth()%>" width="100px" height="100px"></td>
 		</tr>
 		<tr>
 			<td>상품상세설명</td>

@@ -11,10 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import shop.mammastore.common.Action;
 import shop.mammastore.common.ActionForward;
-import shop.mammastore.mamma.item.action.CartAction;
 import shop.mammastore.mamma.item.action.DetailAction;
 import shop.mammastore.mamma.item.action.ListAction;
-import shop.mammastore.mamma.item.action.OrderAction;
+
 
 @WebServlet("/item/*")
 //웹서블릿 어노테이션으로 모든 .do 파일이 이쪽으로 온다
@@ -48,25 +47,7 @@ public class ItemrController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
-		// 주문하기(개수 정보도 같이 이동)
-		else if (command.equals("/order")) {
-			Action action = new OrderAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		// 장바구니 담기
-		else if (command.equals("/cart")) {
-			Action action = new CartAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+		}	
 
 		// redirect or dispatch
 		if (forward != null) {

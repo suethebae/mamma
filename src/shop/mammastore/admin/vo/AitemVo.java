@@ -80,5 +80,4 @@ public class AitemVo {
 	public void setThumb_pth(String thumb_pth) {
 		this.thumb_pth = thumb_pth;
 	}
-	
 }

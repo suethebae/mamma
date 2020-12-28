@@ -7,8 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-import shop.mammastore.admin.vo.AitemVo;
 import shop.mammastore.admin.vo.AmanagerVo;
+import shop.mammastore.mamma.vo.MemberVo;
 
 public class AmanagerDao {
 
@@ -29,8 +29,8 @@ public class AmanagerDao {
 	public void setConnection(Connection con) {
 		this.con = con;
 	}
-	
-	//최고관리자 있는지 여부 확인
+
+	// 최고관리자 있는지 여부 확인
 	public int isSManager() {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -38,7 +38,7 @@ public class AmanagerDao {
 		try {
 			pstmt = con.prepareStatement("select count(*) from inf_mngr_tb where author=1 and del_fl=0");
 			rs = pstmt.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				count = rs.getInt(1);
 			}
 		} catch (Exception e) {
@@ -72,7 +72,8 @@ public class AmanagerDao {
 		}
 		return amanagerVo;
 	}
-	//최고관리자 등록
+
+	// 최고관리자 등록
 	public int asregister(AmanagerVo amanagerVo) {
 		PreparedStatement pstmt = null; // 쿼리문 작성할 메소드
 		int count = 0;
@@ -93,7 +94,7 @@ public class AmanagerDao {
 		}
 		return count;
 	}
-	
+
 	//관리자 목록 가져오기
 	public ArrayList<AmanagerVo> getMngrList() {
 		PreparedStatement pstmt = null;
@@ -121,13 +122,13 @@ public class AmanagerDao {
 		}
 		return list;
 	}
-	//관리자 회원가입
+
+	// 관리자 회원가입
 	public int aregister(AmanagerVo amanagerVo) {
 		PreparedStatement pstmt = null; // 쿼리문 작성할 메소드
 		int count = 0;
 		try {
-			pstmt = con.prepareStatement(
-					"insert into inf_mngr_tb(id, pwd, nm, email, phone) values(?, ?, ?, ?, ?)");
+			pstmt = con.prepareStatement("insert into inf_mngr_tb(id, pwd, nm, email, phone) values(?, ?, ?, ?, ?)");
 			pstmt.setString(1, amanagerVo.getId());
 			pstmt.setString(2, amanagerVo.getPwd());
 			pstmt.setString(3, amanagerVo.getNm());
@@ -142,15 +143,16 @@ public class AmanagerDao {
 		}
 		return count;
 	}
-	
-	//회원정보 수정 이동
+
+	// 회원정보 수정 이동
 	public AmanagerVo getDetailMngr(int mngr_sq) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null; // DB의 결과문(쿼리값)을 받아와야함. 우선 빈값으로 설정하자.
 		AmanagerVo amanagerVo = null;
 		try {
 			pstmt = con.prepareStatement("select * from inf_mngr_tb where mngr_sq=? and del_fl=0");
-			pstmt.setInt(1, mngr_sq);;
+			pstmt.setInt(1, mngr_sq);
+			;
 			rs = pstmt.executeQuery();
 			while (rs.next()) { // 다음줄이 null(false) 될떄까지 반복실행
 				amanagerVo = new AmanagerVo();
@@ -169,5 +171,49 @@ public class AmanagerDao {
 			close(rs);
 		}
 		return amanagerVo;
+	}
+
+	// 관리자 회원 정보 수정 절차//////
+	public int modify(AmanagerVo amanagerVo) {
+		PreparedStatement pstmt = null;
+		int count = 0;
+		try {
+			if (amanagerVo.getPwd() == null || amanagerVo.getPwd().equals("")) {
+				pstmt = con.prepareStatement("update inf_mngr_tb set email=?, phone=? where mngr_sq=? and del_fl=0");
+				pstmt.setString(1, amanagerVo.getEmail());
+				pstmt.setString(2, amanagerVo.getPhone());
+				pstmt.setInt(3, amanagerVo.getMngr_sq());
+			} else {
+				pstmt = con.prepareStatement(
+						"update inf_mngr_tb set pwd=?, email=?, phone=? where mngr_sq=? and del_fl=0");
+				pstmt.setString(1, amanagerVo.getPwd());
+				pstmt.setString(2, amanagerVo.getEmail());
+				pstmt.setString(3, amanagerVo.getPhone());
+				pstmt.setInt(4, amanagerVo.getMngr_sq());
+			}
+			count = pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return count;
+	}
+
+	// 관리자 회원 탈퇴
+	public int leave(AmanagerVo amanagerVo) {
+		PreparedStatement pstmt = null;
+		int count = 0;
+		try {
+			pstmt = con.prepareStatement("update inf_mngr_tb set del_fl=1 where mngr_sq=? and del_fl=0");
+			pstmt.setInt(1, amanagerVo.getMngr_sq());
+			count = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return count;
 	}
 }

@@ -76,7 +76,7 @@ public class RegisterProcAction implements Action {
 		memberVo.setPagre_fl(bPagre);
 
 		MemberService svc = new MemberService(); // 사용자가 어딘가 잘못된 데이터를 넣어서 회원가입을 못하는 경우
-		if (!svc.register(memberVo)) {//membervo에 값이 서비스에 값이 맞지 않으면 실패
+		if (!svc.register(memberVo)) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('회원가입에 실패하였습니다.'); history.back(); </script>");

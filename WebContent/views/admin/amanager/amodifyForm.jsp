@@ -153,8 +153,7 @@
 			isPhoneChecked = true;
 		}
 
-		if (phone.val() != '<%=amanagerVo.getPhone()%>
-		') {
+		if (phone.val() != "<%=amanagerVo.getPhone()%>") {
 				$.ajax({
 					url : "/ajax/checkAPhone",
 					type : "post",
@@ -202,21 +201,23 @@
 			$('#AMForm').submit();
 		}
 
-		function cancel(){
-			location.href="/amanager/list";
+		function cancel() {
+			location.href = "/amanager/list";
 		}
 	</script>
 </head>
 <body>
-	<form action="/amanager/amodifyProc" id="AMForm" method="post">
+	<form action="/amanager/modifyProc" id="AMForm" method="post">
 		<div class="join_title">
 			<img alt="X" src="/views/img/join.png">
 		</div>
 		<div class="join_box">
+			<input class="join_box2" type="text" id="mngr_sq" name="mngr_sq"
+				value="<%=amanagerVo.getMngr_sq()%>" readonly="readonly">
+		</div>
+		<div class="join_box">
 			<input class="join_box2" type="text" id="id" name="id"
-				placeholder="아이디 입력" oninput="checkId()"
-				value="<%=amanagerVo.getId()%>" readonly="readonly"> <span
-				class="join_check" id="idMessage">영어 소문자,숫자 4~16자</span>
+				value="<%=amanagerVo.getId()%>" readonly="readonly">
 		</div>
 		<div class="join_box">
 			<input class="join_box2" type="password" id="pwd" name="pwd"

@@ -9,6 +9,7 @@ public class RegExp {
 	public static final int REGEXP_NUMBER = 4;
 	public static final int REGEXP_EMAIL = 5;
 	public static final int REGEXP_PHONE = 6;
+	public static final int REGEXP_CTGRY_NM = 7;
 
 	public static boolean isValidExp(String data, int type) {
 		boolean isValid = false;
@@ -34,7 +35,12 @@ public class RegExp {
 		case REGEXP_PHONE:
 			isValid = Pattern.matches("^[01]{2,2}[0-9]{8,9}$", data);
 			break;
-		} 
+		case REGEXP_CTGRY_NM:
+			isValid = Pattern.matches("^[0-9a-zA-Z가-힣]{1,10}$", data);
+			break;
+		}
+		
+			
 		return isValid;
 	}
 

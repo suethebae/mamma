@@ -7,8 +7,9 @@
 			driverClassName="org.mariadb.jdbc.Driver"
 			type="javax.sql.DataSource"
 			factory="org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory"
-			url="jdbc:mariadb://bzu.co.kr:3306/mammastore?serverTimezone=UTC"
+			url="jdbc:mariadb://mammastore.shop:3306/mammastore?serverTimezone=UTC"
 			username="mammastore"
 			password="1111"
 	/>
 </Context>
+			<!-- url="jdbc:mariadb://mammastore.shop:3306/mammastore?serverTimezone=UTC" -->

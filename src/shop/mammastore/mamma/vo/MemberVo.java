@@ -12,7 +12,7 @@ public class MemberVo {
 	private String dttm;
 	private String id;
 	private String pwd;
-	private String name;
+	private String nm;
 	private String email;
 	private String phone;
 	
@@ -58,11 +58,11 @@ public class MemberVo {
 	public void setPwd(String pwd) {
 		this.pwd = pwd;
 	}
-	public String getName() {
-		return name;
+	public String getNm() {
+		return nm;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setNm(String nm) {
+		this.nm = nm;
 	}
 	public String getEmail() {
 		return email;

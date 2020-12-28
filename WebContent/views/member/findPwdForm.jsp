@@ -10,7 +10,7 @@
 	crossorigin="anonymous"></script>
 <script>
 	const var id = $('#id');
-	const var name = $('#name');
+	const var nm = $('#nm');
 	const var email = $('#email');
 
 	if(!id.val()||id.val()==""){
@@ -18,7 +18,7 @@
 		id.focus();
 		return false;
 	}
-	if(!name.val()||name.val()==""){
+	if(!nm.val()||nm.val()==""){
 		alert("이름을 입력하여주십시오");
 		id.focus();
 		return false;
@@ -38,7 +38,7 @@
 			<input type="text" id="id" name="id" placeholder="아이디" />
 		</div>
 		<div>
-			<input type="text" id="name" name="name" placeholder="이름" />
+			<input type="text" id="nm" name="nm" placeholder="이름" />
 		</div>
 		<div>
 			<input type="text" id="email" name="email" placeholder="이메일" />

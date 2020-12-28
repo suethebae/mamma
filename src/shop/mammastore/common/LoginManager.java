@@ -1,10 +1,11 @@
 package shop.mammastore.common;
 
+import java.util.Enumeration;
+import java.util.Hashtable;
+
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionBindingEvent;
 import javax.servlet.http.HttpSessionBindingListener;
-import java.util.Enumeration;
-import java.util.Hashtable;
 //�떛湲��넠 �삎�떇
 public class LoginManager implements HttpSessionBindingListener {
     private static Hashtable loginUsers = new Hashtable();

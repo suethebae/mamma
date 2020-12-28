@@ -1,0 +1,4 @@
+DetailAction, detail.jsp
+RegisterAction, registerForm.jsp
+list.jsp
+afterIndex.jsp

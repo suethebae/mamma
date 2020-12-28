@@ -14,7 +14,7 @@
 	crossorigin="anonymous"></script>
 <script type="text/javascript">
 	//패스워드 체크
-	var isPwdChecked = false;
+	var isPwdChecked = true;
 	function initCheckPwd() {
 		isPwdChecked = false;
 	}
@@ -42,7 +42,7 @@
 	}
 
 	//비밀번호 확인 체크
-	var isPwdcChecked = false;
+	var isPwdcChecked = true;
 	function initCheckPwdc() {
 		isPwdcChecked = false;
 	}
@@ -67,10 +67,11 @@
 			$('#pwdcMessage').text('비밀번호가 일치합니다.');
 			isPwdcChecked = true;
 		}
+
 	}
 
 	//이메일 체크
-	var isEmailChecked = false;
+	var isEmailChecked = true;
 	function initCheckEmail() {
 		isEmailChecked = false;
 	}
@@ -97,10 +98,35 @@
 			isEmailChecked = true;
 		}
 
+		if (email.val() != '<%=memberVo.getEmail()%>') {
+			$.ajax({
+				url : "/ajax/checkEmail",
+				type : "post",
+				dataType : "json",
+				data : {
+					email : email.val()
+				},
+				error : function() {
+					alert("통신 실패");
+				},
+				success : function(data) {
+					if (data.isDuplicate == 'true') {
+						$('#emailMessage').text('중복된 이메일 입니다.');
+						isEmailChecked = false;
+					} else {
+						$('#emailMessage').text('사용할 수 있는 이메일 입니다.');
+						isEmailChecked = true;
+					}
+				}
+			});
+		}else{
+			$('#emailMessage').text('사용할 수 있는 이메일 입니다.');
+			isEmailChecked = true;
+		}
 	}
 
 	//전화번호 체크
-	var isPhoneChecked = false;
+	var isPhoneChecked = true;
 	function initCheckPhone() {
 		isPhoneChecked = false;
 	}
@@ -124,6 +150,30 @@
 			isPhoneChecked = true;
 		}
 
+		if (phone.val() != '<%=memberVo.getPhone()%>') {
+			$.ajax({
+				url : "/ajax/checkPhone",
+				type : "post",
+				dataType : "json",
+				data : {
+					phone : phone.val()
+				},
+				error : function() {
+					alert("통신 실패");
+				},
+				success : function(data) {
+					if (data.isDuplicate == 'true') {
+						$('#phoneMessage').text('중복된 휴대전화번호 입니다.');
+						isEmailChecked = false;
+					} else {
+
+					}
+				}
+			});
+		} else {
+			$('#phoneMessage').text('사용할 수 있는 휴대전화번호 입니다.');
+			isEmailChecked = true;
+		}
 	}
 
 	//회원정보수정
@@ -156,7 +206,7 @@
 	<form action="/member/modifyProc" method="post" id="mForm">
 		<p>
 			이름
-			<%=memberVo.getName()%>
+			<%=memberVo.getNm()%>
 		</p>
 		<p>
 			아이디
@@ -177,8 +227,9 @@
 				id="emailMessage">이메일을 입력해주십시오</span>
 		</p>
 		<p>
-			휴대폰 <input type="tel" id="phone" name="phone" oninput="checkPhone()" value=<%=memberVo.getPhone()%>>
-			<span id="phoneMessage">전화번호를 입력해주십시오 </span>
+			휴대폰 <input type="tel" id="phone" name="phone" oninput="checkPhone()"
+				value=<%=memberVo.getPhone()%>> <span id="phoneMessage">전화번호를
+				입력해주십시오 </span>
 		</p>
 	</form>
 	<hr>

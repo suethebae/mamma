@@ -1,0 +1,60 @@
+@charset "UTF-8";
+/* 로그인 폼*/
+body {
+	background-color: #f5f5f5;
+}
+
+section {
+	text-align: center;
+	padding-top: 200px;
+	margin: 0;
+}
+
+main {
+	width: 100%;
+	max-width: 400px;
+	margin: auto;
+}
+
+form {
+	display: block;
+}
+
+img.login_title {
+	margin-bottom: 1em;
+}
+
+#id, #pwd {
+	font-size: 1.8rem;
+	padding: .8em;
+	width: 100%;
+	background-color: #fff;
+	border: 1px solid #ced4da;
+	border-radius: .4em;
+}
+
+.login_box {
+	display: block;
+	padding-top: .6em;
+}
+
+.login_button {
+	display: block;
+	padding: .3em;
+	border-radius: .4em;
+	font-size: 1.8rem;
+	width: 100%;
+	background-color: #ffca28;
+	align-items: center;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+.login_find {
+	margin-top: .6em;
+	font-size: 1.3rem;
+	text-align: right;
+}

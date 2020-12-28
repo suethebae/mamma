@@ -30,10 +30,10 @@ public class FindPwdProcAction implements Action {
 		}
 
 		String id = request.getParameter("id");
-		String name = request.getParameter("name");
+		String nm = request.getParameter("nm");
 		String email = request.getParameter("email");
 
-		if (RegExp.isEmpty(id) || RegExp.isEmpty(name) || RegExp.isEmpty(email)) {
+		if (RegExp.isEmpty(id) || RegExp.isEmpty(nm) || RegExp.isEmpty(email)) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('잘못된 접근입니다.'); location.href='/'; </script>");
@@ -43,7 +43,7 @@ public class FindPwdProcAction implements Action {
 
 		MemberVo memberVo = new MemberVo();
 		memberVo.setId(id);
-		memberVo.setName(name);
+		memberVo.setNm(nm);
 		memberVo.setEmail(email);
 
 		MemberService svc = new MemberService();

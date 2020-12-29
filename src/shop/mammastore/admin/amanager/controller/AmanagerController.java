@@ -1,4 +1,4 @@
-package shop.mammastore.mamma.member.controller;
+package shop.mammastore.admin.amanager.controller;
 
 import java.io.IOException;
 
@@ -9,24 +9,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import shop.mammastore.admin.amanager.action.LoginProcAction;
+import shop.mammastore.admin.amanager.action.LogoutAction;
+import shop.mammastore.admin.amanager.action.ModifyAction;
+import shop.mammastore.admin.amanager.action.ModifyProcAction;
+import shop.mammastore.admin.amanager.action.RegisterAction;
+import shop.mammastore.admin.amanager.action.RegisterProcAction;
+import shop.mammastore.admin.amanager.action.SRegisterProcAction;
+import shop.mammastore.admin.amanager.action.DetailAction;
+import shop.mammastore.admin.amanager.action.LeaveAction;
+import shop.mammastore.admin.amanager.action.ListAction;
 import shop.mammastore.common.Action;
 import shop.mammastore.common.ActionForward;
-import shop.mammastore.mamma.member.action.FindIdAction;
-import shop.mammastore.mamma.member.action.FindIdProcAction;
-import shop.mammastore.mamma.member.action.LeaveAction;
-import shop.mammastore.mamma.member.action.LeaveProcAction;
-import shop.mammastore.mamma.member.action.LoginAction;
-import shop.mammastore.mamma.member.action.LoginProcAction;
-import shop.mammastore.mamma.member.action.LogoutAction;
-import shop.mammastore.mamma.member.action.ModifyAction;
-import shop.mammastore.mamma.member.action.ModifyProcAction;
-import shop.mammastore.mamma.member.action.RegisterAction;
-import shop.mammastore.mamma.member.action.RegisterProcAction;
-import shop.mammastore.mamma.member.action.RegisterResultAction;
 
-@WebServlet("/member/*")
+@WebServlet("/amanager/*")
 //웹서블릿 어노테이션으로 모든 .do 파일이 이쪽으로 온다
-public class MemberController extends HttpServlet {
+public class AmanagerController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response)
@@ -35,19 +33,12 @@ public class MemberController extends HttpServlet {
 		// 도메인뒤에 붙어있는 경로 가져온다. 다 있던 메소드 사용
 		String requestURI = request.getRequestURI();
 		String contextPath = request.getContextPath();
-		String command = requestURI.substring(contextPath.length()).replaceAll("/member", "");// 여기에 우리가 들고올 마지막 경로를
-																								// 가져온다
-
+		String command = requestURI.substring(contextPath.length()).replaceAll("/amanager", "");// 여기에 우리가 들고올 마지막
+																								// 경로를 가져온다
 		ActionForward forward = null;
-		// 로그인
-		if (command.equals("/login")) {
-			Action action = new LoginAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else if (command.equals("/loginProc")) {
+
+		// 매니저 로그인 진행
+		if (command.equals("/loginProc")) {
 			Action action = new LoginProcAction();
 			try {
 				forward = action.execute(request, response);
@@ -55,7 +46,7 @@ public class MemberController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		// 로그아웃
+		// 매니저 로그아웃 진행
 		else if (command.equals("/logout")) {
 			Action action = new LogoutAction();
 			try {
@@ -64,7 +55,16 @@ public class MemberController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		// 회원가입
+		//슈퍼 매니저 등록 진행
+		else if (command.equals("/sRegisterProc")) {
+			Action action = new SRegisterProcAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		// 매니저 등록 폼
 		else if (command.equals("/register")) {
 			Action action = new RegisterAction();
 			try {
@@ -72,7 +72,9 @@ public class MemberController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if (command.equals("/registerProc")) {
+		}
+		// 매니저 등록 진행
+		else if (command.equals("/registerProc")) {
 			Action action = new RegisterProcAction();
 			try {
 				forward = action.execute(request, response);
@@ -80,16 +82,25 @@ public class MemberController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		// 회원가입 결과
-		else if (command.equals("/registerResult")) {
-			Action action = new RegisterResultAction();
+		// 매니저 리스트 보기
+		else if (command.equals("/list")) {
+			Action action = new ListAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} 
-		// 회원정보수정
+		}
+		// 매니저 상세정보 보기
+		else if (command.equals("/detail")) {
+			Action action = new DetailAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		// 매니저 수정 폼
 		else if (command.equals("/modify")) {
 			Action action = new ModifyAction();
 			try {
@@ -97,7 +108,9 @@ public class MemberController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if (command.equals("/modifyProc")) {
+		}
+		// 매니저 수정 진행
+		else if (command.equals("/modifyProc")) {
 			Action action = new ModifyProcAction();
 			try {
 				forward = action.execute(request, response);
@@ -105,7 +118,7 @@ public class MemberController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		// 회원탈퇴
+		//매니저 삭제(탈퇴)
 		else if (command.equals("/leave")) {
 			Action action = new LeaveAction();
 			try {
@@ -113,55 +126,17 @@ public class MemberController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if (command.equals("/leaveProc")) {
-			Action action = new LeaveProcAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
 		}
-		// 아이디찾기
-		else if (command.equals("/findId")) {
-			Action action = new FindIdAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else if (command.equals("/findIdProc")) {
-			Action action = new FindIdProcAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		// 비밀번호찾기
-		else if (command.equals("/findPwd")) {
-			Action action = new FindPwdAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else if (command.equals("/findPwdProc")) {
-			Action action = new FindPwdProcAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-
+		
+		
 		// redirect or dispatch
 		if (forward != null) {
 			if (forward.isRedirect()) { // 리다이렉트 -요청값 바뀜 리퀘스트 정보 안남음
-				response.sendRedirect(forward.getPath()); // 정보 처리
+				response.sendRedirect(forward.getPath());
 
 			} else { // 디스패치 -데이터 유지시키려면 디스패치로 이동해야함
 				RequestDispatcher dispatcher = request.getRequestDispatcher(forward.getPath());
-				dispatcher.forward(request, response); // 정보 보내기
+				dispatcher.forward(request, response);
 			}
 		}
 	}

@@ -10,6 +10,7 @@ String member_sq = lm.getMemberId(session);
 <head>
 <meta charset="UTF-8">
 <title>로그인</title>
+<<<<<<< Updated upstream
 <link rel="stylesheet" href="/views/css/style.css" type="text/css">
 <link rel="stylesheet" href="/views/css/login.css" type="text/css">
 <link rel="stylesheet" href="/views/css/ress.css" type="text/css">
@@ -19,6 +20,11 @@ String member_sq = lm.getMemberId(session);
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap"
 	rel="stylesheet">
 <script src="https://kit.fontawesome.com/1920467f5c.js"
+=======
+
+	<script src="https://code.jquery.com/jquery-3.5.1.js"
+	integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+>>>>>>> Stashed changes
 	crossorigin="anonymous"></script>
 <script type="text/javascript">
 	function login() {

@@ -10,18 +10,6 @@ String member_sq = lm.getMemberId(session);
 <head>
 <meta charset="UTF-8">
 <title>+ mamma store +</title>
-<<<<<<< Updated upstream
-<link rel="stylesheet" href="/views/css/style.css" type="text/css">
-<link rel="stylesheet" href="/views/css/ress.css" type="text/css">
-<link rel="stylesheet" href="/views/css/navbar.css" type="text/css">
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap"
-	rel="stylesheet">
-<script src="https://kit.fontawesome.com/1920467f5c.js"
-	crossorigin="anonymous"></script>
-=======
->>>>>>> Stashed changes
 </head>
 <body>
 	<nav class="navbar">
@@ -29,7 +17,7 @@ String member_sq = lm.getMemberId(session);
 			<a href="/"><img class="logo" alt="X" src="/views/img/logo.png"></a>
 		</div>
 		<ul class="navbar_menu">
-			<li><a href="/item/list">SHOP</a></li>
+			<li><a href="/item/ctgry">SHOP</a></li>
 			<li><a href="/">ABOUT MAMMA</a></li>
 			<li><a href="/">CONTACT</a></li>
 		</ul>
@@ -39,19 +27,17 @@ String member_sq = lm.getMemberId(session);
 			%>
 			<li><a href="/member/login">LOGIN</a></li>
 			<li><a href="/member/register">JOIN</a></li>
-			<li><a href="/item/list">CART</a></li>
+			<li><a href="/item/cart">CART</a></li>
 			<%
 				} else {
 			%>
 			<li><a href='/mymenu/myPage'>MY MENU</a></li>
 			<li><a href="/member/logout">LOGOUT</a></li>
-			<li><a href="/item/list">CART</a></li>
+			<li><a href="/item/cart">CART</a></li>
 			<%
 				}
 			%>
 		</ul>
 	</nav>
-
-
 </body>
 </html>

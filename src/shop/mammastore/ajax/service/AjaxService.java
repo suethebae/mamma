@@ -2,6 +2,11 @@ package shop.mammastore.ajax.service;
 
 import java.sql.Connection;
 
+<<<<<<< Updated upstream
+=======
+import shop.mammastore.admin.vo.AitemVo;
+import shop.mammastore.admin.vo.AmanagerVo;
+>>>>>>> Stashed changes
 import shop.mammastore.ajax.dao.AjaxDao;
 import shop.mammastore.mamma.vo.MemberVo;
 
@@ -44,5 +49,60 @@ public class AjaxService {
 		close(con);
 		return isDuplicate;
 	}
+<<<<<<< Updated upstream
+=======
+	public boolean checkAId(AmanagerVo amanagerVo) {
+		AjaxDao dao = AjaxDao.getInstance();
+		Connection con = getConnection();
+		dao.setConnection(con);
+		int count = dao.checkAId(amanagerVo);
+		boolean isDuplicate = false;
+		if(count!=0) {
+			isDuplicate = true;
+		}
+		close(con);
+		return isDuplicate;
+	}
+	public boolean checkAEmail(AmanagerVo amanagerVo) {
+		AjaxDao dao = AjaxDao.getInstance();
+		Connection con = getConnection();
+		dao.setConnection(con);
+		int count = dao.checkAEmail(amanagerVo);
+		boolean isDuplicate = false;
+		if(count!=0) {
+			isDuplicate = true;
+		}
+		close(con);
+		return isDuplicate;
+	}
+	public boolean checkAPhone(AmanagerVo amanagerVo) {
+		AjaxDao dao = AjaxDao.getInstance();
+		Connection con = getConnection();
+		dao.setConnection(con);
+		int count = dao.checkAPhone(amanagerVo);
+		boolean isDuplicate = false;
+		if(count!=0) {
+			isDuplicate = true;
+		}
+		close(con);
+		return isDuplicate;
+	}
+	public AmanagerVo detailMngr(int mngr_sq) {
+		AjaxDao dao = AjaxDao.getInstance();
+		Connection con = getConnection();
+		dao.setConnection(con);
+		AmanagerVo amanagerVo = dao.detailMngr(mngr_sq);
+		close(con);
+		return amanagerVo;
+	}
+	public AitemVo showItemList(int ctgry_sq) {
+		AjaxDao dao = AjaxDao.getInstance();
+		Connection con = getConnection();
+		dao.setConnection(con);
+		AitemVo aitemVo = dao.showItemList(ctgry_sq);
+		close(con);
+		return aitemVo;
+	}
+>>>>>>> Stashed changes
 	
 }

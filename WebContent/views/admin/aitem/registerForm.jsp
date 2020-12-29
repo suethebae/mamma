@@ -49,23 +49,24 @@ ArrayList<ActgryVo> list = (ArrayList<ActgryVo>) request.getAttribute("list");
 	상품등록하는 페이지
 	<form action="/aitem/registerProc" method="post" id="editorForm"
 		enctype="Multipart/form-data">
-		<div>
-			<input type="text" id="nm" name="nm" placeholder="상품이름"
-				maxlength="25">
-		</div>
+		카테고리
 		<select name="ctgry_sq" id="ctgry_sq" name="ctgry_sq">
 			<% for(int i = 0; i < list.size(); i++) { %>
 			<option value="<%=list.get(i).getCtgry_sq()%>"><%=list.get(i).getNm() %></option>
 			<%} %>
 		</select>
 		<div>
-			<input type="file" id="image" name="image" accept="image/*">
+			상품명 <input type="text" id="nm" name="nm" maxlength="25">
 		</div>
 		<div>
-			<input type="text" id="pc" name="pc" placeholder="상품가격"> <input
-				type="text" id="stock" name="stock" placeholder="재고">
+			상품가격 <input type="text" id="pc" name="pc"> 
 		</div>
-		<div></div>
+		<div>
+			재고 <input type="text" id="stock" name="stock">
+		</div>
+		<div>
+			상품이미지 첨부 <input type="file" id="image" name="image" accept="image/*">
+		</div>
 		<div style="width: 1000px">
 			<jsp:include page="/editor/editorSkinForRegister.jsp" flush="false" />
 		</div>

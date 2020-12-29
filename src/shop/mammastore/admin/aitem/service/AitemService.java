@@ -32,6 +32,7 @@ public class AitemService {
 		
 		return isSuccess;
 	}
+	
 	public ArrayList<AitemVo> getItemList() {
 		AitemDao dao = AitemDao.getInstance();
 		Connection con = getConnection();
@@ -49,6 +50,7 @@ public class AitemService {
 		close(con);
 		return aitemVo;
 	}
+	
 	public boolean modify(AitemVo aitemVo) {
 		AitemDao dao = AitemDao.getInstance();
 		Connection con = getConnection();
@@ -64,6 +66,7 @@ public class AitemService {
 		close(con);
 		return isSuccess;
 	}
+	
 	public boolean deleteItem(AitemVo aitemVo) {
 		AitemDao dao = AitemDao.getInstance();
 		Connection con = getConnection();

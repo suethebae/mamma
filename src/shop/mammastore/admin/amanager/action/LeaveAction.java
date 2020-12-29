@@ -1,10 +1,6 @@
 package shop.mammastore.admin.amanager.action;
 
-import static shop.mammastore.common.RegExp.REGEXP_EMAIL;
-import static shop.mammastore.common.RegExp.REGEXP_PHONE;
-
 import java.io.PrintWriter;
-import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,7 +10,6 @@ import shop.mammastore.admin.amanager.service.AmanagerService;
 import shop.mammastore.admin.vo.AmanagerVo;
 import shop.mammastore.common.Action;
 import shop.mammastore.common.ActionForward;
-import shop.mammastore.common.BCrypt;
 import shop.mammastore.common.LoginManager;
 import shop.mammastore.common.RegExp;
 

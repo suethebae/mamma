@@ -1,23 +1,16 @@
 package shop.mammastore.admin.aitem.action;
 
-import java.io.PrintWriter;
+import static shop.mammastore.common.RegExp.REGEXP_NUMBER;
 
-import java.util.ArrayList;
+import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import static shop.mammastore.common.RegExp.REGEXP_NUMBER;
-
-import shop.mammastore.admin.actgry.service.ActgryService;
 import shop.mammastore.admin.aitem.service.AitemService;
-import shop.mammastore.admin.amanager.service.AmanagerService;
 import shop.mammastore.admin.vo.AitemVo;
-import shop.mammastore.admin.vo.AmanagerVo;
 import shop.mammastore.common.Action;
 import shop.mammastore.common.ActionForward;
-import shop.mammastore.common.LoginManager;
 import shop.mammastore.common.Parser;
 import shop.mammastore.common.RegExp;
 

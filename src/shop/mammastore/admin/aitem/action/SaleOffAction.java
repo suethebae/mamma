@@ -43,7 +43,7 @@ public ActionForward execute(HttpServletRequest request, HttpServletResponse res
 	
 	
 	 AitemVo aitemVo = new AitemVo();
-	 aitemVo.setItem_sq(Integer.parseInt(itm_sq));
+	 aitemVo.setItm_sq(Integer.parseInt(itm_sq));
 	 
 	   
 	/* AitemVo aitemVo = new AitemVo(); */
@@ -63,10 +63,7 @@ public ActionForward execute(HttpServletRequest request, HttpServletResponse res
 	 * println("<script>alert('상품 정보 로드에 실패 했습니다.'); loaction.href='/'; </script>");
 	 * out.close(); return null; }
 	 */
-	
-	
 
-	
 	//경로설정
 	ActionForward forward = new ActionForward();
 	forward.setPath("/aitem/list");

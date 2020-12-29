@@ -1,15 +1,14 @@
 package shop.mammastore.mamma.member.action;
 
 import static shop.mammastore.common.RegExp.REGEXP_EMAIL;
-import static shop.mammastore.common.RegExp.REGEXP_PWD;
 import static shop.mammastore.common.RegExp.REGEXP_PHONE;
 
 import java.io.PrintWriter;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.regex.Pattern;
 
 import shop.mammastore.common.Action;
 import shop.mammastore.common.ActionForward;

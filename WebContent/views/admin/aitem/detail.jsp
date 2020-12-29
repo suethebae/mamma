@@ -13,14 +13,14 @@ ActgryVo avo = (ActgryVo) request.getAttribute("actgryVo");
 <title>Insert title here</title>
 <script type="text/javascript">
 function modify(){
-	location.href="/aitem/modify?sq=<%=vo.getItem_sq()%>";
+	location.href="/aitem/modify?sq=<%=vo.getItm_sq()%>";
 	
 }
 
 function aDelete(){
 	
 	    if ( confirm('삭제하시겠습니까?')) {
-	    	location.href="aitem/delete?sq=<%=vo.getItem_sq()%>";
+	    	location.href="aitem/delete?sq=<%=vo.getItm_sq()%>";
 		} else {
 			return;
 		}
@@ -32,7 +32,7 @@ function aDelete(){
 	<table border=1>
 		<tr>
 			<td>상품번호</td>
-			<td><%=vo.getItem_sq()%></td>
+			<td><%=vo.getItm_sq()%></td>
 		</tr>
 		<tr>
 			<td>판매상태</td>
@@ -43,7 +43,7 @@ function aDelete(){
 			<td><%=vo.getCtgry_sq()%></td>
 		</tr>
 		<tr>
-			<td>상품이름</td>
+			<td>상품명</td>
 			<td><%=vo.getNm()%></td>
 		</tr>
 		<tr>
@@ -67,10 +67,10 @@ function aDelete(){
 			<td><%=vo.getCntnt()%></td>
 		</tr>
 	</table>
-	<button onclick="location.href='/aitem/saleOn?sq=<%=vo.getItem_sq()%>'">상품
+	<button onclick="location.href='/aitem/saleOn?sq=<%=vo.getItm_sq()%>'">상품
 		판매 시작</button>
 	<button
-		onclick="location.href='/aitem/saleOff?sq=<%=vo.getItem_sq()%>'">상품
+		onclick="location.href='/aitem/saleOff?sq=<%=vo.getItm_sq()%>'">상품
 		판매 중지</button>
 	<!-- </form> -->
 	<%

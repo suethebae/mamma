@@ -3,16 +3,13 @@ package shop.mammastore.admin.aitem.action;
 import static shop.mammastore.common.RegExp.REGEXP_NUMBER;
 
 import java.io.PrintWriter;
-import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import shop.mammastore.admin.aitem.service.AitemService;
-
 import shop.mammastore.admin.vo.AitemVo;
-
 import shop.mammastore.common.Action;
 import shop.mammastore.common.ActionForward;
 import shop.mammastore.common.LoginManager;
@@ -45,7 +42,7 @@ public class SaleOnAction implements Action {
 		}
 
 		AitemVo aitemVo = new AitemVo();
-		aitemVo.setItem_sq(Integer.parseInt(itm_sq));
+		aitemVo.setItm_sq(Integer.parseInt(itm_sq));
 
 		/* AitemVo aitemVo = new AitemVo(); */
 		AitemService svc = new AitemService();

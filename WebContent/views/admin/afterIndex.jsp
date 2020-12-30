@@ -20,6 +20,9 @@
 	function showActgryList(){
 		location.href = "/actgry/list";
 		}
+	function showMemberList(){
+		location.href = "/amember/list";
+		}
 </script>
 </head>
 <body>
@@ -27,6 +30,7 @@
 	<button onclick="showAitemList()">상품목록 리스트</button>
 	<button onclick="registerItem()">상품등록</button>
 	<button onclick="showActgryList()">카테고리 목록</button>
+	<button onclick="showMemberList()">회원목록</button>
 	
 	
 </body>

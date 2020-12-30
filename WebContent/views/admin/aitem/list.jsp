@@ -36,8 +36,8 @@
 			<%
 				for (int i = 0; i < list.size(); i++) {
 			%>
-			<tr onclick="location.href='/aitem/detail?sq=<%=list.get(i).getItem_sq() %>'">
-				<td><%=list.get(i).getItem_sq() %></td>
+			<tr onclick="location.href='/aitem/detail?sq=<%=list.get(i).getItm_sq() %>'">
+				<td><%=list.get(i).getItm_sq() %></td>
 				<td><img alt="" src="<%=list.get(i).getFl_pth() %>" width="200px" height="200px"></td>
 				<td><%=list.get(i).isSttus_fl() %></td>
 				<td><%=list.get(i).getNm() %></td>

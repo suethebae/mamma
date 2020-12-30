@@ -1,29 +1,25 @@
-package shop.mammastore.admin.aitem.action;
-
-import static shop.mammastore.common.RegExp.REGEXP_NUMBER;
+package shop.mammastore.admin.amember.action;
 
 import java.io.PrintWriter;
-import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import shop.mammastore.admin.aitem.service.AitemService;
-
-import shop.mammastore.admin.vo.AitemVo;
-
+import shop.mammastore.admin.amember.service.AmemberService;
+import shop.mammastore.admin.vo.AmemberVo;
 import shop.mammastore.common.Action;
 import shop.mammastore.common.ActionForward;
 import shop.mammastore.common.LoginManager;
 import shop.mammastore.common.RegExp;
 
-public class SaleOnAction implements Action {
+public class DeleteAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
 		LoginManager lm = LoginManager.getInstance();
 		String mngr_sq = lm.getMemberId(session);
+		String mber_sq = request.getParameter("mber_sq");
 
 		if (mngr_sq == null || mngr_sq.equals("")) {
 			response.setContentType("text/html; charset=UTF-8");
@@ -33,41 +29,38 @@ public class SaleOnAction implements Action {
 			return null;
 		}
 
-		String ditem_sq = request.getParameter("itm_sq");
-
-		String itm_sq = request.getParameter("sq");
-		if (!RegExp.isValidExp(itm_sq, REGEXP_NUMBER)) {
+		if (mber_sq == null || mber_sq.equals("")) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('잘못된 접근입니다.'); loaction.href='/'; </script>");
 			out.close();
 			return null;
 		}
-
-		AitemVo aitemVo = new AitemVo();
-		aitemVo.setItm_sq(Integer.parseInt(itm_sq));
-
-		/* AitemVo aitemVo = new AitemVo(); */
-		AitemService svc = new AitemService();
-		if (!svc.saleOn(aitemVo)) {
-			response.setContentType("text/html;charset=UTF-8");
+	
+		if (RegExp.isEmpty(mber_sq)) {
+			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.println("<script>alert('상품 개시 실패하였습니다..); history.back(); </script>");
+			out.println("<script>alert('잘못된 접근입니다.'); location.href='/'; </script>");
 			out.close();
 			return null;
 		}
 
-		/*
-		 * AitemVo aitemVo = svc.getAitemDetail(Integer.parseInt(itm_sq)); if
-		 * (aitemVo==null) { response.setContentType("text/html; charset=UTF-8");
-		 * PrintWriter out = response.getWriter(); out.
-		 * println("<script>alert('상품 정보 로드에 실패 했습니다.'); loaction.href='/'; </script>");
-		 * out.close(); return null; }
-		 */
+		AmemberVo amemberVo = new AmemberVo();
+		amemberVo.setMber_sq(Integer.parseInt(mber_sq));
+		
 
-		// 경로설정
+		AmemberService svc = new AmemberService();
+		if (!svc.deleteMember(amemberVo)) {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('회원 탈퇴에 실패하였습니다..'); history.back(); </script>");
+			out.close();
+			return null;
+		}
+
+	
 		ActionForward forward = new ActionForward();
-		forward.setPath("/aitem/list");
+		forward.setPath("/amember/list");
 		return forward;
 	}
 }

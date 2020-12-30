@@ -1,10 +1,14 @@
+<%@page import="shop.mammastore.admin.vo.ActgryVo"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="shop.mammastore.common.Parser"%>
 <%@page import="shop.mammastore.admin.vo.AitemVo"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
     	
     	AitemVo vo = (AitemVo) request.getAttribute("aitemVo");
+		ArrayList<ActgryVo> list = (ArrayList<ActgryVo>) request.getAttribute("list");
     
     %>
 <!DOCTYPE html>
@@ -29,7 +33,8 @@
 			var nm = $('#nm');
 			var pc = $('#pc');
 			var stock = $('#stock');
-			var cntnt = $('#cntnt');
+			
+			
 			if (!nm.val()) {
 				alert('상품 이름을 정상적으로 입력하여 주십시오.');
 				nm.focus();
@@ -48,13 +53,13 @@
 				stock.val('');
 				return;
 			}
-			if (!cntnt.val()) {
+			/* if (!cntnt.val()) {
 				alert('내용을 입력하여 주십시오.');
 				stock.focus();
 				stock.val('');
 				return;
-			}
-			$('#editorForm').submit();
+			} */
+			saveContent();
 		}
 
 		function cancel() {
@@ -64,43 +69,52 @@
 </head>
 <body>
 
-	<form action="/aitem/aModifyProc" method="post" id="editorForm"
-		enctype="multipare/form-data">
+	<form action="/aitem/modifyProc" method="post" id="editorForm"
+		enctype="Multipart/form-data">
+		
 		<div>
-			상품번호<%=vo.getItem_sq() %>
-			<input name="item_sq" value="<%=vo.getItem_sq() %>" style="display: none" >
+		   상품번호<%=vo.getItm_sq() %>
+		<input name="itm_sq" value="<%=vo.getItm_sq() %>" style="display: none" >
 		</div>
 		<div>
 			판매상태
-			<%=vo.isSttus_fl() %>
+		<%=vo.isSttus_fl() %>
 		</div>
-		<%-- <div>
-			카테고리 <%=vo.getCtgry_sq() %>
-		</div> --%>
+		카테고리
+		<select name="ctgry_sq">
+					<%for(int i=0; i< list.size(); i++) { %>
+					<option value="<%=list.get(i).getCtgry_sq()%>" <%=list.get(i).getCtgry_sq()==vo.getCtgry_sq()?"selected":""%>><%=list.get(i).getNm()%></option>
+					<% } %>
+			</select>
 		<div>
 			이름 <input type="text" id="nm" name="nm" placeholder="상품이름" oninput=""
 				maxlength="25" value="<%=vo.getNm() %>">
 		</div>
+		
+		
 		<div>
 			가격<input type="text" id="pc" name="pc" placeholder="상품가격" oninput=""
 				value="<%=vo.getPc()%>">
 		</div>
 		<div>
-			날짜 <input type="date" id="dttm" name="dttm" oninput=""
-				value="<%=vo.getDttm()%>">
+			재고 <input type="text" id="stock" name="stock" placeholder="재고"
+				value="<%=vo.getStock()%>">
 		</div>
+	
+	
+		 <%-- <div>
+			카테고리 <%=vo.getCtgry_sq() %>
+		</div>  --%>
+		
+	
 		<%-- <div>
 			상품 상세 내용 <input type="text" id="cntnt" name="cntnt" oninput=""
 				value="<%=vo.getCntnt()%>">
 		</div>  --%>
+		
 		<div>
-			재고 <input type="text" id="stock" name="stock" placeholder="재고"
-				value="<%=vo.getStock()%>">
+		이미지<input type="file" id="image" name="image" accept="image/*">
 		</div>
-		<div>
-			<input type="file" id="image" name="image" accept="image/*">
-		</div>
-
 		<div style="width: 1000px">
 			<jsp:include page="/editor/editorSkinForModify.jsp" flush="false" />
 			

@@ -1,7 +1,7 @@
 package shop.mammastore.admin.vo;
 
 public class AitemVo {
-	private int item_sq;
+	private int itm_sq;
 	private int ctgry_sq;
 	private boolean del_fl;
 	private boolean sttus_fl;
@@ -20,11 +20,11 @@ public class AitemVo {
 	public void setDttm(String dttm) {
 		this.dttm = dttm;
 	}
-	public int getItem_sq() {
-		return item_sq;
+	public int getItm_sq() {
+		return itm_sq;
 	}
-	public void setItem_sq(int item_sq) {
-		this.item_sq = item_sq;
+	public void setItm_sq(int item_sq) {
+		this.itm_sq = item_sq;
 	}
 	public int getCtgry_sq() {
 		return ctgry_sq;

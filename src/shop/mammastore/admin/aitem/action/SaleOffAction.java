@@ -43,7 +43,7 @@ public ActionForward execute(HttpServletRequest request, HttpServletResponse res
 	
 	
 	 AitemVo aitemVo = new AitemVo();
-	 aitemVo.setItem_sq(Integer.parseInt(itm_sq));
+	 aitemVo.setItm_sq(Integer.parseInt(itm_sq));
 	 
 	   
 	/* AitemVo aitemVo = new AitemVo(); */

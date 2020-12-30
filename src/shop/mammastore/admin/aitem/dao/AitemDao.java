@@ -61,7 +61,7 @@ public class AitemDao {
 			rs = pstmt.executeQuery();
 			while (rs.next()) { // �������� null(false) �ɋ����� �ݺ�����
 				AitemVo aitemVo = new AitemVo();
-				aitemVo.setItem_sq(rs.getInt("itm_sq"));
+				aitemVo.setItm_sq(rs.getInt("itm_sq"));
 				aitemVo.setSttus_fl(rs.getBoolean("sttus_fl"));
 				aitemVo.setPc(rs.getInt("pc"));
 				aitemVo.setDttm(rs.getString("dttm"));
@@ -87,7 +87,7 @@ public class AitemDao {
 			rs = pstmt.executeQuery();
 			while (rs.next()) { // �������� null(false) �ɋ����� �ݺ�����
 				aitemVo = new AitemVo();
-				aitemVo.setItem_sq(rs.getInt("itm_sq"));
+				aitemVo.setItm_sq(rs.getInt("itm_sq"));
 				aitemVo.setCtgry_sq(rs.getInt("ctgry_sq"));
 				aitemVo.setSttus_fl(rs.getBoolean("sttus_fl"));
 				aitemVo.setNm(rs.getString("nm"));
@@ -110,14 +110,25 @@ public class AitemDao {
 		PreparedStatement pstmt = null;
 		int count = 0;
 		try {
-				pstmt = con.prepareStatement("update inf_mber_tb set nm=?, pc=?, stock=? cntnc=? where itm_sq=? and del_fl=0"); 
+			if(aitemVo.getFl_pth()==null) {
+				pstmt = con.prepareStatement("update inf_itm_tb set nm=?, pc=?, stock=?, cntnt=? where itm_sq=? and del_fl=0"); 
 				pstmt.setString(1, aitemVo.getNm());
 				pstmt.setInt(2, aitemVo.getPc());
 				pstmt.setInt(3, aitemVo.getStock());
 				pstmt.setString(4, aitemVo.getCntnt());
-				pstmt.setInt(5, aitemVo.getItem_sq());
+				pstmt.setInt(5, aitemVo.getItm_sq());
 				count = pstmt.executeUpdate();
-
+			}else {
+				pstmt = con.prepareStatement("update inf_itm_tb set nm=?, pc=?, stock=?, cntnt=?, fl_pth=? where itm_sq=? and del_fl=0"); 
+				pstmt.setString(1, aitemVo.getNm());
+				pstmt.setInt(2, aitemVo.getPc());
+				pstmt.setInt(3, aitemVo.getStock());
+				pstmt.setString(4, aitemVo.getCntnt());
+				pstmt.setString(5, aitemVo.getFl_pth());
+				pstmt.setInt(6, aitemVo.getItm_sq());
+			
+				count = pstmt.executeUpdate();
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -130,7 +141,7 @@ public class AitemDao {
 		int count = 0;
 		try {									
 				pstmt = con.prepareStatement("delete from inf_itm_tb where itm_sq=? and del_fl=0"); 
-				pstmt.setInt(1, aitemVo.getItem_sq());
+				pstmt.setInt(1, aitemVo.getItm_sq());
 				count = pstmt.executeUpdate();
 
 		} catch (Exception e) {
@@ -146,7 +157,7 @@ public class AitemDao {
 		int count = 0;
 		try {									
 				pstmt = con.prepareStatement("update inf_itm_tb set sttus_fl=1 where itm_sq=? and del_fl=0"); 
-				pstmt.setInt(1, aitemVo.getItem_sq());
+				pstmt.setInt(1, aitemVo.getItm_sq());
 				count = pstmt.executeUpdate();
 
 		} catch (Exception e) {
@@ -162,7 +173,7 @@ public class AitemDao {
 		int count = 0;
 		try {									
 				pstmt = con.prepareStatement("update inf_itm_tb set sttus_fl=0 where itm_sq=? and del_fl=0"); 
-				pstmt.setInt(1, aitemVo.getItem_sq());
+				pstmt.setInt(1, aitemVo.getItm_sq());
 				count = pstmt.executeUpdate();
 
 		} catch (Exception e) {

@@ -24,11 +24,14 @@ public class FileUpload {
       String stock = "";
       String cntnt = "";
       String ctgry_sq = "";
+      String itm_sq= "";
 
       String fileName1 = "";
       String originalName1 = "";
       long fileSize = 0;
       String fileType = "";
+      
+      AitemVo aitemVo = new AitemVo();
       
       File folder = new File(directory);
       if(!folder.exists()) {
@@ -43,6 +46,10 @@ public class FileUpload {
          stock = multi.getParameter("stock");
          cntnt = multi.getParameter("content");
          ctgry_sq = multi.getParameter("ctgry_sq");
+         itm_sq=multi.getParameter("itm_sq");
+         if(itm_sq==null) {
+        	 itm_sq="0";
+         }
 
          Enumeration files = multi.getFileNames();
 
@@ -52,6 +59,18 @@ public class FileUpload {
             fileName1 = multi.getFilesystemName(file1);
             fileType = multi.getContentType(file1);
             File file = multi.getFile(file1);
+            if(file==null) {
+            	 aitemVo.setNm(nm);
+                 aitemVo.setPc(Integer.parseInt(pc));
+                 aitemVo.setStock(Integer.parseInt(stock));
+                 aitemVo.setCntnt(Parser.chgToStr(cntnt));
+                 aitemVo.setCtgry_sq(Integer.parseInt(ctgry_sq));
+                 aitemVo.setItm_sq(Integer.parseInt(itm_sq));
+                 return aitemVo;
+            }
+            
+            
+            
             fileSize = file.length();
          }
       } catch (Exception e) {
@@ -59,7 +78,7 @@ public class FileUpload {
       }
 
       String fl_pth = domain + path + "/" + fileName1;
-      AitemVo aitemVo = new AitemVo();
+      
       
       aitemVo.setFl_pth(Parser.chgToStr(fl_pth));
       aitemVo.setNm(nm);
@@ -67,6 +86,7 @@ public class FileUpload {
       aitemVo.setStock(Integer.parseInt(stock));
       aitemVo.setCntnt(Parser.chgToStr(cntnt));
       aitemVo.setCtgry_sq(Integer.parseInt(ctgry_sq));
+      aitemVo.setItm_sq(Integer.parseInt(itm_sq));
       return aitemVo;
    }
 }

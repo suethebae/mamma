@@ -14,11 +14,8 @@ ActgryVo avo = (ActgryVo) request.getAttribute("actgryVo");
 <script type="text/javascript">
 function modify(){
 	location.href="/aitem/modify?sq=<%=vo.getItm_sq()%>";
-	
 }
-
 function aDelete(){
-	
 	    if ( confirm('삭제하시겠습니까?')) {
 	    	location.href="aitem/delete?sq=<%=vo.getItm_sq()%>";
 		} else {

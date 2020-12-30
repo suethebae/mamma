@@ -1,4 +1,1 @@
-DetailAction, detail.jsp
-RegisterAction, registerForm.jsp
-list.jsp
-afterIndex.jsp
+매니저가 회원관리하는거 전부

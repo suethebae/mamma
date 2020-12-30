@@ -1,4 +1,5 @@
-package shop.mammastore.mamma.member.action;
+package shop.mammastore.admin.amember.action;
+
 
 import java.io.PrintWriter;
 
@@ -6,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import shop.mammastore.admin.amember.service.AmemberService;
+import shop.mammastore.admin.vo.AmemberVo;
 import shop.mammastore.common.Action;
 import shop.mammastore.common.ActionForward;
 import shop.mammastore.common.LoginManager;
@@ -18,9 +21,20 @@ public class ModifyAction implements Action {
 
 		HttpSession session = request.getSession();
 		LoginManager lm = LoginManager.getInstance();
-		String mber_sq = lm.getMemberId(session);
+		String mngr_sq = lm.getMemberId(session);
+		String mber_sq = request.getParameter("sq");
 
-		if (mber_sq == null||mber_sq.equals("")) {
+		//매니저 로그인 되어있는지 확인
+		if (mngr_sq == null || mngr_sq.equals("")) {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('잘못된 접근입니다.'); loaction.href='/'; </script>");
+			out.close();
+			return null;
+		}
+		
+		//회원 시퀀스 확인
+		if (mber_sq == null || mber_sq.equals("")) {
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('잘못된 접근입니다.'); location.href='/'; </script>");
@@ -28,18 +42,19 @@ public class ModifyAction implements Action {
 			return null;
 		}
 
-		MemberService svc = new MemberService();
-		MemberVo memberVo = svc.getUserData(Integer.parseInt(mber_sq));
-		if (memberVo == null) {
+		AmemberService svc = new AmemberService();
+		AmemberVo amemberVo = svc.getAmemberDetail(Integer.parseInt(mber_sq));
+		if (amemberVo==null) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.println("<script>alert('회원정보를 불러오는데 실패하였습니다.'); history.back(); </script>");
+			out.println("<script>alert('회원정보를 불러오는데 실패했습니다.'); loaction.href='/'; </script>"); 
+			out.close();
 		}
 		
-		request.setAttribute("memberVo", memberVo);
+		request.setAttribute("amemberVo", amemberVo);
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath("/views/member/modifyForm.jsp");
+		forward.setPath("/views/admin/amember/modifyForm.jsp");
 		return forward;
 	}
 }

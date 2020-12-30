@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import shop.mammastore.admin.vo.AmanagerVo;
+import shop.mammastore.admin.vo.AmemberVo;
 
 public class AmanagerDao {
 
@@ -94,7 +95,7 @@ public class AmanagerDao {
 		return count;
 	}
 
-	//관리자 목록 가져오기
+	// 관리자 목록 가져오기
 	public ArrayList<AmanagerVo> getMngrList() {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null; // DB의 결과문(쿼리값)을 받아와야함. 우선 빈값으로 설정하자.
@@ -215,4 +216,5 @@ public class AmanagerDao {
 		}
 		return count;
 	}
+
 }

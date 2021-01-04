@@ -14,6 +14,7 @@
 	crossorigin="anonymous"></script>
 </head>
 <body>
+<jsp:include page="/views/navbar.jsp"></jsp:include>
 	<div>
 		<div>
 			<img src="<%=aitemVo.getFl_pth()%>" alt="" width="400px"

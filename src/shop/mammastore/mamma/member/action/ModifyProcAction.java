@@ -1,7 +1,6 @@
 package shop.mammastore.mamma.member.action;
 
 import static shop.mammastore.common.RegExp.REGEXP_EMAIL;
-import static shop.mammastore.common.RegExp.REGEXP_PWD;
 import static shop.mammastore.common.RegExp.REGEXP_PHONE;
 
 import java.io.PrintWriter;

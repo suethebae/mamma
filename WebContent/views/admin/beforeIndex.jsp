@@ -28,7 +28,7 @@
 
 </head>
 <body>
-	<form action="/amanager/aloginProc" method="post" onsubmit="return login()">
+	<form action="/amanager/loginProc" method="post" onsubmit="return login()">
 		<div>
 			<input type="text" id="id" name="id" placeholder="아이디 입력">
 		</div>

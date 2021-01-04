@@ -3,16 +3,13 @@ package shop.mammastore.admin.aitem.action;
 import static shop.mammastore.common.RegExp.REGEXP_NUMBER;
 
 import java.io.PrintWriter;
-import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import shop.mammastore.admin.aitem.service.AitemService;
-
 import shop.mammastore.admin.vo.AitemVo;
-
 import shop.mammastore.common.Action;
 import shop.mammastore.common.ActionForward;
 import shop.mammastore.common.LoginManager;
@@ -33,9 +30,8 @@ public class SaleOnAction implements Action {
 			return null;
 		}
 
-		String ditem_sq = request.getParameter("itm_sq");
-
 		String itm_sq = request.getParameter("sq");
+
 		if (!RegExp.isValidExp(itm_sq, REGEXP_NUMBER)) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
@@ -45,9 +41,8 @@ public class SaleOnAction implements Action {
 		}
 
 		AitemVo aitemVo = new AitemVo();
-		aitemVo.setItem_sq(Integer.parseInt(itm_sq));
+		aitemVo.setItm_sq(Integer.parseInt(itm_sq));
 
-		/* AitemVo aitemVo = new AitemVo(); */
 		AitemService svc = new AitemService();
 		if (!svc.saleOn(aitemVo)) {
 			response.setContentType("text/html;charset=UTF-8");
@@ -57,17 +52,9 @@ public class SaleOnAction implements Action {
 			return null;
 		}
 
-		/*
-		 * AitemVo aitemVo = svc.getAitemDetail(Integer.parseInt(itm_sq)); if
-		 * (aitemVo==null) { response.setContentType("text/html; charset=UTF-8");
-		 * PrintWriter out = response.getWriter(); out.
-		 * println("<script>alert('상품 정보 로드에 실패 했습니다.'); loaction.href='/'; </script>");
-		 * out.close(); return null; }
-		 */
-
 		// 경로설정
 		ActionForward forward = new ActionForward();
-		forward.setPath("/aitem/list");
+		forward.setPath("/aitem/detail?sq=" + itm_sq);
 		return forward;
 	}
 }

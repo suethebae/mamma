@@ -6,9 +6,7 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import shop.mammastore.admin.aitem.service.AitemService;
 import shop.mammastore.admin.vo.AitemVo;
-import shop.mammastore.admin.vo.AmanagerVo;
 import shop.mammastore.ajax.service.AjaxService;
 import shop.mammastore.common.Action;
 import shop.mammastore.common.ActionForward;

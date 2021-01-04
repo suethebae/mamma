@@ -1,4 +1,4 @@
-package shop.mammastore.mamma.item.controller;
+package shop.mammastore.admin.amember.controller;
 
 import java.io.IOException;
 
@@ -9,20 +9,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import shop.mammastore.admin.amember.action.DeleteAction;
+import shop.mammastore.admin.amember.action.DetailAction;
+import shop.mammastore.admin.amember.action.ListAction;
+import shop.mammastore.admin.amember.action.ModifyProcAction;
 import shop.mammastore.common.Action;
 import shop.mammastore.common.ActionForward;
-<<<<<<< Updated upstream:src/shop/mammastore/mamma/item/controller/ItemrController.java
-import shop.mammastore.mamma.item.action.CartAction;
-=======
-import shop.mammastore.mamma.item.action.CtgryAction;
->>>>>>> Stashed changes:src/shop/mammastore/mamma/item/controller/ItemController.java
-import shop.mammastore.mamma.item.action.DetailAction;
-import shop.mammastore.mamma.item.action.ListAction;
-import shop.mammastore.mamma.item.action.OrderAction;
+import shop.mammastore.admin.amember.action.ModifyAction;
 
-@WebServlet("/item/*")
+
+@WebServlet("/amember/*")
 //웹서블릿 어노테이션으로 모든 .do 파일이 이쪽으로 온다
-public class ItemrController extends HttpServlet {
+public class AmemberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response)
@@ -31,20 +29,12 @@ public class ItemrController extends HttpServlet {
 		// 도메인뒤에 붙어있는 경로 가져온다. 다 있던 메소드 사용
 		String requestURI = request.getRequestURI();
 		String contextPath = request.getContextPath();
-		String command = requestURI.substring(contextPath.length()).replaceAll("/item", "");// 여기에 우리가 들고올 마지막 경로를 가져온다
+		String command = requestURI.substring(contextPath.length()).replaceAll("/amember", "");// 여기에 우리가 들고올 마지막 경로를																				// 가져온다
 
 		ActionForward forward = null;
-
-		if (command.equals("/ctgry")) {
-			Action action = new CtgryAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		// 네비이게이션 선택시 상품페이지 들어가기
-		else if (command.equals("/list")) {
+		
+		// 회원리스트
+		if (command.equals("/list")) {
 			Action action = new ListAction();
 			try {
 				forward = action.execute(request, response);
@@ -52,7 +42,7 @@ public class ItemrController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		// 상품 상세페이지 들어가기
+		// 회원정보보기
 		else if (command.equals("/detail")) {
 			Action action = new DetailAction();
 			try {
@@ -60,16 +50,42 @@ public class ItemrController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}	
+		}
+		// 회원정보수정
+		else if (command.equals("/modify")) {
+			Action action = new ModifyAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/modifyProc")) {
+			Action action = new ModifyProcAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		// 회원삭제
+		else if (command.equals("/delete")) {
+			Action action = new DeleteAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} 
+		
 
 		// redirect or dispatch
 		if (forward != null) {
 			if (forward.isRedirect()) { // 리다이렉트 -요청값 바뀜 리퀘스트 정보 안남음
-				response.sendRedirect(forward.getPath());
+				response.sendRedirect(forward.getPath()); // 정보 처리
 
 			} else { // 디스패치 -데이터 유지시키려면 디스패치로 이동해야함
 				RequestDispatcher dispatcher = request.getRequestDispatcher(forward.getPath());
-				dispatcher.forward(request, response);
+				dispatcher.forward(request, response); // 정보 보내기
 			}
 		}
 	}

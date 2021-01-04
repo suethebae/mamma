@@ -16,8 +16,8 @@ import shop.mammastore.admin.aitem.action.DeleteAction;
 import shop.mammastore.admin.aitem.action.DetailAction;
 import shop.mammastore.admin.aitem.action.ModifyAction;
 import shop.mammastore.admin.aitem.action.ListAction;
-import shop.mammastore.admin.actgry.action.RegisterProcAction;
 import shop.mammastore.admin.aitem.action.RegisterAction;
+import shop.mammastore.admin.aitem.action.RegisterProcAction;
 import shop.mammastore.common.Action;
 import shop.mammastore.common.ActionForward;
 

@@ -4,7 +4,6 @@ import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import shop.mammastore.admin.amanager.service.AmanagerService;
 import shop.mammastore.admin.vo.AmanagerVo;
@@ -43,7 +42,7 @@ public class LoginProcAction implements Action {
 		lm.setSession(request.getSession(), mngr_sq);
 
 		ActionForward forward = new ActionForward();
-		forward.setPath("/views/admin/ahome.jsp");
+		forward.setPath("/views/admin/afterIndex.jsp");
 		return forward;
 	}
 }

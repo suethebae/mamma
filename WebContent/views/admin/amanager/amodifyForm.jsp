@@ -72,6 +72,33 @@
 		}
 
 	}
+	
+	//이름 체크
+	var isNameChecked = false;
+	function initCheckName() {
+		isNameChecked = false;
+	}
+	function checkName() {
+		var nm = $('#nm');
+		initCheckName()
+		if (!nm.val() || nm.val() == "") {
+			$('#nameMessage').text('한글 2~8자');
+			isNameChecked = false;
+			return;
+		} else {
+			isNameChecked = true;
+		}
+
+		var regExp = new RegExp("^[가-힣]{2,8}$", "g");
+		if (regExp.exec(nm.val()) == null) {
+			$('#nameMessage').text('잘못된 이름 형식입니다.');
+			isNameChecked = false;
+			return;
+		} else {
+			$('#nameMessage').text('사용가능한 이름입니다.');
+			isNameChecked = true;
+		}
+	}
 
 	//이메일 체크
 	var isEmailChecked = true;
@@ -138,10 +165,10 @@
 		var phone = $('#phone');
 		if (!phone.val() || phone.val() == "") {
 			$('#phoneMessage').text('휴대전화번호를 입력하십시오');
-			isEmailChecked = false;
+			isPhoneChecked = false;
 			return;
 		} else {
-			isEmailChecked = true;
+			isPhoneChecked = true;
 		}
 
 		var regExp = new RegExp("^[01]{2,2}[0-9]{8,9}$", "g");
@@ -169,7 +196,8 @@
 							$('#phoneMessage').text('중복된 휴대전화번호 입니다.');
 							isEmailChecked = false;
 						} else {
-
+							$('#phoneMessage').text('사용가능한 휴대전화번호 입니다.');
+							isEmailChecked = true;
 						}
 					}
 				});
@@ -207,7 +235,7 @@
 	</script>
 </head>
 <body>
-	<form action="/amanager/amodifyProc" id="AMForm" method="post">
+	<form action="/amanager/modifyProc" id="AMForm" method="post">
 		<div class="join_title">
 			<img alt="X" src="/views/img/join.png">
 		</div>

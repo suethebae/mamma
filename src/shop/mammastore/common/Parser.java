@@ -18,7 +18,4 @@ public class Parser {
 		str = str.replaceAll("&quot;", "\"");
 		return str;
 	}
-	
-	
 }
-

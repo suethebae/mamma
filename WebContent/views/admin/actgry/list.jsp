@@ -26,6 +26,7 @@
 </script>
 </head>
 <body>
+	<jsp:include page="/views/admin/aNavbar.jsp"></jsp:include>
 	카테고리 리스트
 	<table border="1">
 		<tr>

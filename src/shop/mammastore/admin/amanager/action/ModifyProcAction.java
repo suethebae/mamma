@@ -2,6 +2,7 @@ package shop.mammastore.admin.amanager.action;
 
 import static shop.mammastore.common.RegExp.REGEXP_EMAIL;
 import static shop.mammastore.common.RegExp.REGEXP_PHONE;
+import static shop.mammastore.common.RegExp.REGEXP_NAME;
 
 import java.io.PrintWriter;
 import java.util.regex.Pattern;
@@ -39,23 +40,18 @@ public class ModifyProcAction implements Action {
 		String pwdc = request.getParameter("pwdc");
 		String email = request.getParameter("email");
 		String phone = request.getParameter("phone");
+		String nm = request.getParameter("nm");
 
 		if (!pwd.equals("")) {
-			if (!pwd.equals(pwdc) || !Pattern.matches("^[a-zA-Z0-9!@#$%^&*]{4,20}$", pwd)) {
+			if (!pwd.equals(pwdc) || !Pattern.matches("^[a-zA-Z0-9!@#$%^&*]{4,20}$", pwd)
+					|| !RegExp.isValidExp(email, REGEXP_EMAIL) || !RegExp.isValidExp(phone, REGEXP_PHONE)
+					|| RegExp.isEmpty(dmngr_sq) || !RegExp.isValidExp(nm, REGEXP_NAME)) {
 				response.setContentType("text/html; charset=UTF-8");
 				PrintWriter out = response.getWriter();
 				out.println("<script>alert('잘못된 접근입니다.'); location.href='/'; </script>");
 				out.close();
 				return null;
 			}
-		}
-		if (!RegExp.isValidExp(email, REGEXP_EMAIL) || !RegExp.isValidExp(phone, REGEXP_PHONE)
-				|| RegExp.isEmpty(dmngr_sq)) {
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter out = response.getWriter();
-			out.println("<script>alert('잘못된 접근입니다.'); location.href='/'; </script>");
-			out.close();
-			return null;
 		}
 
 		AmanagerVo amanagerVo = new AmanagerVo();
@@ -67,6 +63,7 @@ public class ModifyProcAction implements Action {
 		amanagerVo.setMngr_sq(Integer.parseInt(dmngr_sq));
 		amanagerVo.setEmail(email);
 		amanagerVo.setPhone(phone);
+		amanagerVo.setNm(nm);
 
 		AmanagerService svc = new AmanagerService();
 		if (!svc.modify(amanagerVo)) {

@@ -43,7 +43,7 @@
 		});
 	}
 	function modifyMngr(){
-		location.href="/amanager/amodify?mngr_sq="+$('#mngr_sq').val();
+		location.href="/amanager/modify?mngr_sq="+$('#mngr_sq').val();
 	}
 
 	function leaveMngr(){
@@ -57,11 +57,12 @@
 	}
 
 	function registerMngr(){
-		location.href="/amanager/aregister"
+		location.href="/amanager/register"
 	}
 </script>
 </head>
 <body>
+	<jsp:include page="/views/admin/aNavbar.jsp"></jsp:include>
 	<!-- 직원 이름 표시  -->
 	<div>
 		<table border=1>

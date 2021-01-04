@@ -1,16 +1,15 @@
 package shop.mammastore.ajax.dao;
 
+import static shop.mammastore.common.JdbcUtil.close;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-import shop.mammastore.admin.vo.ActgryVo;
 import shop.mammastore.admin.vo.AitemVo;
 import shop.mammastore.admin.vo.AmanagerVo;
 import shop.mammastore.mamma.vo.MemberVo;
-
-import static shop.mammastore.common.JdbcUtil.close;
 
 public class AjaxDao {
 

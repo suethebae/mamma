@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import shop.mammastore.common.BCrypt;
 import shop.mammastore.mamma.vo.MemberVo;
 
 import static shop.mammastore.common.JdbcUtil.close;

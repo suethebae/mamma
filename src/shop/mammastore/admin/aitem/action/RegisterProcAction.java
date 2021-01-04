@@ -48,9 +48,10 @@ public class RegisterProcAction implements Action {
 			out.close();
 			return null;
 		}
-		
+
 		// 경로설정
 		ActionForward forward = new ActionForward();
+		forward.setRedirect(true);
 		forward.setPath("/aitem/list");
 		return forward;
 	}

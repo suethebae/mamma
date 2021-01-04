@@ -8,8 +8,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import shop.mammastore.admin.vo.ActgryVo;
-import shop.mammastore.admin.vo.AmanagerVo;
-import shop.mammastore.mamma.vo.MemberVo;
 
 public class ActgryDao {
 

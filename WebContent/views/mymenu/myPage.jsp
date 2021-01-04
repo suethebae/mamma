@@ -4,15 +4,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>마이페이지</title>
 </head>
 <body>
-마이페이지<br>
-<a href='/'>홈으로</a><br>
-<a href='/mymenu/myOrder'>내주문내역</a><br>
-<a href='/mymenu/myReview'>내리뷰</a><br>
-<a href='/mymenu/myQuestion'>1:1 문의</a><br>
-<a href='/mymenu/myInfo'>내정보</a>
+<a href='/'>Mamma store</a>
+My page<br>
+
+<a href='/mymenu/myOrder'>주문 내역</a>
+<a href='/mymenu/myReview'>나의 리뷰</a>
+<a href='/mymenu/myQuestion'>1:1 문의</a>
+<a href='/mymenu/myInfo'>나의 정보</a>
 
 </body>
 </html>

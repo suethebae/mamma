@@ -13,6 +13,8 @@ import shop.mammastore.common.Action;
 import shop.mammastore.common.ActionForward;
 import shop.mammastore.mamma.member.action.FindIdAction;
 import shop.mammastore.mamma.member.action.FindIdProcAction;
+import shop.mammastore.mamma.member.action.FindPwdAction;
+import shop.mammastore.mamma.member.action.FindPwdProcAction;
 import shop.mammastore.mamma.member.action.LeaveAction;
 import shop.mammastore.mamma.member.action.LeaveProcAction;
 import shop.mammastore.mamma.member.action.LoginAction;

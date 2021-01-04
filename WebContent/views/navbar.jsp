@@ -17,7 +17,7 @@ String member_sq = lm.getMemberId(session);
 			<a href="/"><img class="logo" alt="X" src="/views/img/logo.png"></a>
 		</div>
 		<ul class="navbar_menu">
-			<li><a href="/item/ctgry">SHOP</a></li>
+			<li><a href="/item/list">SHOP</a></li>
 			<li><a href="/">ABOUT MAMMA</a></li>
 			<li><a href="/">CONTACT</a></li>
 		</ul>

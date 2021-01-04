@@ -9,14 +9,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import shop.mammastore.admin.amanager.action.RegisterAction;
 import shop.mammastore.admin.amanager.action.LoginProcAction;
 import shop.mammastore.admin.amanager.action.LogoutAction;
+import shop.mammastore.admin.amanager.action.DetailAction;
 import shop.mammastore.admin.amanager.action.ModifyAction;
 import shop.mammastore.admin.amanager.action.ModifyProcAction;
-import shop.mammastore.admin.amanager.action.RegisterAction;
 import shop.mammastore.admin.amanager.action.RegisterProcAction;
 import shop.mammastore.admin.amanager.action.SRegisterProcAction;
-import shop.mammastore.admin.amanager.action.DetailAction;
 import shop.mammastore.admin.amanager.action.LeaveAction;
 import shop.mammastore.admin.amanager.action.ListAction;
 import shop.mammastore.common.Action;

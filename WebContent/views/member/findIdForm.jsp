@@ -12,13 +12,13 @@
 	function findId() {
 		var email = $('#email');
 		var phone = $('#phone');
-		var name = $('#name');
+		var nm = $('#nm');
 		var emailCheck = $('#emailCheck');
 		var phoneCheck = $('#phoneCheck');
 
-		if (!name.val() || name.val() == "") {
+		if (!nm.val() || nm.val() == "") {
 			alert("이름을 입력해 주세요");
-			name.focus();
+			nm.focus();
 			return false;
 		} else {
 			if (emailCheck.is(":checked")) {
@@ -44,7 +44,7 @@
 	<form action="/member/findIdProc" method="post"
 		onsubmit="return findId()">
 		<div>
-			이름 입력: <input type="text" id="name" name="name">
+			이름 입력: <input type="text" id="nm" name="nm">
 		</div>
 		가입한 이메일로 찾기<input type="radio" id="emailCheck" name="radio"
 			value="email" checked> 가입한 휴대폰으로 찾기<input type="radio"

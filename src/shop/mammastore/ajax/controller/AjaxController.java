@@ -9,20 +9,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-<<<<<<< Updated upstream
-=======
 import shop.mammastore.ajax.action.DetailMngrAction;
 import shop.mammastore.ajax.action.ShowItemListAction;
 import shop.mammastore.ajax.action.checkAEmailAction;
 import shop.mammastore.ajax.action.checkAIdAction;
 import shop.mammastore.ajax.action.checkAPhoneAction;
->>>>>>> Stashed changes
 import shop.mammastore.ajax.action.checkEmailAction;
 import shop.mammastore.ajax.action.checkIdAction;
 import shop.mammastore.ajax.action.checkPhoneAction;
 import shop.mammastore.common.Action;
 import shop.mammastore.common.ActionForward;
-import shop.mammastore.mamma.member.action.LoginAction;
 
 @WebServlet("/ajax/*")
 public class AjaxController extends HttpServlet {
@@ -59,8 +55,36 @@ public class AjaxController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		} else if (command.equals("/checkAId")) {
+			Action action = new checkAIdAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/checkAEmail")) {
+			Action action = new checkAEmailAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/checkAPhone")) {
+			Action action = new checkAPhoneAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/detailMngr")) {
+			Action action = new DetailMngrAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
-		else if (command.equals("/showItemList")) {
+		else if (command.equals("/itemList")) {
 			Action action = new ShowItemListAction();
 			try {
 				forward = action.execute(request, response);

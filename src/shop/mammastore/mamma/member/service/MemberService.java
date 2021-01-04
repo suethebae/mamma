@@ -42,8 +42,6 @@ public class MemberService {
 		return memberVo;
 	}
 	
-<<<<<<< Updated upstream
-=======
 	public MemberVo findPwd(MemberVo memberVo) {
 		MemberDao dao = MemberDao.getInstance();
 		Connection con = getConnection();
@@ -140,5 +138,4 @@ public class MemberService {
 	}
 
 	
->>>>>>> Stashed changes
 }

@@ -21,7 +21,7 @@
 	당신의 아이디를 찾았어요!
 
 	<p><%=id%></p>
-	<button onclick="goToLogin()">로그인 창으로</button>
+	<button onclick="goToLogin()">로그인 화면으로</button>
 	<button onclick="goToHome()">홈으로</button>
 </body>
 </html>

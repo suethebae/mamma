@@ -1,19 +1,15 @@
 package shop.mammastore.ajax.dao;
 
+import static shop.mammastore.common.JdbcUtil.close;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
-<<<<<<< Updated upstream
-import shop.mammastore.common.BCrypt;
-=======
-import shop.mammastore.admin.vo.ActgryVo;
 import shop.mammastore.admin.vo.AitemVo;
 import shop.mammastore.admin.vo.AmanagerVo;
->>>>>>> Stashed changes
 import shop.mammastore.mamma.vo.MemberVo;
-
-import static shop.mammastore.common.JdbcUtil.close;
 
 public class AjaxDao {
 
@@ -91,8 +87,6 @@ public class AjaxDao {
 		}
 		return count;
 	}
-<<<<<<< Updated upstream
-=======
 
 	public int checkAId(AmanagerVo amanagerVo) {
 		PreparedStatement pstmt = null;
@@ -182,7 +176,8 @@ public class AjaxDao {
 		ResultSet rs = null;
 		AitemVo aitemVo = new AitemVo();
 		try {
-			pstmt = con.prepareStatement("select itm_sq, ctgry_sq, pc, nm, thumb_pth from inf_itm_tb where ctgry_sq=? and del_fl=0");
+			pstmt = con.prepareStatement(
+					"select itm_sq, ctgry_sq, pc, nm, thumb_pth from inf_itm_tb where ctgry_sq=? and del_fl=0");
 			pstmt.setInt(1, ctgry_sq);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
@@ -200,5 +195,33 @@ public class AjaxDao {
 		return aitemVo;
 	}
 
->>>>>>> Stashed changes
+	public ArrayList<AitemVo> getItemList(int iCtgry_sq) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList<AitemVo> list = new ArrayList<AitemVo>();
+		try {
+			if (iCtgry_sq == 0) {
+				pstmt = con.prepareStatement("select itm_sq, ctgry_sq, pc, nm, fl_pth from inf_itm_tb where del_fl=0 and sttus_fl=1");
+			} else {
+				pstmt = con.prepareStatement(
+						"select itm_sq, ctgry_sq, pc, nm, fl_pth from inf_itm_tb where del_fl=0 and sttus_fl=1 and ctgry_sq=?");
+				pstmt.setInt(1, iCtgry_sq);
+			}
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				AitemVo aitemVO = new AitemVo();
+				aitemVO.setItm_sq(rs.getInt("itm_sq"));
+				aitemVO.setCtgry_sq(rs.getInt("ctgry_sq"));
+				aitemVO.setPc(rs.getInt("pc"));
+				aitemVO.setNm(rs.getString("nm"));
+				aitemVO.setFl_pth(rs.getString("fl_pth"));
+				list.add(aitemVO);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return list;
+	}
 }

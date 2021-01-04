@@ -1,12 +1,10 @@
 package shop.mammastore.ajax.service;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
-<<<<<<< Updated upstream
-=======
 import shop.mammastore.admin.vo.AitemVo;
 import shop.mammastore.admin.vo.AmanagerVo;
->>>>>>> Stashed changes
 import shop.mammastore.ajax.dao.AjaxDao;
 import shop.mammastore.mamma.vo.MemberVo;
 
@@ -49,8 +47,6 @@ public class AjaxService {
 		close(con);
 		return isDuplicate;
 	}
-<<<<<<< Updated upstream
-=======
 	public boolean checkAId(AmanagerVo amanagerVo) {
 		AjaxDao dao = AjaxDao.getInstance();
 		Connection con = getConnection();
@@ -103,6 +99,12 @@ public class AjaxService {
 		close(con);
 		return aitemVo;
 	}
->>>>>>> Stashed changes
-	
+	public ArrayList<AitemVo> getItemList(int iCtgry_sq) {
+		AjaxDao dao = AjaxDao.getInstance();
+		Connection con = getConnection();
+		dao.setConnection(con);
+		ArrayList<AitemVo> list = dao.getItemList(iCtgry_sq);
+		close(con);
+		return list;
+	}
 }

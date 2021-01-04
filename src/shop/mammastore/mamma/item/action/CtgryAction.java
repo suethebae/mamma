@@ -7,11 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import shop.mammastore.admin.actgry.service.ActgryService;
-import shop.mammastore.admin.aitem.service.AitemService;
-import shop.mammastore.admin.amanager.service.AmanagerService;
 import shop.mammastore.admin.vo.ActgryVo;
-import shop.mammastore.admin.vo.AitemVo;
-import shop.mammastore.admin.vo.AmanagerVo;
 import shop.mammastore.common.Action;
 import shop.mammastore.common.ActionForward;
 

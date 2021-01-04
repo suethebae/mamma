@@ -1,7 +1,9 @@
 package shop.mammastore.ajax.service;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
+import shop.mammastore.admin.vo.AitemVo;
 import shop.mammastore.admin.vo.AmanagerVo;
 import shop.mammastore.ajax.dao.AjaxDao;
 import shop.mammastore.mamma.vo.MemberVo;
@@ -89,5 +91,20 @@ public class AjaxService {
 		close(con);
 		return amanagerVo;
 	}
-	
+	public AitemVo showItemList(int ctgry_sq) {
+		AjaxDao dao = AjaxDao.getInstance();
+		Connection con = getConnection();
+		dao.setConnection(con);
+		AitemVo aitemVo = dao.showItemList(ctgry_sq);
+		close(con);
+		return aitemVo;
+	}
+	public ArrayList<AitemVo> getItemList(int iCtgry_sq) {
+		AjaxDao dao = AjaxDao.getInstance();
+		Connection con = getConnection();
+		dao.setConnection(con);
+		ArrayList<AitemVo> list = dao.getItemList(iCtgry_sq);
+		close(con);
+		return list;
+	}
 }

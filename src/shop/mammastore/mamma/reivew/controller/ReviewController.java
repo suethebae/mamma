@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import shop.mammastore.common.Action;
 import shop.mammastore.common.ActionForward;
+<<<<<<< Updated upstream
 import shop.mammastore.mamma.board.action.ListAction;
 import shop.mammastore.mamma.board.action.DeleteAction;
 import shop.mammastore.mamma.board.action.DetailAction;
@@ -18,6 +19,15 @@ import shop.mammastore.mamma.board.action.ModifyAction;
 import shop.mammastore.mamma.board.action.ModifyProcAction;
 import shop.mammastore.mamma.board.action.RegisterAction;
 import shop.mammastore.mamma.board.action.WriteAction;
+=======
+import shop.mammastore.mamma.reivew.action.DeleteAction;
+import shop.mammastore.mamma.reivew.action.DetailAction;
+import shop.mammastore.mamma.reivew.action.ListAction;
+import shop.mammastore.mamma.reivew.action.ModifyAction;
+import shop.mammastore.mamma.reivew.action.ModifyProcAction;
+import shop.mammastore.mamma.reivew.action.RegisterAction;
+import shop.mammastore.mamma.reivew.action.WriteAction;
+>>>>>>> Stashed changes
 
 @WebServlet("/review/*")
 //웹서블릿 어노테이션으로 모든 .do 파일이 이쪽으로 온다

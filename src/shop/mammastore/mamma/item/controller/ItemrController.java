@@ -11,7 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import shop.mammastore.common.Action;
 import shop.mammastore.common.ActionForward;
+<<<<<<< Updated upstream:src/shop/mammastore/mamma/item/controller/ItemrController.java
 import shop.mammastore.mamma.item.action.CartAction;
+=======
+import shop.mammastore.mamma.item.action.CtgryAction;
+>>>>>>> Stashed changes:src/shop/mammastore/mamma/item/controller/ItemController.java
 import shop.mammastore.mamma.item.action.DetailAction;
 import shop.mammastore.mamma.item.action.ListAction;
 import shop.mammastore.mamma.item.action.OrderAction;
@@ -31,8 +35,16 @@ public class ItemrController extends HttpServlet {
 
 		ActionForward forward = null;
 
+		if (command.equals("/ctgry")) {
+			Action action = new CtgryAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		// 네비이게이션 선택시 상품페이지 들어가기
-		if (command.equals("/list")) {
+		else if (command.equals("/list")) {
 			Action action = new ListAction();
 			try {
 				forward = action.execute(request, response);

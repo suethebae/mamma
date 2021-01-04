@@ -8,7 +8,10 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import shop.mammastore.admin.vo.AmanagerVo;
+<<<<<<< Updated upstream
 import shop.mammastore.mamma.vo.MemberVo;
+=======
+>>>>>>> Stashed changes
 
 public class AmanagerDao {
 

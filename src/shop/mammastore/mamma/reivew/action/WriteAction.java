@@ -10,7 +10,6 @@ public class WriteAction implements Action{
 @Override
 public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 	
-	String content = request.getParameter("content");
 	
 	
 	

@@ -24,9 +24,9 @@ public class FileUpload {
 		String cntnt = "";
 
 		String fileName1 = "";
-		String originalName1 = "";
 		long fileSize = 0;
 		String fileType = "";
+		String originalName1 = "";
 
 		MultipartRequest multi = null;
 		try {

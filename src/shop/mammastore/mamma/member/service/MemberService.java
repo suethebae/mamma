@@ -93,7 +93,6 @@ public class MemberService {
 	}
 	
 	public MemberVo myInfo() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

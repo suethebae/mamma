@@ -36,13 +36,13 @@ String member_sq = lm.getMemberId(session);
 			%>
 			<li><a href="/member/login">LOGIN</a></li>
 			<li><a href="/member/register">JOIN</a></li>
-			<li><a href="/item/cart">CART</a></li>
+			<li><a href="/cart/list">CART</a></li>
 			<%
 				} else {
 			%>
 			<li><a href='/mymenu/myPage'>MY MENU</a></li>
 			<li><a href="/member/logout">LOGOUT</a></li>
-			<li><a href="/item/cart">CART</a></li>
+			<li><a href="/cart/list">CART</a></li>
 			<%
 				}
 			%>

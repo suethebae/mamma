@@ -65,7 +65,7 @@ ArrayList<ActgryVo> list = (ArrayList<ActgryVo>) request.getAttribute("list");
 			<%=vo.isSttus_fl()%>
 		</div>
 			카테고리 
-		<select name="ctgry_sq" id="ctgry_sq" name="ctgry_sq">
+		<select name="ctgry_sq" id="ctgry_sq">
 			<%for (int i = 0; i < list.size(); i++) { %>
 			<option value="<%=list.get(i).getCtgry_sq()%>"
 				<%=list.get(i).getCtgry_sq() == vo.getCtgry_sq() ? "selected" : ""%>><%=list.get(i).getNm()%></option>

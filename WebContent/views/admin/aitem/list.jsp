@@ -20,7 +20,7 @@
 	<jsp:include page="/views/admin/aNavbar.jsp"></jsp:include>
 	<div>
 		<table border=1>
-			<tr>   
+			<tr>       
 				<th>상품번호</th>
 				<th>카테고리</th>
 				<th>이미지</th>

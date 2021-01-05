@@ -12,6 +12,7 @@ ArrayList<AmemberVo> list = (ArrayList<AmemberVo>) request.getAttribute("list");
 <title>Insert title here</title>
 </head>
 <body>
+	<jsp:include page="/views/admin/aNavbar.jsp"></jsp:include>
 	회원목록리스트
 
 	<table border=1>

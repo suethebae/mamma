@@ -7,8 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<jsp:include page="/views/navbar.jsp"></jsp:include>
-장바구니 페이지
-<a href='/'>홈으로</a>
+
 </body>
 </html>

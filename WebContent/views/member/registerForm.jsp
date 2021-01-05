@@ -5,15 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>JOIN</title>
-<link rel="stylesheet" href="/views/css/registerForm.css"
-	type="text/css">
-
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap"
-	rel="stylesheet">
-<script src="https://kit.fontawesome.com/1920467f5c.js"
-	crossorigin="anonymous"></script>
 
 <script src="https://code.jquery.com/jquery-3.5.1.js"
 	integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="

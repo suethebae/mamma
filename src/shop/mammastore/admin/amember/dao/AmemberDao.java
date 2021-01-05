@@ -7,9 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-import shop.mammastore.admin.vo.AmanagerVo;
 import shop.mammastore.admin.vo.AmemberVo;
-import shop.mammastore.mamma.vo.MemberVo;
 
 public class AmemberDao {
 
@@ -97,7 +95,6 @@ public class AmemberDao {
 		return amemberVo;
 	}
 
-
 	// 매니저가 회원정보 수정
 	public int modify(AmemberVo amemberVo) {
 		PreparedStatement pstmt = null;
@@ -122,10 +119,10 @@ public class AmemberDao {
 	public int deleteMember(AmemberVo amemberVo) {
 		PreparedStatement pstmt = null;
 		int count = 0;
-		try {									
-				pstmt = con.prepareStatement("update inf_mber_tb set del_fl=1 where mber_sq=?"); 
-				pstmt.setInt(1, amemberVo.getMber_sq());
-				count = pstmt.executeUpdate();
+		try {
+			pstmt = con.prepareStatement("update inf_mber_tb set del_fl=1 where mber_sq=?");
+			pstmt.setInt(1, amemberVo.getMber_sq());
+			count = pstmt.executeUpdate();
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -134,7 +131,5 @@ public class AmemberDao {
 		}
 		return count;
 	}
-
-	
 
 }

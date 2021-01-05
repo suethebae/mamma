@@ -10,15 +10,6 @@ String member_sq = lm.getMemberId(session);
 <head>
 <meta charset="UTF-8">
 <title>+ mamma store +</title>
-<link rel="stylesheet" href="/views/css/style.css" type="text/css">
-<link rel="stylesheet" href="/views/css/ress.css" type="text/css">
-<link rel="stylesheet" href="/views/css/navbar.css" type="text/css">
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap"
-	rel="stylesheet">
-<script src="https://kit.fontawesome.com/1920467f5c.js"
-	crossorigin="anonymous"></script>
 </head>
 <body>
 	<nav class="navbar">
@@ -36,13 +27,13 @@ String member_sq = lm.getMemberId(session);
 			%>
 			<li><a href="/member/login">LOGIN</a></li>
 			<li><a href="/member/register">JOIN</a></li>
-			<li><a href="/item/cart">CART</a></li>
+			<li><a href="/cart/list">CART</a></li>
 			<%
 				} else {
 			%>
 			<li><a href='/mymenu/myPage'>MY MENU</a></li>
 			<li><a href="/member/logout">LOGOUT</a></li>
-			<li><a href="/item/cart">CART</a></li>
+			<li><a href="/cart/list">CART</a></li>
 			<%
 				}
 			%>

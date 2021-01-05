@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import shop.mammastore.common.Action;
 import shop.mammastore.common.ActionForward;
+import shop.mammastore.mamma.item.action.CtgryAction;
 import shop.mammastore.mamma.item.action.DetailAction;
 import shop.mammastore.mamma.item.action.ListAction;
 
@@ -29,8 +30,16 @@ public class ItemController extends HttpServlet {
 
 		ActionForward forward = null;
 
+		if (command.equals("/ctgry")) {
+			Action action = new CtgryAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		// 네비이게이션 선택시 상품페이지 들어가기
-		if (command.equals("/list")) {
+		else if (command.equals("/list")) {
 			Action action = new ListAction();
 			try {
 				forward = action.execute(request, response);

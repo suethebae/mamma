@@ -25,6 +25,7 @@ function aDelete(){
 </script>
 </head>
 <body>
+	<jsp:include page="/views/admin/aNavbar.jsp"></jsp:include>
 	<!-- <form action="/aitem/amodifyProc" method="post" id="editorForm" enctype="multipare/form-data">	 -->
 	<table border=1>
 		<tr>

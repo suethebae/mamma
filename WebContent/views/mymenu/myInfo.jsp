@@ -3,7 +3,7 @@
 	pageEncoding="UTF-8"%>
 <%
 MemberVo memberVo = (MemberVo) request.getAttribute("memberVo");
-//memberVo 라는 오브젝트형태로 데이터를 넣었기때문에 이렇께써주자.
+//memberVo 라는 오브젝트형태로 데이터를 넣었기때문에 이렇게 써주자.
 %>
 <!DOCTYPE html>
 <html>

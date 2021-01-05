@@ -35,6 +35,7 @@ function checkName() {
 		isNameChecked = false;
 		return;
 	} else {
+		$('#nameMessage').text('사용가능한 이름 형식입니다.');
 		isNameChecked = true;
 	}
 }
@@ -102,10 +103,10 @@ function checkPhone() {
 	var phone = $('#phone');
 	if (!phone.val() || phone.val() == "") {
 		$('#phoneMessage').text('휴대전화번호를 입력하십시오');
-		isEmailChecked = false;
+		isPhoneChecked = false;
 		return;
 	} else {
-		isEmailChecked = true;
+		isPhoneChecked = true;
 	}
 
 	var regExp = new RegExp("^[01]{2,2}[0-9]{8,9}$", "g");
@@ -116,62 +117,63 @@ function checkPhone() {
 	} else {
 		isPhoneChecked = true;
 	}
-
 	if (phone.val() != '<%=amemberVo.getPhone()%>') {
-		$.ajax({
-			url : "/ajax/checkPhone",
-			type : "post",
-			dataType : "json",
-			data : {
-				phone : phone.val()
-			},
-			error : function() {
-				alert("통신 실패");
-			},
-			success : function(data) {
-				if (data.isDuplicate == 'true') {
-					$('#phoneMessage').text('중복된 휴대전화번호 입니다.');
-					isEmailChecked = false;
-				} else {
-
+			$.ajax({
+				url : "/ajax/checkPhone",
+				type : "post",
+				dataType : "json",
+				data : {
+					phone : phone.val()
+				},
+				error : function() {
+					alert("통신 실패");
+				},
+				success : function(data) {
+					if (data.isDuplicate == 'true') {
+						$('#phoneMessage').text('중복된 휴대전화번호 입니다.');
+						isPhoneChecked = false;
+						return;
+					} else {
+						$('#phoneMessage').text('사용할 수 있는 휴대전화번호 입니다.');
+						isPhoneChecked = true;
+					}
 				}
-			}
-		});
-	} else {
-		$('#phoneMessage').text('사용할 수 있는 휴대전화번호 입니다.');
-		isEmailChecked = true;
-	}
-}
-
-//회원정보수정
-function save() {
-	if(!isNameChecked) {
-		$('#nm').focus();
-		return;
-	}
-	if (!isEmailChecked) {
-		$('#email').focus();
-		return;
-	}
-	if (!isPhoneChecked) {
-		$('#phone').focus();
-		return;
+			});
+		} else {
+			$('#phoneMessage').text('사용할 수 있는 휴대전화번호 입니다.');
+			isPhoneChecked = true;
+		}
 	}
 
-	$('#mForm').submit();
-}
-// 아이디, 회원번호 임의로 수정못하게 조건걸어두기(나중에)
+	//회원정보수정
+	function save() {
+		if (!isNameChecked) {
+			$('#nm').focus();
+			return;
+		}
+		if (!isEmailChecked) {
+			$('#email').focus();
+			return;
+		}
+		if (!isPhoneChecked) {
+			$('#phone').focus();
+			return;
+		}
+
+		$('#mForm').submit();
+	}
+	// 아이디, 회원번호 임의로 수정못하게 조건걸어두기(나중에)
 </script>
 </head>
 <body>
 	<h1>회원정보</h1>
 	<a href="/amember/list">회원목록으로</a>
 	<hr>
-<%--<form action="/amember/modifyProc?sq=<%=amemberVo.getMber_sq()%>">--%>
+	<%--<form action="/amember/modifyProc?sq=<%=amemberVo.getMber_sq()%>">--%>
 	<form action="/amember/modifyProc" method="post" id="mForm">
 		<div>
-			회원번호
-			<input type="text" id="mber_sq" name="mber_sq" value=<%=amemberVo.getMber_sq()%> readonly="readonly"/>
+			회원번호 <input type="text" id="mber_sq" name="mber_sq"
+				value=<%=amemberVo.getMber_sq()%> readonly="readonly" />
 		</div>
 		<div>
 			이름 <input type="text" id="nm" name="nm" oninput="checkName()"
@@ -179,9 +181,9 @@ function save() {
 				입력해주십시오 </span>
 		</div>
 		<div>
-			아이디
-			<input type="text" id="id" name="id" value=<%=amemberVo.getId()%> readonly="readonly"/>
-			
+			아이디 <input type="text" id="id" name="id" value=<%=amemberVo.getId()%>
+				readonly="readonly" />
+
 		</div>
 		<div>
 			이메일 <input type="email" id="email" name="email"

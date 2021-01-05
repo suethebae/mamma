@@ -15,18 +15,14 @@
 	integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
 	crossorigin="anonymous"></script>
 
-
-
 </head>
 <body>
-	<jsp:include page="/views/navbar.jsp"></jsp:include>
-	상품리스트 페이지 여기 샵 전용 네비게이션 띄우기(카테고리)
-	<br>
+	<jsp:include page="/views/admin/aNavbar.jsp"></jsp:include>
 	<div>
 		<table border=1>
-			<tr>
-				       
+			<tr>       
 				<th>상품번호</th>
+				<th>카테고리</th>
 				<th>이미지</th>
 				<th>판매상태</th>
 				<th>상품이름</th>
@@ -38,6 +34,7 @@
 			%>
 			<tr onclick="location.href='/aitem/detail?sq=<%=list.get(i).getItm_sq()%>'">
 				<td><%=list.get(i).getItm_sq()%></td>
+				<td><%=list.get(i).getCtgry_sq() %></td>
 				<td><img onerror="this.src='https://t1.daumcdn.net/thumb/R600x0/?fname=http%3A%2F%2Ft1.daumcdn.net%2Fqna%2Fimage%2F4b035cdf8372d67108f7e8d339660479dfb41bbd'" src="<%=list.get(i).getFl_pth() %>" width="200px" height="200px"></td>
 				<td><%=list.get(i).isSttus_fl() %></td>
 				<td><%=list.get(i).getNm() %></td>
@@ -49,10 +46,6 @@
 			%>
 		</table>
 	</div>
-	<button onclick="register()">등록</button>
 
-	<a href='/item/detail'>상품상세페이지</a>
-	<br>
-	<a href='/'>홈으로</a>
 </body>
 </html>

@@ -65,7 +65,7 @@ ArrayList<ActgryVo> list = (ArrayList<ActgryVo>) request.getAttribute("list");
 			<%=vo.isSttus_fl()%>
 		</div>
 			카테고리 
-		<select name="ctgry_sq" id="ctgry_sq" name="ctgry_sq">
+		<select name="ctgry_sq" id="ctgry_sq">
 			<%for (int i = 0; i < list.size(); i++) { %>
 			<option value="<%=list.get(i).getCtgry_sq()%>"
 				<%=list.get(i).getCtgry_sq() == vo.getCtgry_sq() ? "selected" : ""%>><%=list.get(i).getNm()%></option>
@@ -79,14 +79,6 @@ ArrayList<ActgryVo> list = (ArrayList<ActgryVo>) request.getAttribute("list");
 			가격<input type="text" id="pc" name="pc" placeholder="상품가격" oninput=""
 				value="<%=vo.getPc()%>">
 		</div>
-		<%-- 		<div>
-			날짜 <input type="date" id="dttm" name="dttm" oninput=""
-				value="<%=vo.getDttm()%>">
-		</div> 필요없는부분인뎅 --%>
-		<%-- 		<div>
-			상품 상세 내용 <input type="text" id="cntnt" name="cntnt" oninput=""
-				value="<%=vo.getCntnt()%>">
-		</div>  --%>
 		<div>
 			재고 <input type="text" id="stock" name="stock" placeholder="재고"
 				value="<%=vo.getStock()%>">

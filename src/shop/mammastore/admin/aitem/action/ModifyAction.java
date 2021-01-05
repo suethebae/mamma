@@ -17,8 +17,6 @@ public class ModifyAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// 로그인 확인
-		
-	 
 		String itm_sq = request.getParameter("sq");
 		if (itm_sq == null || itm_sq.equals("")) {
 			response.setContentType("text/html; charset=UTF-8");
@@ -28,7 +26,6 @@ public class ModifyAction implements Action {
 			return null;
 		}
 
-	
 		AitemService svc = new AitemService();
 		AitemVo aitemVo = svc.getItemDetail(Integer.parseInt(itm_sq));
 	

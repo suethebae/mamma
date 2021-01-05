@@ -1,12 +1,12 @@
 package shop.mammastore.mamma.member.dao;
 
-import static shop.mammastore.common.JdbcUtil.close;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import shop.mammastore.mamma.vo.MemberVo;
+
+import static shop.mammastore.common.JdbcUtil.close;
 
 public class MemberDao {
 

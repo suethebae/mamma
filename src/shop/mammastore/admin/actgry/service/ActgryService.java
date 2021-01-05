@@ -50,7 +50,7 @@ public class ActgryService {
 		close(con);
 		return list;
 	}
-	
+
 	// 카테고리 삭제
 	public boolean delete(ActgryVo actgryVo) {
 		ActgryDao dao = ActgryDao.getInstance();
@@ -67,6 +67,7 @@ public class ActgryService {
 		close(con);
 		return isSuccess;
 	}
+
 	// 카테고리 수정 이동
 	public ActgryVo detail(int ctgry_sq) {
 		ActgryDao dao = ActgryDao.getInstance();

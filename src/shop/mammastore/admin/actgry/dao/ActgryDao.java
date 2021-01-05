@@ -8,8 +8,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import shop.mammastore.admin.vo.ActgryVo;
-import shop.mammastore.admin.vo.AmanagerVo;
-import shop.mammastore.mamma.vo.MemberVo;
 
 public class ActgryDao {
 
@@ -117,7 +115,7 @@ public class ActgryDao {
 		int count = 0;
 		try {
 			pstmt = con.prepareStatement("update inf_ctgry_tb set nm=? where ctgry_sq=? and del_fl=0");
-			pstmt.setString(1, actgryVo.getNm());	
+			pstmt.setString(1, actgryVo.getNm());
 			pstmt.setInt(2, actgryVo.getCtgry_sq());
 			count = pstmt.executeUpdate();
 		} catch (Exception e) {

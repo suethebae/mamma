@@ -8,11 +8,8 @@ import static shop.mammastore.common.JdbcUtil.rollback;
 import java.sql.Connection;
 import java.util.ArrayList;
 
-import shop.mammastore.admin.aitem.dao.AitemDao;
 import shop.mammastore.admin.amember.dao.AmemberDao;
 import shop.mammastore.admin.vo.AmemberVo;
-import shop.mammastore.mamma.member.dao.MemberDao;
-import shop.mammastore.mamma.vo.MemberVo;
 
 public class AmemberService {
 

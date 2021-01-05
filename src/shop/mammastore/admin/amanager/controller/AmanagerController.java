@@ -82,7 +82,7 @@ public class AmanagerController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		// 멤버 리스트 보기
+		// 매니저 리스트 보기
 		else if (command.equals("/list")) {
 			Action action = new ListAction();
 			try {

@@ -76,7 +76,7 @@ public class ActgryController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		//카테고리 삭제
+		// 카테고리 삭제
 		else if (command.equals("/delete")) {
 			Action action = new DeleteAction();
 			try {

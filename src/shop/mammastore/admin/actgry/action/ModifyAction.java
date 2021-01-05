@@ -38,20 +38,20 @@ public class ModifyAction implements Action {
 			out.close();
 			return null;
 		}
-		
-		//db에서 카테고리 이름 데이터 가지고 오기
+
+		// db에서 카테고리 이름 데이터 가지고 오기
 		ActgryService svc = new ActgryService();
 		ActgryVo actgryVo = svc.detail(Integer.parseInt(ctgry_sq));
-		if(actgryVo==null) {
+		if (actgryVo == null) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('카테고리 정보를 불러들이는데 실패했습니다.'); history.back(); </script>");
 			out.close();
 			return null;
 		}
-		
+
 		request.setAttribute("actgryVo", actgryVo);
-		
+
 		// 경로설정
 		ActionForward forward = new ActionForward();
 		forward.setPath("/views/admin/actgry/modifyForm.jsp");

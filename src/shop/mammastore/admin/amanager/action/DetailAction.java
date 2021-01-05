@@ -1,25 +1,26 @@
 package shop.mammastore.admin.amanager.action;
 
-import static shop.mammastore.common.RegExp.REGEXP_NUMBER;
-
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import shop.mammastore.admin.aitem.service.AitemService;
-import shop.mammastore.admin.vo.AitemVo;
+import shop.mammastore.admin.amanager.service.AmanagerService;
+import shop.mammastore.admin.vo.AmanagerVo;
 import shop.mammastore.common.Action;
 import shop.mammastore.common.ActionForward;
-import shop.mammastore.common.Parser;
-import shop.mammastore.common.RegExp;
+import shop.mammastore.common.LoginManager;
 
 public class DetailAction implements Action{
 @Override
 public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	HttpSession session = request.getSession();
+	LoginManager lm = LoginManager.getInstance();
+	String mngr_sq = lm.getMemberId(session);
 	
-	String itm_sq = request.getParameter("sq");
-	if(!RegExp.isValidExp(itm_sq, REGEXP_NUMBER)) {
+	if (mngr_sq == null||mngr_sq.equals("")) {
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		out.println("<script>alert('잘못된 접근입니다.'); loaction.href='/'; </script>"); 
@@ -27,27 +28,22 @@ public ActionForward execute(HttpServletRequest request, HttpServletResponse res
 		return null;
 	}
 	
-	/* String ditm_sq = request.getParameter("itm_sq"); */
-	
-	AitemService svc = new AitemService();
-	AitemVo aitemVo = svc.getItemDetail(Integer.parseInt(itm_sq));
-	
-	if (aitemVo==null) {
+	ArrayList<AmanagerVo> list = null;
+	AmanagerService svc = new AmanagerService();
+	list = svc.getMngrList();
+	if(list==null) {
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		out.println("<script>alert('상품 정보 로드에 실패 했습니다.'); loaction.href='/'; </script>"); 
+		out.println("<script>alert('관리자 리스트를 불러오는데 실패했습니다.'); history.back(); </script>");
 		out.close();
 		return null;
 	}
 	
-	
-	aitemVo.setCntnt(Parser.chgToHTML(aitemVo.getCntnt()));
-	
-	request.setAttribute("aitemVo", aitemVo);
+	request.setAttribute("list", list);
 	
 	//경로설정
 	ActionForward forward = new ActionForward();
-	forward.setPath("/views/admin/aitem/detail.jsp");
+	forward.setPath("/views/admin/amanager/list.jsp");
 	return forward;
 }
 }

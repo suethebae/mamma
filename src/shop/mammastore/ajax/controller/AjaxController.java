@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import shop.mammastore.ajax.action.DetailMngrAction;
+import shop.mammastore.ajax.action.ShowItemListAction;
 import shop.mammastore.ajax.action.checkAEmailAction;
 import shop.mammastore.ajax.action.checkAIdAction;
 import shop.mammastore.ajax.action.checkAPhoneAction;
@@ -83,6 +84,19 @@ public class AjaxController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
+		else if (command.equals("/itemList")) {
+			Action action = new ShowItemListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+		
+		
+		
 		if (forward != null) {
 			if (forward.isRedirect()) {
 				// 리다이렉트

@@ -7,7 +7,6 @@ import shop.mammastore.admin.vo.AmanagerVo;
 import shop.mammastore.ajax.service.AjaxService;
 import shop.mammastore.common.Action;
 import shop.mammastore.common.ActionForward;
-import shop.mammastore.mamma.vo.MemberVo;
 
 public class DetailMngrAction implements Action{
 

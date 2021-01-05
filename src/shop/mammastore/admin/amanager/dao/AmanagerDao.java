@@ -8,7 +8,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import shop.mammastore.admin.vo.AmanagerVo;
-import shop.mammastore.mamma.vo.MemberVo;
 
 public class AmanagerDao {
 
@@ -95,7 +94,7 @@ public class AmanagerDao {
 		return count;
 	}
 
-	//관리자 목록 가져오기
+	// 관리자 목록 가져오기
 	public ArrayList<AmanagerVo> getMngrList() {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null; // DB의 결과문(쿼리값)을 받아와야함. 우선 빈값으로 설정하자.
@@ -179,17 +178,20 @@ public class AmanagerDao {
 		int count = 0;
 		try {
 			if (amanagerVo.getPwd() == null || amanagerVo.getPwd().equals("")) {
-				pstmt = con.prepareStatement("update inf_mngr_tb set email=?, phone=? where mngr_sq=? and del_fl=0");
+				pstmt = con
+						.prepareStatement("update inf_mngr_tb set email=?, phone=?, nm=? where mngr_sq=? and del_fl=0");
 				pstmt.setString(1, amanagerVo.getEmail());
 				pstmt.setString(2, amanagerVo.getPhone());
-				pstmt.setInt(3, amanagerVo.getMngr_sq());
+				pstmt.setString(3, amanagerVo.getNm());
+				pstmt.setInt(4, amanagerVo.getMngr_sq());
 			} else {
 				pstmt = con.prepareStatement(
-						"update inf_mngr_tb set pwd=?, email=?, phone=? where mngr_sq=? and del_fl=0");
+						"update inf_mngr_tb set pwd=?, email=?, phone=?,nm=? where mngr_sq=? and del_fl=0");
 				pstmt.setString(1, amanagerVo.getPwd());
 				pstmt.setString(2, amanagerVo.getEmail());
 				pstmt.setString(3, amanagerVo.getPhone());
-				pstmt.setInt(4, amanagerVo.getMngr_sq());
+				pstmt.setString(4, amanagerVo.getNm());
+				pstmt.setInt(5, amanagerVo.getMngr_sq());
 			}
 			count = pstmt.executeUpdate();
 

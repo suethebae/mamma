@@ -1,10 +1,10 @@
-<%@page import="java.util.ArrayList"%>
 <%@page import="shop.mammastore.admin.vo.ActgryVo"%>
 <%@page import="shop.mammastore.admin.vo.AitemVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-	AitemVo vo = (AitemVo) request.getAttribute("aitemVo");
+AitemVo vo = (AitemVo) request.getAttribute("aitemVo");
+ActgryVo avo = (ActgryVo) request.getAttribute("actgryVo");
 %>
 <!DOCTYPE html>
 <html>
@@ -14,14 +14,10 @@
 <script type="text/javascript">
 function modify(){
 	location.href="/aitem/modify?sq=<%=vo.getItm_sq()%>";
-	
 }
-
 function aDelete(){
-	
 	    if ( confirm('삭제하시겠습니까?')) {
 	    	location.href="aitem/delete?sq=<%=vo.getItm_sq()%>";
-
 		} else {
 			return;
 		}
@@ -29,6 +25,7 @@ function aDelete(){
 </script>
 </head>
 <body>
+	<jsp:include page="/views/admin/aNavbar.jsp"></jsp:include>
 	<!-- <form action="/aitem/amodifyProc" method="post" id="editorForm" enctype="multipare/form-data">	 -->
 	<table border=1>
 		<tr>
@@ -44,7 +41,7 @@ function aDelete(){
 			<td><%=vo.getCtgry_sq()%></td>
 		</tr>
 		<tr>
-			<td>상품이름</td>
+			<td>상품명</td>
 			<td><%=vo.getNm()%></td>
 		</tr>
 		<tr>
@@ -59,10 +56,9 @@ function aDelete(){
 			<td>재고</td>
 			<td><%=vo.getStock()%></td>
 		</tr>
-
 		<tr>
 			<td>이미지</td>
-			<td><img src="<%=vo.getFl_pth()%>" width="100px" height="100px"></td>
+			<td><img src="<%=vo.getFl_pth()%>" width="100px" height="100px" alt="" /></td>
 		</tr>
 		<tr>
 			<td>상품상세설명</td>
@@ -76,12 +72,12 @@ function aDelete(){
 		판매 중지</button>
 	<!-- </form> -->
 	<%
-		if (!vo.isSttus_fl()) {
+	if (!vo.isSttus_fl()) {
 	%>
 	<button onclick="modify()">수정</button>
 	<button onclick="aDelete()">삭제</button>
 	<%
-		}
+	}
 	%>
 
 </body>

@@ -10,11 +10,6 @@ public class RegisterAction implements Action{
 @Override
 public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 	
-	String subject = request.getParameter("subject");
-	String content = request.getParameter("content");
-	
-		
-	
 	//경로설정
 	ActionForward forward = new ActionForward();
 	forward.setPath("/views/board/review/reviewList.jsp");

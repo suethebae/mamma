@@ -1,13 +1,6 @@
 package shop.mammastore.mamma.member.action;
 
-import static shop.mammastore.common.RegExp.REGEXP_EMAIL;
-import static shop.mammastore.common.RegExp.REGEXP_ID;
-import static shop.mammastore.common.RegExp.REGEXP_NAME;
-import static shop.mammastore.common.RegExp.REGEXP_PWD;
-
 import java.io.PrintWriter;
-import java.net.Inet4Address;
-import java.net.InetAddress;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

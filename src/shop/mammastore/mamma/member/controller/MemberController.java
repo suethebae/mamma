@@ -22,8 +22,6 @@ import shop.mammastore.mamma.member.action.LoginProcAction;
 import shop.mammastore.mamma.member.action.LogoutAction;
 import shop.mammastore.mamma.member.action.ModifyAction;
 import shop.mammastore.mamma.member.action.ModifyProcAction;
-import shop.mammastore.mamma.member.action.FindPwdAction;
-import shop.mammastore.mamma.member.action.FindPwdProcAction;
 import shop.mammastore.mamma.member.action.RegisterAction;
 import shop.mammastore.mamma.member.action.RegisterProcAction;
 import shop.mammastore.mamma.member.action.RegisterResultAction;

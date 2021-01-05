@@ -8,9 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import shop.mammastore.admin.actgry.service.ActgryService;
-import shop.mammastore.admin.amanager.service.AmanagerService;
 import shop.mammastore.admin.vo.ActgryVo;
-import shop.mammastore.admin.vo.AmanagerVo;
 import shop.mammastore.common.Action;
 import shop.mammastore.common.ActionForward;
 import shop.mammastore.common.LoginManager;

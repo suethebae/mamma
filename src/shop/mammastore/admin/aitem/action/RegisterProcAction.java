@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import shop.mammastore.admin.aitem.service.AitemService;
-import shop.mammastore.admin.vo.ActgryVo;
 import shop.mammastore.admin.vo.AitemVo;
 import shop.mammastore.common.Action;
 import shop.mammastore.common.ActionForward;
@@ -49,12 +48,10 @@ public class RegisterProcAction implements Action {
 			out.close();
 			return null;
 		}
-		
-	
-		
-		
+
 		// 경로설정
 		ActionForward forward = new ActionForward();
+		forward.setRedirect(true);
 		forward.setPath("/aitem/list");
 		return forward;
 	}

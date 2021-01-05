@@ -55,6 +55,7 @@ public class RegisterProcAction implements Action {
 		}
 		// 경로설정
 		ActionForward forward = new ActionForward();
+		forward.setRedirect(true);
 		forward.setPath("/actgry/list");
 		return forward;
 	}

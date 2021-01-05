@@ -23,8 +23,8 @@ public class AitemVo {
 	public int getItm_sq() {
 		return itm_sq;
 	}
-	public void setItm_sq(int item_sq) {
-		this.itm_sq = item_sq;
+	public void setItm_sq(int itm_sq) {
+		this.itm_sq = itm_sq;
 	}
 	public int getCtgry_sq() {
 		return ctgry_sq;

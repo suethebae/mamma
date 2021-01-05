@@ -13,8 +13,6 @@ import shop.mammastore.common.ActionForward;
 import shop.mammastore.common.LoginManager;
 import shop.mammastore.common.RegExp;
 
-import static shop.mammastore.common.RegExp.REGEXP_CTGRY_NM;
-
 public class DeleteAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {

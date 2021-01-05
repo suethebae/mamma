@@ -2,7 +2,6 @@ package shop.mammastore.mamma.reivew.controller;
 
 import java.io.IOException;
 
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,7 +18,6 @@ import shop.mammastore.mamma.reivew.action.ModifyAction;
 import shop.mammastore.mamma.reivew.action.ModifyProcAction;
 import shop.mammastore.mamma.reivew.action.RegisterAction;
 import shop.mammastore.mamma.reivew.action.WriteAction;
-
 
 @WebServlet("/review/*")
 //웹서블릿 어노테이션으로 모든 .do 파일이 이쪽으로 온다

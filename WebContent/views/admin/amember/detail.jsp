@@ -3,61 +3,50 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-    AmemberVo vo =(AmemberVo) request.getAttribute("amemberVo");
+	AmemberVo amemberVo = (AmemberVo) request.getAttribute("amemberVo");
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript">
-function modify(){
-	location.href="/amember/modify?mber_sq=<%=vo.getMber_sq()%>";
-	
-}
-
-function Delete(){
-	
-	    if ( confirm('삭제하시겠습니까?')) {
-	    	location.href="amember/delete?mber_sq=<%=vo.getMber_sq()%>";
-
-		} else {
-			return;
-		}
+<script>
+	function modify() {
+		location.href="/amember/modify?sq=<%=amemberVo.getMber_sq()%>";
+	}
+	function mdelete() {
+		location.href="/amember/delete?sq=<%=amemberVo.getMber_sq()%>";
 	}
 </script>
 </head>
 <body>
-	<!-- <form action="/aitem/amodifyProc" method="post" id="editorForm" enctype="multipare/form-data">	 -->
-	<table border=1>
-		<tr>
-			<td>회원번호</td>
-			<td><%=vo.getMber_sq()%></td>
-		</tr>
-		<tr>
-			<td>아이디</td>
-			<td><%=vo.getId()%></td>
-		</tr>
-		<tr>
-			<td>이름</td>
-			<td><%=vo.getNm()%></td>
-		</tr>
-		<tr>
-			<td>전화번호</td>
-			<td><%=vo.getPhone()%></td>
-		</tr>
-		<tr>
-			<td>이메일</td>
-			<td><%=vo.getEmail()%></td>
-		</tr>
-		<tr>
-			<td>가입일시</td>
-			<td><%=vo.getDttm()%></td>
-		</tr>
-	</table>
-	
-	<button onclick="modify()">수정</button>
-	<button onclick="Delete()">삭제</button>
-	
+	<h1>회원정보</h1>
+	<a href="/amember/list">회원목록으로</a>
+	<hr>
+	<form action="/amember/modifyProc" method="post" id="mForm">
+		<p>
+			회원번호
+			<%=amemberVo.getMber_sq()%>
+		</p>
+		<p>
+			이름
+			<%=amemberVo.getNm()%>
+		</p>
+		<p>
+			아이디
+			<%=amemberVo.getId()%>
+		</p>
+		<p>
+			이메일
+			<%=amemberVo.getEmail()%>
+		</p>
+		<p>
+			휴대폰
+			<%=amemberVo.getPhone()%>
+		</p>
+	</form>
+	<hr>
+	<button onclick="modify()">수정하기</button>
+	<button onclick="mdelete()">회원정보삭제</button>
 </body>
 </html>

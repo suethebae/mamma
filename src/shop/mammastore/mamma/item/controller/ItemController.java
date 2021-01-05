@@ -11,13 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import shop.mammastore.common.Action;
 import shop.mammastore.common.ActionForward;
+import shop.mammastore.mamma.item.action.CtgryAction;
 import shop.mammastore.mamma.item.action.DetailAction;
 import shop.mammastore.mamma.item.action.ListAction;
 
-
 @WebServlet("/item/*")
 //웹서블릿 어노테이션으로 모든 .do 파일이 이쪽으로 온다
-public class ItemrController extends HttpServlet {
+public class ItemController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response)
@@ -30,8 +30,16 @@ public class ItemrController extends HttpServlet {
 
 		ActionForward forward = null;
 
+		if (command.equals("/ctgry")) {
+			Action action = new CtgryAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		// 네비이게이션 선택시 상품페이지 들어가기
-		if (command.equals("/list")) {
+		else if (command.equals("/list")) {
 			Action action = new ListAction();
 			try {
 				forward = action.execute(request, response);

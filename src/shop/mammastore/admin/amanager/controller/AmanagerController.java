@@ -9,12 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+import shop.mammastore.admin.amanager.action.RegisterAction;
 import shop.mammastore.admin.amanager.action.LoginProcAction;
 import shop.mammastore.admin.amanager.action.LogoutAction;
+import shop.mammastore.admin.amanager.action.DetailAction;
 import shop.mammastore.admin.amanager.action.ModifyAction;
 import shop.mammastore.admin.amanager.action.ModifyProcAction;
-import shop.mammastore.admin.amanager.action.RegisterAction;
 import shop.mammastore.admin.amanager.action.RegisterProcAction;
 import shop.mammastore.admin.amanager.action.SRegisterProcAction;
 import shop.mammastore.admin.amanager.action.LeaveAction;
@@ -91,11 +91,15 @@ public class AmanagerController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		/*
-		 * // 매니저 상세정보 보기 else if (command.equals("/detail")) { Action action = new
-		 * DetialAction(); try { forward = action.execute(request, response); } catch
-		 * (Exception e) { e.printStackTrace(); } }
-		 */
+		// 매니저 상세정보 보기
+		else if (command.equals("/detail")) {
+			Action action = new DetailAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		// 매니저 수정 폼
 		else if (command.equals("/modify")) {
 			Action action = new ModifyAction();

@@ -62,6 +62,7 @@
 </script>
 </head>
 <body>
+	<jsp:include page="/views/admin/aNavbar.jsp"></jsp:include>
 	<!-- 직원 이름 표시  -->
 	<div>
 		<table border=1>

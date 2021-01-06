@@ -1,3 +1,4 @@
+<%@page import="shop.mammastore.mamma.vo.CartVo"%>
 <%@page import="shop.mammastore.mamma.vo.CartListVo"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -18,10 +19,17 @@ ArrayList<CartListVo> list = (ArrayList<CartListVo>) request.getAttribute("list"
 	function modifyCart(cart_sq) {
 		location.href = "/cart/modify?cart_sq="+cart_sq;
 	}
+		function deleteCart(cart_sq){
+		 location.href="/cart/delete?cart_sq="+cart_sq; 
+	}
+
+	function deleteAllCart(){
+		 location.href="/cart/deleteAll";
+	}
 </script>
 </head>
 <body>
-	<table>
+	<table border="1">
 		<tr>
 			<th>장바구니 번호</th>
 			<th>상품 이미지</th>
@@ -44,16 +52,16 @@ ArrayList<CartListVo> list = (ArrayList<CartListVo>) request.getAttribute("list"
 			<td><%=list.get(i).getItm_cnt()%></td>
 			<td><%=list.get(i).getItm_pc() * list.get(i).getItm_cnt()%></td>
 			<td><button onclick="modifyCart(<%=list.get(i).getCart_sq()%>)">수정</button></td>
-			<td><button onclick="">삭제</button></td>
+			<td><button onclick="deleteCart(<%=list.get(i).getCart_sq()%>)">삭제</button></td>
+
 		</tr>
 		<%
 		total += list.get(i).getItm_pc() * list.get(i).getItm_cnt();
 		}
 		%>
 	</table>
-	<button onclick="">초기화</button>
-	총금액
-	<%=total%>
+    <button onclick="deleteAllCart()">전체삭제</button> 
+	총금액 <%=total%>
 	
 	<button onclick="/order/~">주문하기</button>
 </body>

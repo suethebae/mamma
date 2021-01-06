@@ -28,12 +28,6 @@ public ActionForward execute(HttpServletRequest request, HttpServletResponse res
 		return null;
 	}
 	
-	/*
-	 * ActgryVo actgryVo = new ActgryVo(); 
-	 * actgryVo.getCtgry_sq(); 
-	 * actgryVo.getNm();
-	 */
-	
 	ArrayList<ActgryVo> list = null;
 	ActgryService svc = new ActgryService();
 	list = svc.getCtgryList();

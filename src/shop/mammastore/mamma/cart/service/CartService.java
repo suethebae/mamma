@@ -56,6 +56,36 @@ public class CartService {
 		close(con);
 		return isSuccess;
 	}
+	public boolean delete(int cart_sq) {
+		CartDao dao = CartDao.getInstance();
+		Connection con = getConnection();
+		dao.setConnection(con);
+		int count = dao.delete(cart_sq);
+		boolean isSuccess = true;
+		if (count > 0) {
+			commit(con);
+		} else {
+			rollback(con);
+			isSuccess = false;
+		}
+		close(con);
+		return isSuccess;
+	}
+	public boolean deleteAll(int mber_sq) {
+		CartDao dao = CartDao.getInstance();
+		Connection con = getConnection();
+		dao.setConnection(con);
+		int count = dao.deleteAll(mber_sq);
+		boolean isSuccess = true;
+		if (count > 0) {
+			commit(con);
+		} else {
+			rollback(con);
+			isSuccess = false;
+		}
+		close(con);
+		return isSuccess;
+	}
 
 	//카트 리스트 불러오기
 	public ArrayList<CartListVo> getCartList(int imber_sq) {

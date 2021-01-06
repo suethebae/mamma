@@ -151,7 +151,7 @@ public class AmanagerDao {
 		try {
 			pstmt = con.prepareStatement("select * from inf_mngr_tb where mngr_sq=? and del_fl=0");
 			pstmt.setInt(1, mngr_sq);
-			;
+			
 			rs = pstmt.executeQuery();
 			while (rs.next()) { // 다음줄이 null(false) 될떄까지 반복실행
 				amanagerVo = new AmanagerVo();

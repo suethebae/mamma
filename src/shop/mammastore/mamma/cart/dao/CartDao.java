@@ -122,5 +122,37 @@ public class CartDao {
 		}
 		return count;
 	}
+	//장바구니 삭제
+	public int delete(int cart_sq) {
+		PreparedStatement pstmt = null; // 쿼리문 작성할 메소드
+		int count = 0;
+		try {
+			pstmt = con.prepareStatement("delete from inf_cart_tb where cart_sq=?");
+			pstmt.setInt(1, cart_sq);
+			count = pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return count;
+	}
+	//장바구니 전체삭제
+	public int deleteAll(int mber_sq) {
+		PreparedStatement pstmt = null;
+		int count = 0;
+		try {
+			pstmt = con.prepareStatement("delete from inf_cart_tb where mber_sq=?");
+			pstmt.setInt(1, mber_sq);
+			count = pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return count;
+	}
 
 }

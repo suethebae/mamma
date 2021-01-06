@@ -9,7 +9,18 @@ String member_sq = lm.getMemberId(session);
 <html>
 <head>
 <meta charset="UTF-8">
-<title>로그인</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link
+	href="https://fonts.googleapis.com/css2?family=Sunflower:wght@300;500;700&display=swap"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+	integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
+	crossorigin="anonymous">
+<link rel="stylesheet" href="/views/css/style.css">
+
+<title>LOG IN</title>
 
 <script src="https://kit.fontawesome.com/1920467f5c.js"
 	crossorigin="anonymous"></script>
@@ -37,31 +48,31 @@ String member_sq = lm.getMemberId(session);
 
 <body>
 	<jsp:include page="/views/navbar.jsp"></jsp:include>
-	<!-- 메인 -->
-	<section>
-		<main>
-			<form action="/member/loginProc" method="post"
-				onsubmit="return login()">
-
-				<span class="login_title"><img class="login_title" alt="X"
-					src="/views/img/login.png"></span>
-				<div class="login_box">
-					<input type="text" id="id" name="id" placeholder="아이디 입력">
+	<!-- 로그인 -->
+	<div class="login">
+		<div class="login__header">
+			<img src="/views/img/login.png" alt="login">
+		</div>
+		<form class="login__main" action="/member/loginProc" method="post"
+			onsubmit="return login()">
+			<div class="login__id">
+				<input type="text" id="id" name="id" placeholder="ID">
+			</div>
+			<div class="login__pwd">
+				<input type="password" id="pwd" name="pwd" placeholder="PASSWORD">
+			</div>
+			<button class="login__btn" type="submit">로그인</button>
+			<div class="login__bottom">
+				<div class="login__join">
+					<a href="/member/register">회원가입</a>
 				</div>
-				<div class="login_box">
-					<input type="password" id="pwd" name="pwd" placeholder="비밀번호 입력">
+				<div class="login__find">
+					<a href='/member/findId'>아이디 찾기</a> 
+					<span>|</span> 
+					<a href='/member/findPwd'>비밀번호 찾기</a>
 				</div>
-
-				<div class="login_box">
-					<button class="login_button" type="submit">로그인</button>
-				</div>
-
-				<div class="login_find">
-					<a href='/member/findId'>아이디 찾기 |</a> <a href='/member/findPwd'>비밀번호
-						찾기</a>
-				</div>
-			</form>
-		</main>
-	</section>
+			</div>
+		</form>
+	</div>
 </body>
 </html>

@@ -1,4 +1,4 @@
-package shop.mammastore.admin.actgry.action;
+package shop.mammastore.mamma.board.question.action;
 
 import java.io.PrintWriter;
 
@@ -10,25 +10,26 @@ import shop.mammastore.common.Action;
 import shop.mammastore.common.ActionForward;
 import shop.mammastore.common.LoginManager;
 
-public class RegisterAction implements Action {
+public class WriteProcAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		// 로그인 확인
 		HttpSession session = request.getSession();
 		LoginManager lm = LoginManager.getInstance();
-		String mngr_sq = lm.getMemberId(session);
-
-		if (mngr_sq == null || mngr_sq.equals("")) {
+		String mber_sq = lm.getMemberId(session);
+		
+		if(mber_sq==null||mber_sq.equals("")) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.println("<script>alert('잘못된 접근입니다.'); loaction.href='/'; </script>");
+			out.println("<script>alert('잘못된 접근입니다.'); loaction.href='/'; </script>"); 
 			out.close();
 			return null;
-		}
-
+		} 
+		
+		
+		
 		// 경로설정
 		ActionForward forward = new ActionForward();
-		forward.setPath("/views/admin/actgry/registerForm.jsp");
+		forward.setPath("/views/board/question/writeForm.jsp");
 		return forward;
 	}
 }

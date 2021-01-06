@@ -24,6 +24,7 @@ public class DetailAction implements Action {
 			out.close();
 			return null;
 		}
+		
 		// 아이템 SQ 를 기준으로 데이터 받아오기
 		AitemVo aitemVo = null;
 		AitemService svc = new AitemService();

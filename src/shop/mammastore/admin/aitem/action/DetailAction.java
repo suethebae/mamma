@@ -27,9 +27,14 @@ public class DetailAction implements Action {
 			return null;
 		}
 
+		/* String ditm_sq = request.getParameter("itm_sq"); */
+
 		AitemService svc = new AitemService();
 		AitemVo aitemVo = svc.getItemDetail(Integer.parseInt(itm_sq));
 
+/*		ActgryService svc = new ActgryService();
+		ActgryVo actgryVo = svc.get*/
+		
 		if (aitemVo == null) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
@@ -42,6 +47,7 @@ public class DetailAction implements Action {
 		/* actgryVo.set */
 
 		request.setAttribute("aitemVo", aitemVo);
+/*		request.setAttribute("ActgryVo", actgryVo);*/
 
 		// 경로설정
 		ActionForward forward = new ActionForward();

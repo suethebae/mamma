@@ -30,7 +30,7 @@ public class RegisterProcAction implements Action {
 			out.close();
 			return null;
 		}
-		//nm 유효성 검사
+		// nm 유효성 검사
 		String nm = request.getParameter("nm");
 		if (!RegExp.isValidExp(nm, REGEXP_CTGRY_NM)) {
 			response.setContentType("text/html; charset=UTF-8");
@@ -39,14 +39,14 @@ public class RegisterProcAction implements Action {
 			out.close();
 			return null;
 		}
-		
-		//nm 데이터 vo에 넣기
+
+		// nm 데이터 vo에 넣기
 		ActgryVo actgryVo = new ActgryVo();
 		actgryVo.setNm(nm);
-		
-		//db에 Vo전달하여 카테고리 입력
+
+		// db에 Vo전달하여 카테고리 입력
 		ActgryService svc = new ActgryService();
-		if(!svc.register(actgryVo)) {
+		if (!svc.register(actgryVo)) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('카테고리 등록에 실패했습니다.'); history.back(); </script>");

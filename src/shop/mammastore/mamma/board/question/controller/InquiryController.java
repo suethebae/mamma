@@ -1,4 +1,4 @@
-package shop.mammastore.mamma.cart.controller;
+package shop.mammastore.mamma.board.question.controller;
 
 import java.io.IOException;
 
@@ -11,15 +11,17 @@ import javax.servlet.http.HttpServletResponse;
 
 import shop.mammastore.common.Action;
 import shop.mammastore.common.ActionForward;
-import shop.mammastore.mamma.cart.action.AddAction;
-import shop.mammastore.mamma.cart.action.ModifyAction;
-import shop.mammastore.mamma.cart.action.ModifyProcAction;
-import shop.mammastore.mamma.cart.action.ListAction;
-import shop.mammastore.mamma.cart.action.DeleteAction;
-import shop.mammastore.mamma.cart.action.DeleteAllAction;
+import shop.mammastore.mamma.board.question.action.DeleteAction;
+import shop.mammastore.mamma.board.question.action.DetailAction;
+import shop.mammastore.mamma.board.question.action.ListAction;
+import shop.mammastore.mamma.board.question.action.ModifyAction;
+import shop.mammastore.mamma.board.question.action.ModifyProcAction;
+import shop.mammastore.mamma.board.question.action.WriteAction;
+import shop.mammastore.mamma.board.question.action.WriteProcAction;
 
-@WebServlet("/cart/*")
-public class CartController extends HttpServlet {
+@WebServlet("/question/*")
+//웹서블릿 어노테이션으로 모든 .do 파일이 이쪽으로 온다
+public class InquiryController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response)
@@ -28,19 +30,12 @@ public class CartController extends HttpServlet {
 		// 도메인뒤에 붙어있는 경로 가져온다. 다 있던 메소드 사용
 		String requestURI = request.getRequestURI();
 		String contextPath = request.getContextPath();
-		String command = requestURI.substring(contextPath.length()).replaceAll("/cart", "");
-
+		String command = requestURI.substring(contextPath.length()).replaceAll("/question", "");// 여기에 우리가 들고올 마지막 경로를
+																								// 가져온다
 		ActionForward forward = null;
-		if (command.equals("/add")) {
-			Action action = new AddAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		// 장바구니 리스트
-		else if (command.equals("/list")) {
+
+		// 문의 게시판 첫페이지
+		if (command.equals("/questionList")) {
 			Action action = new ListAction();
 			try {
 				forward = action.execute(request, response);
@@ -48,8 +43,34 @@ public class CartController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-
-		// 장바구니에 담긴 물품 갯수 수정
+		// 문의 게시판 상세 페이지
+		else if (command.equals("/detail")) {
+			Action action = new DetailAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		// 문의 게시판 글쓰기 폼으로 가기
+		else if (command.equals("/write")) {
+			Action action = new WriteProcAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		// 문의 게시판 글 등록
+		else if (command.equals("/register")) {
+			Action action = new WriteAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		// 문의 게시판 글 수정 폼으로 가기
 		else if (command.equals("/modify")) {
 			Action action = new ModifyAction();
 			try {
@@ -58,8 +79,7 @@ public class CartController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-
-		// 장바구니 물품갯수 수정 폼
+		// 문의 게시판 글 수정 완료하기
 		else if (command.equals("/modifyProc")) {
 			Action action = new ModifyProcAction();
 			try {
@@ -68,8 +88,7 @@ public class CartController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-
-		// 장바구니 삭제
+		// 문의 게시판 글 삭제하기
 		else if (command.equals("/delete")) {
 			Action action = new DeleteAction();
 			try {
@@ -79,26 +98,7 @@ public class CartController extends HttpServlet {
 			}
 		}
 
-		// 전체 삭제
-		else if (command.equals("/deleteAll")) {
-			Action action = new DeleteAllAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-
-		// 장바구니 리스트 호출
-		else if (command.equals("/list")) {
-			Action action = new ListAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-
+		// redirect or dispatch
 		if (forward != null) {
 			if (forward.isRedirect()) { // 리다이렉트 -요청값 바뀜 리퀘스트 정보 안남음
 				response.sendRedirect(forward.getPath());

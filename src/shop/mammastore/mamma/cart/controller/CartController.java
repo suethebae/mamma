@@ -58,7 +58,7 @@ public class CartController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		
+
 		// 장바구니 물품갯수 수정 폼
 		else if (command.equals("/modifyProc")) {
 			Action action = new ModifyProcAction();
@@ -67,9 +67,7 @@ public class CartController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
-		
-				} else if (command.equals("/delete")) {
+		} else if (command.equals("/delete")) {
 			Action action = new DeleteAction();
 			try {
 				forward = action.execute(request, response);
@@ -83,7 +81,7 @@ public class CartController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/list")) {
+		} else if (command.equals("/list")) {
 			Action action = new ListAction();
 			try {
 				forward = action.execute(request, response);
@@ -91,7 +89,6 @@ public class CartController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		
 
 		if (forward != null) {
 			if (forward.isRedirect()) { // 리다이렉트 -요청값 바뀜 리퀘스트 정보 안남음

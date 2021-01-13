@@ -14,7 +14,7 @@ import shop.mammastore.common.ActionForward;
 import shop.mammastore.mamma.mymenu.action.MyInfoAction;
 import shop.mammastore.mamma.mymenu.action.MyOrderAction;
 import shop.mammastore.mamma.mymenu.action.MyPageAction;
-import shop.mammastore.mamma.mymenu.action.MyQuestionAction;
+import shop.mammastore.mamma.mymenu.action.MyHelpAction;
 import shop.mammastore.mamma.mymenu.action.MyReviewAction;
 
 
@@ -64,8 +64,8 @@ public class MyMenuController extends HttpServlet {
 			}
 		}
 		// 일대일 문의
-		else if (command.equals("/myQuestion")) {
-			Action action = new MyQuestionAction();
+		else if (command.equals("/myHelp")) {
+			Action action = new MyHelpAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

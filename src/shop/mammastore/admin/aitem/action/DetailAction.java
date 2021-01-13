@@ -27,9 +27,12 @@ public class DetailAction implements Action {
 			return null;
 		}
 
+
+
 		AitemService svc = new AitemService();
 		AitemVo aitemVo = svc.getItemDetail(Integer.parseInt(itm_sq));
 
+		
 		if (aitemVo == null) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
@@ -39,9 +42,10 @@ public class DetailAction implements Action {
 		}
 
 		aitemVo.setCntnt(Parser.chgToHTML(aitemVo.getCntnt()));
-		/* actgryVo.set */
+	
 
 		request.setAttribute("aitemVo", aitemVo);
+
 
 		// 경로설정
 		ActionForward forward = new ActionForward();

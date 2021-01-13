@@ -21,6 +21,9 @@
 	function showMemberList() {
 		location.href = "/amember/list";
 	}
+	function showOrderList(){
+		location.href = "/aorder/list";
+	}
 </script>
 </head>
 <body>
@@ -29,5 +32,6 @@
 	<button onclick="registerItem()">상품등록</button>
 	<button onclick="showActgryList()">카테고리 목록</button>
 	<button onclick="showMemberList()">회원 관리 목록</button>
+	<button onclick="showOrderList()">주문 목록</button>
 </body>
 </html>

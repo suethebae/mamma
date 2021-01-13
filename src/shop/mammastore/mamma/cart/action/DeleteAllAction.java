@@ -30,13 +30,14 @@ public class DeleteAllAction implements Action {
 		if (!svc.deleteAll(Integer.parseInt(mber_sq))) {
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.println("<script>alert('전체삭제에 실패하였습니다..); history.back(); </script>");
+			out.println("<script>alert('전체삭제에 실패하였습니다.'); history.back(); </script>");
 			out.close();
 			return null;
 		}
 		
 		// 경로설정
 		ActionForward forward = new ActionForward();
+		forward.setRedirect(true);
 		forward.setPath("/cart/list");
 		return forward;
 	}

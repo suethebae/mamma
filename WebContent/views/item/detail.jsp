@@ -17,6 +17,10 @@
 		var itm_cnt = $('#itm_cnt');
 		location.href="/cart/add?itm_sq="+itm_sq+"&itm_cnt="+itm_cnt.val();
 	}
+	function parchsOne(itm_sq){
+		var itm_cnt = $('#itm_cnt');
+		location.href="/order/parchsOneForm?itm_sq="+itm_sq+"&itm_cnt="+itm_cnt.val();
+	}
 	</script>
 </head>
 <body>
@@ -34,7 +38,7 @@
 	<div>
 	개수 <input type="number" id="itm_cnt" />
 	<button onclick="registerCart(<%=aitemVo.getItm_sq()%>)">장바구니</button>
-	<button onclick="">구매</button>
+	<button onclick="parchsOne(<%=aitemVo.getItm_sq()%>)">구매</button>
 	</div>
 </body>
 </html>

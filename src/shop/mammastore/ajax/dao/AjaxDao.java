@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import shop.mammastore.admin.vo.AitemVo;
 import shop.mammastore.admin.vo.AmanagerVo;
+import shop.mammastore.mamma.vo.MemberOrderVo;
 import shop.mammastore.mamma.vo.MemberVo;
 
 public class AjaxDao {
@@ -223,5 +224,29 @@ public class AjaxDao {
 			close(pstmt);
 		}
 		return list;
+	}
+	
+	public MemberOrderVo inputMberData(int mber_sq) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		MemberOrderVo MOVo = new MemberOrderVo();
+		try {
+			pstmt = con.prepareStatement("select * from inf_mber_tb a left join inf_adres_tb b on a.mber_sq=b.mber_sq and b.adres_base=true where a.mber_sq=?");
+			pstmt.setInt(1, mber_sq);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				MOVo.setNm(rs.getString("a.nm"));
+				MOVo.setPhone(rs.getString("a.phone"));
+				MOVo.setEmail(rs.getString("a.email"));
+				MOVo.setAdres(rs.getString("b.adres"));
+				MOVo.setAdres_detail(rs.getString("b.adres_detail"));
+				MOVo.setZip_cd(rs.getString("b.zip_cd"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return MOVo;
 	}
 }

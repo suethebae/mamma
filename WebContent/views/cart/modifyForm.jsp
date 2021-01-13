@@ -39,7 +39,6 @@ CartListVo cartListVo = (CartListVo) request.getAttribute("cartListVo");
 			</tr>
 		</table>
 		<button onclick="saveCart()">저장</button>
-		location.href=""
 	</form>
 </body>
 </html>

@@ -7,12 +7,12 @@
 <title>마이페이지</title>
 </head>
 <body>
-<a href='/'>Mamma store</a>
+	<jsp:include page="/views/navbar.jsp"></jsp:include>
 My page<br>
 
 <a href='/mymenu/myOrder'>주문 내역</a>
 <a href='/mymenu/myReview'>나의 리뷰</a>
-<a href='/mymenu/myQuestion'>1:1 문의</a>
+<a href='/mymenu/myHelp'>1:1 문의</a>
 <a href='/mymenu/myInfo'>나의 정보</a>
 
 </body>

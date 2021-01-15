@@ -42,7 +42,7 @@ public class DeleteAction implements Action {
 		AitemVo aitemVo = new AitemVo();
 		aitemVo.setItm_sq(Integer.parseInt(itm_sq));
 
-		/* AitemVo aitemVo = new AitemVo(); */
+
 		AitemService svc = new AitemService();
 		if (!svc.deleteItem(aitemVo)) {
 			response.setContentType("text/html;charset=UTF-8");
@@ -52,13 +52,6 @@ public class DeleteAction implements Action {
 			return null;
 		}
 
-		/*
-		 * AitemVo aitemVo = svc.getAitemDetail(Integer.parseInt(itm_sq)); if
-		 * (aitemVo==null) { response.setContentType("text/html; charset=UTF-8");
-		 * PrintWriter out = response.getWriter(); out.
-		 * println("<script>alert('상품 정보 로드에 실패 했습니다.'); loaction.href='/'; </script>");
-		 * out.close(); return null; }
-		 */
 
 		request.setAttribute("aitemVo", aitemVo);
 

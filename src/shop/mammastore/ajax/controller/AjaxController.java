@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import shop.mammastore.ajax.action.DetailMngrAction;
+import shop.mammastore.ajax.action.InputMberDataAction;
 import shop.mammastore.ajax.action.ShowItemListAction;
 import shop.mammastore.ajax.action.checkAEmailAction;
 import shop.mammastore.ajax.action.checkAIdAction;
@@ -86,6 +87,15 @@ public class AjaxController extends HttpServlet {
 		}
 		else if (command.equals("/itemList")) {
 			Action action = new ShowItemListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		//오더폼에서 데이터 가지고 오기
+		else if (command.equals("/inputMberData")) {
+			Action action = new InputMberDataAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

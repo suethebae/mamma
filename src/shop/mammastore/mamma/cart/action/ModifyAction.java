@@ -53,7 +53,6 @@ public class ModifyAction implements Action {
 
 		request.setAttribute("cartListVo", cartListVo);
 		
-
 		// 경로설정
 		ActionForward forward = new ActionForward();
 		forward.setPath("/views/cart/modifyForm.jsp");

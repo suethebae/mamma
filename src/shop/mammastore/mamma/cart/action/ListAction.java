@@ -27,10 +27,10 @@ public class ListAction implements Action {
 		}
 
 		int imber_sq = Integer.parseInt(mber_sq);
-		
+ 
 		// cartService 불러오기
 		CartService svc = new CartService();
-		
+
 		// 데이터 베이스에 등록
 		ArrayList<CartListVo> list = svc.getCartList(imber_sq);
 		if (list == null) {
@@ -40,7 +40,7 @@ public class ListAction implements Action {
 			out.close();
 			return null;
 		}
-
+		
 		request.setAttribute("list", list);
 
 		// 경로설정

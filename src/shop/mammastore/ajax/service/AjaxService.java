@@ -1,14 +1,16 @@
 package shop.mammastore.ajax.service;
 
+import static shop.mammastore.common.JdbcUtil.close;
+import static shop.mammastore.common.JdbcUtil.getConnection;
+
 import java.sql.Connection;
 import java.util.ArrayList;
 
 import shop.mammastore.admin.vo.AitemVo;
 import shop.mammastore.admin.vo.AmanagerVo;
 import shop.mammastore.ajax.dao.AjaxDao;
+import shop.mammastore.mamma.vo.MemberOrderVo;
 import shop.mammastore.mamma.vo.MemberVo;
-
-import static shop.mammastore.common.JdbcUtil.*;
 
 public class AjaxService {
 	public boolean checkId(MemberVo memberVo) {
@@ -106,5 +108,13 @@ public class AjaxService {
 		ArrayList<AitemVo> list = dao.getItemList(iCtgry_sq);
 		close(con);
 		return list;
+	}
+	public MemberOrderVo inputMberData(int mber_sq) {
+		AjaxDao dao = AjaxDao.getInstance();
+		Connection con = getConnection();
+		dao.setConnection(con);
+		MemberOrderVo MOVo = dao.inputMberData(mber_sq);
+		close(con);
+		return MOVo;
 	}
 }

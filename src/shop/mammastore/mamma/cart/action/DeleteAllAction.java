@@ -14,6 +14,7 @@ import shop.mammastore.mamma.cart.service.CartService;
 public class DeleteAllAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		//로그인 체크
 		HttpSession session = request.getSession();
 		LoginManager lm = LoginManager.getInstance();
 		String mber_sq = lm.getMemberId(session);
@@ -25,18 +26,19 @@ public class DeleteAllAction implements Action {
 			out.close();
 			return null;
 		}
-		
+		//데이터 베이스에 등록
 		CartService svc = new CartService();
 		if (!svc.deleteAll(Integer.parseInt(mber_sq))) {
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.println("<script>alert('전체삭제에 실패하였습니다..); history.back(); </script>");
+			out.println("<script>alert('전체삭제에 실패하였습니다.'); history.back(); </script>");
 			out.close();
 			return null;
 		}
 		
 		// 경로설정
 		ActionForward forward = new ActionForward();
+		forward.setRedirect(true);
 		forward.setPath("/cart/list");
 		return forward;
 	}

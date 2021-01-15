@@ -56,6 +56,7 @@ public class ModifyProcAction implements Action {
 		
 		// 경로설정
 		ActionForward forward = new ActionForward();
+		forward.setRedirect(true);
 		forward.setPath("/cart/list");
 		return forward;
 	}

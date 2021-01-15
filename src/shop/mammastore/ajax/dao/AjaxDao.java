@@ -47,6 +47,7 @@ public class AjaxDao {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
+			close(rs);
 		}
 		return count;
 	}
@@ -66,6 +67,7 @@ public class AjaxDao {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
+			close(rs);
 		}
 		return count;
 	}
@@ -85,6 +87,7 @@ public class AjaxDao {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
+			close(rs);
 		}
 		return count;
 	}
@@ -104,6 +107,7 @@ public class AjaxDao {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
+			close(rs);
 		}
 		return count;
 	}
@@ -123,6 +127,7 @@ public class AjaxDao {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
+			close(rs);
 		}
 		return count;
 	}
@@ -142,6 +147,7 @@ public class AjaxDao {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
+			close(rs);
 		}
 		return count;
 	}
@@ -168,6 +174,7 @@ public class AjaxDao {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
+			close(rs);
 		}
 		return amanagerVo;
 	}
@@ -192,6 +199,7 @@ public class AjaxDao {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
+			close(rs);
 		}
 		return aitemVo;
 	}
@@ -202,7 +210,8 @@ public class AjaxDao {
 		ArrayList<AitemVo> list = new ArrayList<AitemVo>();
 		try {
 			if (iCtgry_sq == 0) {
-				pstmt = con.prepareStatement("select itm_sq, ctgry_sq, pc, nm, fl_pth from inf_itm_tb where del_fl=0 and sttus_fl=1");
+				pstmt = con.prepareStatement(
+						"select itm_sq, ctgry_sq, pc, nm, fl_pth from inf_itm_tb where del_fl=0 and sttus_fl=1");
 			} else {
 				pstmt = con.prepareStatement(
 						"select itm_sq, ctgry_sq, pc, nm, fl_pth from inf_itm_tb where del_fl=0 and sttus_fl=1 and ctgry_sq=?");
@@ -222,16 +231,18 @@ public class AjaxDao {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
+			close(rs);
 		}
 		return list;
 	}
-	
+
 	public MemberOrderVo inputMberData(int mber_sq) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		MemberOrderVo MOVo = new MemberOrderVo();
 		try {
-			pstmt = con.prepareStatement("select * from inf_mber_tb a left join inf_adres_tb b on a.mber_sq=b.mber_sq and b.adres_base=true where a.mber_sq=?");
+			pstmt = con.prepareStatement(
+					"select * from inf_mber_tb a left join inf_adres_tb b on a.mber_sq=b.mber_sq and b.adres_base=true where a.mber_sq=?");
 			pstmt.setInt(1, mber_sq);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
@@ -246,6 +257,7 @@ public class AjaxDao {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
+			close(rs);
 		}
 		return MOVo;
 	}

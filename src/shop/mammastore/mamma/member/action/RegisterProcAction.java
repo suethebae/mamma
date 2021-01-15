@@ -25,7 +25,7 @@ public class RegisterProcAction implements Action {
 		HttpSession session = request.getSession();
 		LoginManager lm = LoginManager.getInstance();
 		String mber_sq = lm.getMemberId(session);
-		
+
 		if (mber_sq != null) {
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
@@ -33,7 +33,7 @@ public class RegisterProcAction implements Action {
 			out.close();
 			return null;
 		}
-		
+
 		String id = request.getParameter("id"); // id가 id인 value값을 가져오겠다. "id" : key값 . 후에 key값을 호출할 예정임.
 		String pwd = request.getParameter("pwd");
 		String pwdc = request.getParameter("pwdc");
@@ -42,17 +42,13 @@ public class RegisterProcAction implements Action {
 		String phone = request.getParameter("phone");
 		String magre = request.getParameter("magre");
 		String pagre = request.getParameter("pagre");
-		if (!RegExp.isValidExp(id, REGEXP_ID) 
-				|| !RegExp.isValidExp(pwd, REGEXP_PWD)
-				|| !RegExp.isValidExp(nm, REGEXP_NAME) 
-				|| !pwd.equals(pwdc) 
-				|| !RegExp.isValidExp(email, REGEXP_EMAIL)
-				|| RegExp.isEmpty(phone) 
-				|| !magre.equals("1") 
-				|| !pagre.equals("1")) {
+		if (!RegExp.isValidExp(id, REGEXP_ID) || !RegExp.isValidExp(pwd, REGEXP_PWD)
+				|| !RegExp.isValidExp(nm, REGEXP_NAME) || !pwd.equals(pwdc) || !RegExp.isValidExp(email, REGEXP_EMAIL)
+				|| RegExp.isEmpty(phone) || !magre.equals("1") || !pagre.equals("1")) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter(); // html에서 alert창을 직접 사용하겠다. + 자바
-			out.println("<script>alert('잘못된 접근입니다.'); location.href='/'; </script>"); // 데이터를 받아서 접근하는게 아니라 강제로 들어왔을때 접근을 막기위해서 씀
+			out.println("<script>alert('잘못된 접근입니다.'); location.href='/'; </script>"); // 데이터를 받아서 접근하는게 아니라 강제로 들어왔을때
+																						// 접근을 막기위해서 씀
 			out.close();
 			return null;
 		}

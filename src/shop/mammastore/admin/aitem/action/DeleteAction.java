@@ -42,7 +42,6 @@ public class DeleteAction implements Action {
 		AitemVo aitemVo = new AitemVo();
 		aitemVo.setItm_sq(Integer.parseInt(itm_sq));
 
-
 		AitemService svc = new AitemService();
 		if (!svc.deleteItem(aitemVo)) {
 			response.setContentType("text/html;charset=UTF-8");
@@ -51,7 +50,6 @@ public class DeleteAction implements Action {
 			out.close();
 			return null;
 		}
-
 
 		request.setAttribute("aitemVo", aitemVo);
 

@@ -24,7 +24,7 @@ public class DetailAction implements Action {
 			out.close();
 			return null;
 		}
-		
+
 		// 아이템 SQ 를 기준으로 데이터 받아오기
 		AitemVo aitemVo = null;
 		AitemService svc = new AitemService();
@@ -36,7 +36,7 @@ public class DetailAction implements Action {
 			out.close();
 			return null;
 		}
-		//컨텐츠 내용 변경
+		// 컨텐츠 내용 변경
 		aitemVo.setCntnt(Parser.chgToHTML(aitemVo.getCntnt()));
 		// 받아온 데이터 업로드
 		request.setAttribute("aitemVo", aitemVo);

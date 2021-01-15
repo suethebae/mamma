@@ -55,7 +55,7 @@ public class ItemController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}	
+		}
 
 		// redirect or dispatch
 		if (forward != null) {

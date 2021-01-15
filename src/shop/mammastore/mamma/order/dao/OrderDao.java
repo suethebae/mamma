@@ -284,7 +284,8 @@ public class OrderDao {
 		}
 		return count;
 	}
-	//단일 주문 orderdetail register
+
+	// 단일 주문 orderdetail register
 	public int registerDetailOne(OrderItemListVo orderDetailVo) {
 		PreparedStatement pstmt = null; // 쿼리문 작성할 메소드
 		int count = 0;

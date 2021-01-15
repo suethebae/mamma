@@ -32,45 +32,56 @@ ArrayList<CartListVo> list = (ArrayList<CartListVo>) request.getAttribute("list"
 </script>
 </head>
 <body>
-<form action="/order/parchsForm" method="post" id="PForm">
-	<table border="1">
-		<tr>
-			<th>선택 상자</th>
-			<th>장바구니 번호</th>
-			<th>상품 이미지</th>
-			<th>상품 이름</th>
-			<th>상품 가격</th>
-			<th>갯수</th>
-			<td>총가격</td>
-			<th>수정</th>
-			<th>삭제</th>
-		</tr>
-		<%
-		int total = 0;
-		for (int i = 0; i < list.size(); i++) {
-		%>
-		<tr>
-			<td><input type="checkbox" name="cart_sq" value="<%=list.get(i).getCart_sq()%>" checked="checked"/></td>
-			<td><%=list.get(i).getCart_sq()%></td>
-			<td><img src="<%=list.get(i).getFl_pth()%>" alt="" width="100px" height="100px" /></td>
-			<td><%=list.get(i).getItm_nm()%></td>
-			<td><%=list.get(i).getItm_pc()%></td>
-			<td><%=list.get(i).getItm_cnt()%><input type="hidden" name="itm_cnt" value="<%=list.get(i).getItm_cnt()%>"/></td> 
-			<td><%=list.get(i).getItm_pc() * list.get(i).getItm_cnt()%></td>
-			<td><button type="button" onclick="modifyCart(<%=list.get(i).getCart_sq()%>)">수정</button></td>
-			<td><button type="button" onclick="deleteCart(<%=list.get(i).getCart_sq()%>)">삭제</button></td>
-		</tr>
-		<%
-		total += list.get(i).getItm_pc() * list.get(i).getItm_cnt();
-		}
-		%>
-		
-	</table>
+	<jsp:include page="/views/navbar.jsp"></jsp:include>
+	<form action="/order/parchsForm" method="post" id="PForm">
+		<table border="1">
+			<tr>
+				<th>선택 상자</th>
+				<th>장바구니 번호</th>
+				<th>상품 이미지</th>
+				<th>상품 이름</th>
+				<th>상품 가격</th>
+				<th>갯수</th>
+				<th>총가격</th>
+				<th>수정</th>
+				<th>삭제</th>
+			</tr>
+			<%
+			int total = 0;
+			for (int i = 0; i < list.size(); i++) {
+			%>
+			<tr>
+				<td><input type="checkbox" name="cart_sq"
+					value="<%=list.get(i).getCart_sq()%>" checked="checked" /></td>
+				<td><%=list.get(i).getCart_sq()%></td>
+				<td><img src="<%=list.get(i).getFl_pth()%>" alt=""
+					width="100px" height="100px" /></td>
+				<td><%=list.get(i).getItm_nm()%></td>
+				<td><%=list.get(i).getItm_pc()%></td>
+				<td><%=list.get(i).getItm_cnt()%><input type="hidden"
+					name="itm_cnt" value="<%=list.get(i).getItm_cnt()%>" /></td>
+				<td><%=list.get(i).getItm_pc() * list.get(i).getItm_cnt()%></td>
+				<td><button type="button"
+						onclick="modifyCart(<%=list.get(i).getCart_sq()%>)">수정</button></td>
+				<td><button type="button"
+						onclick="deleteCart(<%=list.get(i).getCart_sq()%>)">삭제</button></td>
+			</tr>
+			<%
+			total += list.get(i).getItm_pc() * list.get(i).getItm_cnt();
+			}
+			%>
+
+		</table>
 	</form>
-    <%if(!(list.isEmpty())) {%>
-    <button onclick="deleteAllCart()">전체삭제</button> 
-	총금액 <%=total%>
+	<%
+	if (!(list.isEmpty())) {
+	%>
+	<button onclick="deleteAllCart()">전체삭제</button>
+	총금액
+	<%=total%>
 	<button onclick="order()">주문하기</button>
-	<%} %>
+	<%
+	}
+	%>
 </body>
 </html>

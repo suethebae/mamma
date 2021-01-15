@@ -63,7 +63,7 @@ ArrayList<OrderListVo> list = (ArrayList<OrderListVo>) request.getAttribute("lis
 	function chgSttusStart() {
 		var sttus = $('#sttus');
 		var order_sq = $('[name="order_sq"]');
-		if(!order_sq[0]){
+		if (!order_sq[0]) {
 			alert('선택된 주문이 없습니다.');
 			return;
 		}
@@ -73,7 +73,7 @@ ArrayList<OrderListVo> list = (ArrayList<OrderListVo>) request.getAttribute("lis
 	function chgSttusEnd() {
 		var sttus = $('#sttus');
 		var order_sq = $('[name="order_sq"]');
-		if(!order_sq[0]){
+		if (!order_sq[0]) {
 			alert('선택된 주문이 없습니다.');
 			return;
 		}
@@ -83,7 +83,7 @@ ArrayList<OrderListVo> list = (ArrayList<OrderListVo>) request.getAttribute("lis
 	function chgSttusConfirm() {
 		var sttus = $('#sttus');
 		var order_sq = $('[name="order_sq"]');
-		if(!order_sq[0]){
+		if (!order_sq[0]) {
 			alert('선택된 주문이 없습니다.');
 			return;
 		}
@@ -93,7 +93,7 @@ ArrayList<OrderListVo> list = (ArrayList<OrderListVo>) request.getAttribute("lis
 	function chgSttusCancel() {
 		var sttus = $('#sttus');
 		var order_sq = $('[name="order_sq"]');
-		if(!order_sq[0]){
+		if (!order_sq[0]) {
 			alert('선택된 주문이 없습니다.');
 			return;
 		}
@@ -121,7 +121,8 @@ ArrayList<OrderListVo> list = (ArrayList<OrderListVo>) request.getAttribute("lis
 			%>
 			<tr onclick="chgDisplay(this)">
 				<td rowspan="1" onclick="event.cancelBubble=true"><input
-					type="checkbox" value="<%=list.get(i).getOrder_sq()%>" name="order_sq"  /></td>
+					type="checkbox" value="<%=list.get(i).getOrder_sq()%>"
+					name="order_sq" /></td>
 				<td><%=list.get(i).getOrder_code()%></td>
 				<td><%=list.get(i).getId()%></td>
 				<td><img
@@ -190,7 +191,7 @@ ArrayList<OrderListVo> list = (ArrayList<OrderListVo>) request.getAttribute("lis
 			}
 			%>
 		</table>
-		<input type="hidden" id="sttus" name="sttus" value="0"/><br />
+		<input type="hidden" id="sttus" name="sttus" value="0" /><br />
 	</form>
 	<button onclick="chgSttusStart()">배송 시작</button>
 	<button onclick="chgSttusEnd()">배송 완료</button>

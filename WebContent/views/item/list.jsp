@@ -10,6 +10,8 @@ ArrayList<ActgryVo> actgryVo = (ArrayList<ActgryVo>) request.getAttribute("ctgry
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="/views/css/itemList.css">
+<link rel="stylesheet" type="text/css" href="/views/css/style.css">
 <title>상품리스트 페이지</title>
 <script src="https://code.jquery.com/jquery-3.5.1.js"
 	integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
@@ -35,13 +37,15 @@ ArrayList<ActgryVo> actgryVo = (ArrayList<ActgryVo>) request.getAttribute("ctgry
 				var itemList = $('#itemList');
 				var html="";
 				for(var i=0; i<data.itemList.length;i++){
-					html += '<tr onclick="showItemDetail('+data.itemList[i].itm_sq+')">';
-					html += '<td>'+data.itemList[i].itm_sq+'</td>';
-					html += '<td>'+data.itemList[i].ctgry_sq+'</td>';
-					html += '<td>'+data.itemList[i].pc+'</td>';
-					html += '<td>'+data.itemList[i].nm+'</td>';
-					html += '<td><img width="200px" height="200px" src='+data.itemList[i].fl_pth+'></td>';
-					html += '</tr>';
+					html += '<div class="responsive" onclick="showItemDetail('+data.itemList[i].itm_sq+')">';
+					html += '<div class="gallery">';
+					html += '<a target="_blank" href='+data.itemList[i].fl_pth+'>';
+					html += '<img height="400px" src='+data.itemList[i].fl_pth+'></a>';
+					html += '<div class="desc"><span>'+data.itemList[i].nm+'</span><br>';
+					html += '<span>'+data.itemList[i].pc+'</span>';
+					html += '</div>';
+					html += '</div>';
+					html += '</div>';
 				}
 				itemList.empty();
 				itemList.append(html);
@@ -56,9 +60,8 @@ ArrayList<ActgryVo> actgryVo = (ArrayList<ActgryVo>) request.getAttribute("ctgry
 	<!-- 메인 네비바 -->
 	<jsp:include page="/views/navbar.jsp"></jsp:include>
 	<hr>
-	상품마다 변하는 페이지
 	<!-- 카테고리 네비바 -->
-	<ul>
+	<ul class="ctgry__bar">
 		<li onclick="showItemList(0)">ALL</li>
 		<%
 		for (int i = 0; i < actgryVo.size(); i++) {
@@ -69,8 +72,8 @@ ArrayList<ActgryVo> actgryVo = (ArrayList<ActgryVo>) request.getAttribute("ctgry
 		%>
 	</ul>
 	<hr>
-	<table id="itemList">
+	<main id="itemList">
 
-	</table>
+	</main>
 </body>
 </html>

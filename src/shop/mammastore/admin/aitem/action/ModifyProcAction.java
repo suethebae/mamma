@@ -28,11 +28,10 @@ public class ModifyProcAction implements Action {
 			out.close();
 			return null;
 		}
-		
-		
+
 		FileUpload fileUpload = new FileUpload();
 		AitemVo aitemVo = fileUpload.fileUpload(request);
-				
+
 		AitemService svc = new AitemService();
 		if (!svc.modify(aitemVo)) {
 			response.setContentType("text/html; charset=UTF-8");
@@ -42,10 +41,9 @@ public class ModifyProcAction implements Action {
 			return null;
 		}
 
-				
 		// 경로설정
-	ActionForward forward = new ActionForward();
-	forward.setPath("/aitem/detail?sq="+aitemVo.getItm_sq());
-	return forward;
+		ActionForward forward = new ActionForward();
+		forward.setPath("/aitem/detail?sq=" + aitemVo.getItm_sq());
+		return forward;
 	}
 }

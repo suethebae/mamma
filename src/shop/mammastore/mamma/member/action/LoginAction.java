@@ -15,14 +15,14 @@ public class LoginAction implements Action {
 		HttpSession session = request.getSession();
 		LoginManager lm = LoginManager.getInstance();
 		String mber_sq = lm.getMemberId(session);
-		
-		if(mber_sq != null) {
+
+		if (mber_sq != null) {
 			ActionForward forward = new ActionForward();
 			forward.setPath("/");
 			forward.setRedirect(true);
 			return forward;
 		}
-		
+
 		ActionForward forward = new ActionForward();
 		forward.setPath("/views/member/loginForm.jsp");
 		return forward;

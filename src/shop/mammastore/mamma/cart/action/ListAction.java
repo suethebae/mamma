@@ -27,7 +27,7 @@ public class ListAction implements Action {
 		}
 
 		int imber_sq = Integer.parseInt(mber_sq);
- 
+
 		// cartService 불러오기
 		CartService svc = new CartService();
 
@@ -40,7 +40,7 @@ public class ListAction implements Action {
 			out.close();
 			return null;
 		}
-		
+
 		request.setAttribute("list", list);
 
 		// 경로설정

@@ -20,25 +20,25 @@ public class LoginProcAction implements Action {
 		HttpSession session = request.getSession();
 		LoginManager lm = LoginManager.getInstance();
 		String mber_sq = lm.getMemberId(session);
-		
-		if(mber_sq != null) {
+
+		if (mber_sq != null) {
 			ActionForward forward = new ActionForward();
 			forward.setPath("/");
 			forward.setRedirect(true);
 			return forward;
 		}
-		
+
 		String id = request.getParameter("id");
 		String pwd = request.getParameter("pwd");
 
 		if (RegExp.isEmpty(id) || RegExp.isEmpty(pwd)) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.println("<script>alert('잘못된 접근입니다.'); location.href='/'; </script>"); 
+			out.println("<script>alert('잘못된 접근입니다.'); location.href='/'; </script>");
 			out.close();
 			return null;
 		}
-		
+
 		MemberService svc = new MemberService();
 		MemberVo memberVo = svc.getLoginInfo(id);
 		if (memberVo == null || !BCrypt.checkpw(pwd, memberVo.getPwd())) {
@@ -48,8 +48,8 @@ public class LoginProcAction implements Action {
 			out.close();
 			return null;
 		}
-		
-		if(!svc.registerHistory(memberVo)){
+
+		if (!svc.registerHistory(memberVo)) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('로그인 히스토리 실패'); history.back(); </script>");
@@ -58,7 +58,7 @@ public class LoginProcAction implements Action {
 		}
 		mber_sq = Integer.toString(memberVo.getMber_sq());
 		lm.setSession(request.getSession(), mber_sq);
-		
+
 		ActionForward forward = new ActionForward();
 		forward.setPath("/");
 		return forward;

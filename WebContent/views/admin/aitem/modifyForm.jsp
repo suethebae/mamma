@@ -26,7 +26,7 @@ ArrayList<ActgryVo> list = (ArrayList<ActgryVo>) request.getAttribute("list");
 			var nm = $('#nm');
 			var pc = $('#pc');
 			var stock = $('#stock');
-			
+
 			if (!nm.val()) {
 				alert('상품 이름을 정상적으로 입력하여 주십시오.');
 				nm.focus();
@@ -64,16 +64,19 @@ ArrayList<ActgryVo> list = (ArrayList<ActgryVo>) request.getAttribute("list");
 			판매상태
 			<%=vo.isSttus_fl()%>
 		</div>
-			카테고리 
-		<select name="ctgry_sq" id="ctgry_sq">
-			<%for (int i = 0; i < list.size(); i++) { %>
+		카테고리 <select name="ctgry_sq" id="ctgry_sq">
+			<%
+			for (int i = 0; i < list.size(); i++) {
+			%>
 			<option value="<%=list.get(i).getCtgry_sq()%>"
 				<%=list.get(i).getCtgry_sq() == vo.getCtgry_sq() ? "selected" : ""%>><%=list.get(i).getNm()%></option>
-			<%}	%>
+			<%
+			}
+			%>
 		</select>
 		<div>
-			상품명 <input type="text" id="nm" name="nm" oninput=""
-				maxlength="25" value="<%=vo.getNm()%>">
+			상품명 <input type="text" id="nm" name="nm" oninput="" maxlength="25"
+				value="<%=vo.getNm()%>">
 		</div>
 		<div>
 			가격<input type="text" id="pc" name="pc" placeholder="상품가격" oninput=""

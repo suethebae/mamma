@@ -41,7 +41,6 @@ public class LeaveAction implements Action {
 
 		AmanagerVo amanagerVo = new AmanagerVo();
 		amanagerVo.setMngr_sq(Integer.parseInt(dmngr_sq));
-		
 
 		AmanagerService svc = new AmanagerService();
 		if (!svc.leave(amanagerVo)) {

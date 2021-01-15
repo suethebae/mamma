@@ -28,7 +28,7 @@ public class ModifyAction implements Action {
 
 		// cart_sq 인자값 보내주기
 		String cart_sq = request.getParameter("cart_sq");
-		
+
 		// cartService 불러오기
 		CartService svc = new CartService();
 		CartListVo cartListVo = svc.getTempDetail(Integer.parseInt(cart_sq));
@@ -42,7 +42,6 @@ public class ModifyAction implements Action {
 			return null;
 		}
 
-		
 		if (cartListVo == null || cartListVo.equals("")) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
@@ -52,7 +51,7 @@ public class ModifyAction implements Action {
 		}
 
 		request.setAttribute("cartListVo", cartListVo);
-		
+
 		// 경로설정
 		ActionForward forward = new ActionForward();
 		forward.setPath("/views/cart/modifyForm.jsp");

@@ -58,6 +58,7 @@
 </script>
 </head>
 <body>
+	<jsp:include page="/views/navbar.jsp"></jsp:include>
 	내주문내역
 		<%
 			for (int i = 0; i < list.size(); i++) {

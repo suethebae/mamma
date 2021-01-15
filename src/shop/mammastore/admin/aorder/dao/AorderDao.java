@@ -7,12 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-import shop.mammastore.mamma.vo.AdresVo;
-import shop.mammastore.mamma.vo.CartListVo;
-import shop.mammastore.mamma.vo.CartVo;
 import shop.mammastore.mamma.vo.OrderItemListVo;
 import shop.mammastore.mamma.vo.OrderListVo;
-import shop.mammastore.mamma.vo.OrderVo;
 
 public class AorderDao {
 
@@ -85,6 +81,7 @@ public class AorderDao {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
+			close(rs);
 		}
 		return list;
 	}

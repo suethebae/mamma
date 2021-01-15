@@ -31,7 +31,7 @@ public class ParchsFormAction implements Action {
 
 		// cart_sq 가지고 오기
 		String cart_sq[] = request.getParameterValues("cart_sq");
-		
+
 		if (cart_sq == null) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
@@ -43,7 +43,7 @@ public class ParchsFormAction implements Action {
 		// arraylist 형태 cart_sq에 대한 상세 내용 가지고 오기
 		OrderService svc = new OrderService();
 		ArrayList<CartListVo> list = svc.getItemList(cart_sq);
-		
+
 		// arraylist 클라우드에 업로드
 		request.setAttribute("list", list);
 

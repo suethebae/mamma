@@ -17,10 +17,6 @@ import shop.mammastore.mamma.mymenu.action.MyPageAction;
 import shop.mammastore.mamma.mymenu.action.MyHelpAction;
 import shop.mammastore.mamma.mymenu.action.MyReviewAction;
 
-
-
-
-
 @WebServlet("/mymenu/*")
 //웹서블릿 어노테이션으로 모든 .do 파일이 이쪽으로 온다
 public class MyMenuController extends HttpServlet {

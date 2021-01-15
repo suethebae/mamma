@@ -20,6 +20,7 @@ MemberVo memberVo = (MemberVo) request.getAttribute("memberVo");
 </script>
 </head>
 <body>
+	<jsp:include page="/views/navbar.jsp"></jsp:include>
 	<a href='/'>Mamma store</a>
 	<hr>
 	<h1>회원정보</h1>

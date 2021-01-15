@@ -9,12 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import shop.mammastore.admin.aboard.ahelp.action.AnswerProcAction;
 import shop.mammastore.admin.aboard.ahelp.action.DeleteAction;
 import shop.mammastore.admin.aboard.ahelp.action.DetailAction;
+import shop.mammastore.admin.aboard.ahelp.action.ListAction;
 import shop.mammastore.admin.aboard.ahelp.action.ModifyAction;
 import shop.mammastore.admin.aboard.ahelp.action.ModifyProcAction;
-import shop.mammastore.admin.aboard.ahelp.action.WriteAction;
-import shop.mammastore.admin.aboard.ahelp.action.WriteProcAction;
 import shop.mammastore.common.Action;
 import shop.mammastore.common.ActionForward;
 
@@ -29,12 +29,21 @@ public class HelpController extends HttpServlet {
 		// 도메인뒤에 붙어있는 경로 가져온다. 다 있던 메소드 사용
 		String requestURI = request.getRequestURI();
 		String contextPath = request.getContextPath();
-		String command = requestURI.substring(contextPath.length()).replaceAll("/ahelp", "");// 여기에 우리가 들고올 마지막 경로를
-																								// 가져온다
+		String command = requestURI.substring(contextPath.length()).replaceAll("/ahelp", "");// 여기에 우리가 들고올 마지막
+																								// 경로를 가져온다
 		ActionForward forward = null;
 
-		// 문의 게시판 상세 페이지
-		if (command.equals("/detail")) {
+		// 1:1 문의 보기
+		if (command.equals("/list")) {
+			Action action = new ListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		// 1:1 문의 상세 보기
+		else if (command.equals("/detail")) {
 			Action action = new DetailAction();
 			try {
 				forward = action.execute(request, response);
@@ -42,25 +51,16 @@ public class HelpController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		// 문의 게시판 글쓰기 폼으로 가기
-		else if (command.equals("/write")) {
-			Action action = new WriteProcAction();
+		// 답변 달기
+		else if (command.equals("/answerProc")) {
+			Action action = new AnswerProcAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-		// 문의 게시판 글 등록
-		else if (command.equals("/register")) {
-			Action action = new WriteAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		// 문의 게시판 글 수정 폼으로 가기
+		// 문의 수정
 		else if (command.equals("/modify")) {
 			Action action = new ModifyAction();
 			try {
@@ -69,7 +69,7 @@ public class HelpController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		// 문의 게시판 글 수정 완료하기
+		// 문의 정보 수정
 		else if (command.equals("/modifyProc")) {
 			Action action = new ModifyProcAction();
 			try {
@@ -77,9 +77,8 @@ public class HelpController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
-		// 문의 게시판 글 삭제하기
-		else if (command.equals("/delete")) {
+			// 문의 삭제
+		} else if (command.equals("/delete")) {
 			Action action = new DeleteAction();
 			try {
 				forward = action.execute(request, response);

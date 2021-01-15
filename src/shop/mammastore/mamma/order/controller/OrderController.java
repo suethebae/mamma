@@ -33,7 +33,7 @@ public class OrderController extends HttpServlet {
 																								// 가져온다
 
 		ActionForward forward = null;
-		//주문 폼
+		// 주문 폼
 		if (command.equals("/parchsForm")) {
 			Action action = new ParchsFormAction();
 			try {
@@ -41,8 +41,8 @@ public class OrderController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} 
-		//단일 주문 폼
+		}
+		// 단일 주문 폼
 		else if (command.equals("/parchsOneForm")) {
 			Action action = new ParchsOneFormAction();
 			try {
@@ -50,8 +50,8 @@ public class OrderController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} 
-		//주문 진행
+		}
+		// 주문 진행
 		else if (command.equals("/parchsProc")) {
 			Action action = new ParchsProcAction();
 			try {
@@ -60,7 +60,7 @@ public class OrderController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		//단일 주문 진행
+		// 단일 주문 진행
 		else if (command.equals("/parchsOneProc")) {
 			Action action = new ParchsOneProcAction();
 			try {
@@ -69,7 +69,7 @@ public class OrderController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		//주문 취소
+		// 주문 취소
 		else if (command.equals("/cancel")) {
 			Action action = new CancelAction();
 			try {
@@ -78,7 +78,7 @@ public class OrderController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		//구매 확정
+		// 구매 확정
 		else if (command.equals("/confirm")) {
 			Action action = new ConfirmAction();
 			try {

@@ -10,7 +10,6 @@ import shop.mammastore.common.Action;
 import shop.mammastore.common.ActionForward;
 import shop.mammastore.common.LoginManager;
 import shop.mammastore.mamma.cart.service.CartService;
-import shop.mammastore.mamma.vo.CartListVo;
 import shop.mammastore.mamma.vo.CartVo;
 
 public class ModifyProcAction implements Action {
@@ -30,21 +29,21 @@ public class ModifyProcAction implements Action {
 		// cart_sq를 로드
 		String cart_sq = request.getParameter("cart_sq");
 		String itm_cnt = request.getParameter("itm_cnt");
-		
-		if (cart_sq == null || cart_sq.equals("")||itm_cnt == null || itm_cnt.equals("")) {
+
+		if (cart_sq == null || cart_sq.equals("") || itm_cnt == null || itm_cnt.equals("")) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('잘못된 접근입니다.'); loaction.href='/'; </script>");
 			out.close();
 			return null;
 		}
-		
+
 		CartVo cartVo = new CartVo();
 		cartVo.setCart_sq(Integer.parseInt(cart_sq));
 		cartVo.setItm_cnt(Integer.parseInt(itm_cnt));
-		
+
 		CartService svc = new CartService();
-		
+
 		// 데이터 베이스에 물품수량 수정한거 올리기
 		if (!svc.modify(cartVo)) {
 			response.setContentType("text/html; charset=UTF-8");
@@ -53,7 +52,7 @@ public class ModifyProcAction implements Action {
 			out.close();
 			return null;
 		}
-		
+
 		// 경로설정
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(true);

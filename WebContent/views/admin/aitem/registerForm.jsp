@@ -49,17 +49,20 @@ ArrayList<ActgryVo> list = (ArrayList<ActgryVo>) request.getAttribute("list");
 	상품등록하는 페이지
 	<form action="/aitem/registerProc" method="post" id="editorForm"
 		enctype="Multipart/form-data">
-		카테고리
-		<select name="ctgry_sq" id="ctgry_sq" name="ctgry_sq">
-			<% for(int i = 0; i < list.size(); i++) { %>
-			<option value="<%=list.get(i).getCtgry_sq()%>"><%=list.get(i).getNm() %></option>
-			<%} %>
+		카테고리 <select name="ctgry_sq" id="ctgry_sq" name="ctgry_sq">
+			<%
+			for (int i = 0; i < list.size(); i++) {
+			%>
+			<option value="<%=list.get(i).getCtgry_sq()%>"><%=list.get(i).getNm()%></option>
+			<%
+			}
+			%>
 		</select>
 		<div>
 			상품명 <input type="text" id="nm" name="nm" maxlength="25">
 		</div>
 		<div>
-			상품가격 <input type="text" id="pc" name="pc"> 
+			상품가격 <input type="text" id="pc" name="pc">
 		</div>
 		<div>
 			재고 <input type="text" id="stock" name="stock">

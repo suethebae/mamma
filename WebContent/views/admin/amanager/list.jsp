@@ -3,7 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-	ArrayList<AmanagerVo> list = (ArrayList<AmanagerVo>) request.getAttribute("list");
+ArrayList<AmanagerVo> list = (ArrayList<AmanagerVo>) request.getAttribute("list");
 %>
 <!DOCTYPE html>
 <html>
@@ -70,13 +70,13 @@
 				<th>직원 목록</th>
 			</tr>
 			<%
-				for (int i = 0; i < list.size(); i++) {
+			for (int i = 0; i < list.size(); i++) {
 			%>
 			<tr>
 				<td><button onclick="showDetail(<%=list.get(i).getMngr_sq()%>)"><%=list.get(i).getNm()%></button></td>
 			</tr>
 			<%
-				}
+			}
 			%>
 		</table>
 	</div>

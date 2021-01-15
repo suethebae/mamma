@@ -19,13 +19,13 @@ public class AhomeAction implements Action {
 		AmanagerService svc = new AmanagerService();
 		// 슈퍼 매니저 계정이 있을때
 		if (svc.isSManager()) {
-			//로그인이 안되어있을때
+			// 로그인이 안되어있을때
 			if (mngr_sq == null || mngr_sq.equals("")) {
 				ActionForward forward = new ActionForward();
 				forward.setPath("/views/admin/beforeIndex.jsp");
-				return forward;	
-			} 
-			//로그인이 되어있을때
+				return forward;
+			}
+			// 로그인이 되어있을때
 			else {
 				ActionForward forward = new ActionForward();
 				forward.setPath("/views/admin/afterIndex.jsp");

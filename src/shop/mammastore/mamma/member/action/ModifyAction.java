@@ -1,6 +1,5 @@
 package shop.mammastore.mamma.member.action;
 
-
 import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +20,7 @@ public class ModifyAction implements Action {
 		LoginManager lm = LoginManager.getInstance();
 		String mber_sq = lm.getMemberId(session);
 
-		if (mber_sq == null||mber_sq.equals("")) {
+		if (mber_sq == null || mber_sq.equals("")) {
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('잘못된 접근입니다.'); location.href='/'; </script>");
@@ -36,9 +35,9 @@ public class ModifyAction implements Action {
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('회원정보를 불러오는데 실패하였습니다.'); history.back(); </script>");
 		}
-		
+
 		request.setAttribute("memberVo", memberVo);
-		
+
 		ActionForward forward = new ActionForward();
 		forward.setPath("/views/member/modifyForm.jsp");
 		return forward;

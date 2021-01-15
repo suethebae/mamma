@@ -27,7 +27,8 @@ ArrayList<AmemberVo> list = (ArrayList<AmemberVo>) request.getAttribute("list");
 		<%
 		for (int i = 0; i < list.size(); i++) {
 		%>
-		<tr onclick="location.href='/amember/detail?sq=<%=list.get(i).getMber_sq()%>'">
+		<tr
+			onclick="location.href='/amember/detail?sq=<%=list.get(i).getMber_sq()%>'">
 			<td><%=list.get(i).getMber_sq()%></td>
 			<td><%=list.get(i).getId()%></td>
 			<td><%=list.get(i).getNm()%></td>

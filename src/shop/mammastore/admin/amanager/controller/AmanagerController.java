@@ -55,7 +55,7 @@ public class AmanagerController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		//슈퍼 매니저 등록 진행
+		// 슈퍼 매니저 등록 진행
 		else if (command.equals("/sRegisterProc")) {
 			Action action = new SRegisterProcAction();
 			try {
@@ -118,7 +118,7 @@ public class AmanagerController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		//매니저 삭제(탈퇴)
+		// 매니저 삭제(탈퇴)
 		else if (command.equals("/leave")) {
 			Action action = new LeaveAction();
 			try {
@@ -127,8 +127,7 @@ public class AmanagerController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		
-		
+
 		// redirect or dispatch
 		if (forward != null) {
 			if (forward.isRedirect()) { // 리다이렉트 -요청값 바뀜 리퀘스트 정보 안남음

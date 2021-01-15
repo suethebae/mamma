@@ -117,7 +117,8 @@ function checkPhone() {
 	} else {
 		isPhoneChecked = true;
 	}
-	if (phone.val() != '<%=amemberVo.getPhone()%>') {
+	if (phone.val() != '<%=amemberVo.getPhone()%>
+	') {
 			$.ajax({
 				url : "/ajax/checkPhone",
 				type : "post",

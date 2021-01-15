@@ -16,7 +16,7 @@ public class RegisterAction implements Action {
 		HttpSession session = request.getSession();
 		LoginManager lm = LoginManager.getInstance();
 		String mber_sq = lm.getMemberId(session);
-		
+
 		if (mber_sq != null) {
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
@@ -24,12 +24,11 @@ public class RegisterAction implements Action {
 			out.close();
 			return null;
 		}
-		
+
 		// 경로설정
 		ActionForward forward = new ActionForward();
 		forward.setPath("/views/member/registerForm.jsp");
 		return forward;
-		
-	
+
 	}
 }

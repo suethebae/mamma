@@ -13,6 +13,7 @@ import shop.mammastore.admin.aorder.action.ChangeSttusAction;
 import shop.mammastore.admin.aorder.action.ListAction;
 import shop.mammastore.common.Action;
 import shop.mammastore.common.ActionForward;
+import shop.mammastore.mamma.order.action.ConfirmAction;
 
 @WebServlet("/aorder/*")
 //웹서블릿 어노테이션으로 모든 .do 파일이 이쪽으로 온다
@@ -29,7 +30,7 @@ public class AorderController extends HttpServlet {
 																								// 가져온다
 
 		ActionForward forward = null;
-		// 주문 목록
+		//주문 목록
 		if (command.equals("/list")) {
 			Action action = new ListAction();
 			try {
@@ -38,7 +39,7 @@ public class AorderController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		// 주문 상태 변경
+		//주문 상태 변경
 		else if (command.equals("/changeSttus")) {
 			Action action = new ChangeSttusAction();
 			try {

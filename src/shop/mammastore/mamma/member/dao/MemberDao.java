@@ -74,7 +74,7 @@ public class MemberDao {
 		}
 		return memberVo;
 	}
-
+	
 	public int registerHistory(MemberVo memberVo) {
 		PreparedStatement pstmt = null; // 쿼리문 작성할 메소드
 		int count = 0;
@@ -110,7 +110,7 @@ public class MemberDao {
 		}
 		return memberVo;
 	}
-
+	
 	public MemberVo findPwd(MemberVo memberVo) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -133,13 +133,13 @@ public class MemberDao {
 		}
 		return vo;
 	}
-
+	
 	public int setPwd(MemberVo memberVo) {
 		PreparedStatement pstmt = null; // 쿼리문 작성할 메소드
 		int count = 0;
 		try {
-			pstmt = con
-					.prepareStatement("update inf_mber_tb set pwd = ? where del_fl=0 and id=? and nm=? and email=? ");
+			pstmt = con.prepareStatement(
+					"update inf_mber_tb set pwd = ? where del_fl=0 and id=? and nm=? and email=? ");
 			pstmt.setString(1, memberVo.getPwd());
 			pstmt.setString(2, memberVo.getId());
 			pstmt.setString(3, memberVo.getNm());
@@ -159,14 +159,13 @@ public class MemberDao {
 		PreparedStatement pstmt = null;
 		int count = 0;
 		try {
-			if (memberVo.getPwd() == null || memberVo.getPwd().equals("")) {
-				pstmt = con.prepareStatement("update inf_mber_tb set email=?, phone=? where mber_sq=? and del_fl=0");
+			if(memberVo.getPwd()==null||memberVo.getPwd().equals("")) {
+				pstmt = con.prepareStatement("update inf_mber_tb set email=?, phone=? where mber_sq=? and del_fl=0"); 
 				pstmt.setString(1, memberVo.getEmail());
 				pstmt.setString(2, memberVo.getPhone());
 				pstmt.setInt(3, memberVo.getMber_sq());
 			} else {
-				pstmt = con.prepareStatement(
-						"update inf_mber_tb set pwd=?, email=?, phone=? where mber_sq=? and del_fl=0");
+				pstmt = con.prepareStatement("update inf_mber_tb set pwd=?, email=?, phone=? where mber_sq=? and del_fl=0"); 
 				pstmt.setString(1, memberVo.getPwd());
 				pstmt.setString(2, memberVo.getEmail());
 				pstmt.setString(3, memberVo.getPhone());
@@ -216,9 +215,9 @@ public class MemberDao {
 			pstmt = con.prepareStatement("update inf_mber_tb set del_fl=? where mber_sq=?");
 			pstmt.setBoolean(1, memberVo.isDel_fl());
 			pstmt.setInt(2, memberVo.getMber_sq());
-
+			
 			count = pstmt.executeUpdate();
-
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -244,7 +243,6 @@ public class MemberDao {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
-			close(rs);
 		}
 		return vo;
 

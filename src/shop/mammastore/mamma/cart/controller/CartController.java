@@ -38,9 +38,9 @@ public class CartController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
+		} 
 		// 장바구니 리스트
-		else if (command.equals("/list")) {
+		else if(command.equals("/list")) {
 			Action action = new ListAction();
 			try {
 				forward = action.execute(request, response);
@@ -48,7 +48,7 @@ public class CartController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-
+		
 		// 장바구니에 담긴 물품 갯수 수정
 		else if (command.equals("/modify")) {
 			Action action = new ModifyAction();
@@ -67,30 +67,21 @@ public class CartController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
-
-		// 장바구니 삭제
-		else if (command.equals("/delete")) {
+		} else if (command.equals("/delete")) {
 			Action action = new DeleteAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
-
-		// 전체 삭제
-		else if (command.equals("/deleteAll")) {
+		} else if (command.equals("/deleteAll")) {
 			Action action = new DeleteAllAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
-
-		// 장바구니 리스트 호출
-		else if (command.equals("/list")) {
+		} else if (command.equals("/list")) {
 			Action action = new ListAction();
 			try {
 				forward = action.execute(request, response);

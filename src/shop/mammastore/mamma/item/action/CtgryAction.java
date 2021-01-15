@@ -27,7 +27,7 @@ public class CtgryAction implements Action {
 		}
 
 		request.setAttribute("actgryVo", actgryVo);
-
+		
 		// 경로설정
 		ActionForward forward = new ActionForward();
 		forward.setPath("/views/item/ctgry.jsp");

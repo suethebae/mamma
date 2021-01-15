@@ -17,6 +17,7 @@ import shop.mammastore.common.Action;
 import shop.mammastore.common.ActionForward;
 import shop.mammastore.admin.amember.action.ModifyAction;
 
+
 @WebServlet("/amember/*")
 //웹서블릿 어노테이션으로 모든 .do 파일이 이쪽으로 온다
 public class AmemberController extends HttpServlet {
@@ -28,11 +29,10 @@ public class AmemberController extends HttpServlet {
 		// 도메인뒤에 붙어있는 경로 가져온다. 다 있던 메소드 사용
 		String requestURI = request.getRequestURI();
 		String contextPath = request.getContextPath();
-		String command = requestURI.substring(contextPath.length()).replaceAll("/amember", "");// 여기에 우리가 들고올 마지막 경로를 //
-																								// 가져온다
+		String command = requestURI.substring(contextPath.length()).replaceAll("/amember", "");// 여기에 우리가 들고올 마지막 경로를																				// 가져온다
 
 		ActionForward forward = null;
-
+		
 		// 회원리스트
 		if (command.equals("/list")) {
 			Action action = new ListAction();
@@ -75,7 +75,8 @@ public class AmemberController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
+		} 
+		
 
 		// redirect or dispatch
 		if (forward != null) {

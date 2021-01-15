@@ -22,7 +22,7 @@ public class AmanagerService {
 		return amanagerVo;
 	}
 
-	// ìµœê³  ê´€ë¦¬ì ìˆëŠ” ì§€ í™•ì¸
+	// ÃÖ°í °ü¸®ÀÚ ÀÖ´Â Áö È®ÀÎ
 	public boolean isSManager() {
 		AmanagerDao dao = AmanagerDao.getInstance();
 		Connection con = getConnection();
@@ -36,7 +36,7 @@ public class AmanagerService {
 		return isSManager;
 	}
 
-	// ìµœê³  ê´€ë¦¬ì ë“±ë¡
+	// ÃÖ°í °ü¸®ÀÚ µî·Ï
 	public boolean asregister(AmanagerVo amanagerVo) {
 		AmanagerDao dao = AmanagerDao.getInstance();
 		Connection con = getConnection();
@@ -53,7 +53,7 @@ public class AmanagerService {
 		return isSuccess;
 	}
 
-	// ê´€ë¦¬ì ë¦¬ìŠ¤íŠ¸ ë¶ˆëŸ¬ì˜¤ê¸°
+	// °ü¸®ÀÚ ¸®½ºÆ® ºÒ·¯¿À±â
 	public ArrayList<AmanagerVo> getMngrList() {
 		AmanagerDao dao = AmanagerDao.getInstance();
 		Connection con = getConnection();
@@ -63,7 +63,7 @@ public class AmanagerService {
 		return list;
 	}
 
-	// ê´€ë¦¬ì íšŒì›ê°€ì…
+	// °ü¸®ÀÚ È¸¿ø°¡ÀÔ
 	public boolean aregister(AmanagerVo amanagerVo) {
 		AmanagerDao dao = AmanagerDao.getInstance();
 		Connection con = getConnection();
@@ -80,7 +80,7 @@ public class AmanagerService {
 		return isSuccess;
 	}
 
-	// ê´€ë¦¬ì íšŒì›ì •ë³´ ìˆ˜ì • ì´ë™
+	// °ü¸®ÀÚ È¸¿øÁ¤º¸ ¼öÁ¤ ÀÌµ¿
 	public AmanagerVo getDetailMngr(int mngr_sq) {
 		AmanagerDao dao = AmanagerDao.getInstance();
 		Connection con = getConnection();
@@ -90,7 +90,7 @@ public class AmanagerService {
 		return amanagerVo;
 	}
 
-	// ê´€ë¦¬ì íšŒì›ì •ë³´ ìˆ˜ì • ì ˆì°¨
+	// °ü¸®ÀÚ È¸¿øÁ¤º¸ ¼öÁ¤ ÀıÂ÷
 	public boolean modify(AmanagerVo amanagerVo) {
 		AmanagerDao dao = AmanagerDao.getInstance();
 		Connection con = getConnection();
@@ -106,8 +106,7 @@ public class AmanagerService {
 		close(con);
 		return isSuccess;
 	}
-
-	// ê´€ë¦¬ì íšŒì› íƒˆí‡´
+	// °ü¸®ÀÚ È¸¿ø Å»Åğ
 	public boolean leave(AmanagerVo amanagerVo) {
 		AmanagerDao dao = AmanagerDao.getInstance();
 		Connection con = getConnection();

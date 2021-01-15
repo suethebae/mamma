@@ -84,8 +84,7 @@ public class CartDao {
 		ResultSet rs = null;
 		CartListVo cartListVo = null;
 		try {
-			pstmt = con.prepareStatement(
-					"select * from inf_cart_tb inner join inf_itm_tb on inf_cart_tb.itm_sq = inf_itm_tb.itm_sq where inf_cart_tb.cart_sq = ?");
+			pstmt = con.prepareStatement("select * from inf_cart_tb inner join inf_itm_tb on inf_cart_tb.itm_sq = inf_itm_tb.itm_sq where inf_cart_tb.cart_sq = ?");
 			pstmt.setInt(1, cart_sq);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
@@ -112,8 +111,7 @@ public class CartDao {
 		PreparedStatement pstmt = null;
 		int count = 0;
 		try {
-			pstmt = con.prepareStatement(
-					"update inf_cart_tb a inner join inf_itm_tb b on a.itm_sq = b.itm_sq set itm_cnt = ? where cart_sq = ?");
+			pstmt = con.prepareStatement("update inf_cart_tb a inner join inf_itm_tb b on a.itm_sq = b.itm_sq set itm_cnt = ? where cart_sq = ?");
 			pstmt.setInt(1, cartVo.getItm_cnt());
 			pstmt.setInt(2, cartVo.getCart_sq());
 			count = pstmt.executeUpdate();
@@ -124,8 +122,7 @@ public class CartDao {
 		}
 		return count;
 	}
-
-	// 장바구니 삭제
+	//장바구니 삭제
 	public int delete(int cart_sq) {
 		PreparedStatement pstmt = null; // 쿼리문 작성할 메소드
 		int count = 0;
@@ -141,8 +138,7 @@ public class CartDao {
 		}
 		return count;
 	}
-
-	// 장바구니 전체삭제
+	//장바구니 전체삭제
 	public int deleteAll(int mber_sq) {
 		PreparedStatement pstmt = null;
 		int count = 0;
@@ -158,4 +154,5 @@ public class CartDao {
 		}
 		return count;
 	}
+
 }

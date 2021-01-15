@@ -32,15 +32,15 @@ public class ModifyAction implements Action {
 
 		AmanagerService svc = new AmanagerService();
 		AmanagerVo amanagerVo = svc.getDetailMngr(Integer.parseInt(dmngr_sq));
-
-		if (amanagerVo == null) {
+		
+		if (amanagerVo==null) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.println("<script>alert('회원 정보 로드에 실패 했습니다.'); loaction.href='/'; </script>");
+			out.println("<script>alert('회원 정보 로드에 실패 했습니다.'); loaction.href='/'; </script>"); 
 			out.close();
 			return null;
 		}
-
+		
 		request.setAttribute("amanagerVo", amanagerVo);
 
 		// 경로설정

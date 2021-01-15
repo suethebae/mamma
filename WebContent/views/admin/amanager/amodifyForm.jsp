@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-AmanagerVo amanagerVo = (AmanagerVo) request.getAttribute("amanagerVo");
+	AmanagerVo amanagerVo = (AmanagerVo) request.getAttribute("amanagerVo");
 %>
 <!DOCTYPE html>
 <html>
@@ -180,8 +180,7 @@ AmanagerVo amanagerVo = (AmanagerVo) request.getAttribute("amanagerVo");
 			isPhoneChecked = true;
 		}
 
-		if (phone.val() != "<%=amanagerVo.getPhone()%>
-		") {
+		if (phone.val() != "<%=amanagerVo.getPhone()%>") {
 				$.ajax({
 					url : "/ajax/checkAPhone",
 					type : "post",

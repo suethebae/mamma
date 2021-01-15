@@ -29,6 +29,19 @@ public class AmemberDao {
 		this.con = con;
 	}
 
+	/*
+	 * // 매니저 로그인 정보 public AmemberVo getLoginInfo(String id) { PreparedStatement
+	 * pstmt = null; ResultSet rs = null; // DB의 결과문(쿼리값)을 받아와야함. 우선 빈값으로 설정하자.
+	 * AmemberVo amemberVo = null; try { pstmt = con.
+	 * prepareStatement("select mngr_sq, id, pwd from inf_mngr_tb where id=? and del_fl=0"
+	 * ); pstmt.setString(1, id); rs = pstmt.executeQuery(); while (rs.next()) { //
+	 * 다음줄이 null(false) 될떄까지 반복실행 amemberVo = new AmemberVo();
+	 * amemberVo.setMngr_sq(rs.getInt("mngr_sq"));
+	 * amemberVo.setId(rs.getString("id")); amemberVo.setPwd(rs.getString("pwd")); }
+	 * } catch (Exception e) { e.printStackTrace(); } finally { close(pstmt);
+	 * close(rs); } return amemberVo; }
+	 */
+
 	// 매니저가 회원 목록 가져오기
 	public ArrayList<AmemberVo> getMberList() {
 		PreparedStatement pstmt = null;

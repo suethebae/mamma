@@ -28,29 +28,29 @@ public class MemberService {
 		MemberDao dao = MemberDao.getInstance();
 		Connection con = getConnection();
 		dao.setConnection(con);
-		MemberVo memberVo = dao.getLoginInfo(id); 
+		MemberVo memberVo = dao.getLoginInfo(id); //
 		close(con);
 		return memberVo;
 	}
-
+	
 	public MemberVo findId(String query) {
 		MemberDao dao = MemberDao.getInstance();
 		Connection con = getConnection();
 		dao.setConnection(con);
-		MemberVo memberVo = dao.findId(query); 
+		MemberVo memberVo = dao.findId(query); //
 		close(con);
 		return memberVo;
 	}
-
+	
 	public MemberVo findPwd(MemberVo memberVo) {
 		MemberDao dao = MemberDao.getInstance();
 		Connection con = getConnection();
 		dao.setConnection(con);
-		MemberVo vo = dao.findPwd(memberVo); 
+		MemberVo vo = dao.findPwd(memberVo); //
 		close(con);
 		return vo;
 	}
-
+	
 	public boolean setPwd(MemberVo memberVo) {
 		MemberDao dao = MemberDao.getInstance();
 		Connection con = getConnection();
@@ -66,7 +66,7 @@ public class MemberService {
 		close(con);
 		return isSuccess;
 	}
-
+	
 	public boolean registerHistory(MemberVo memberVo) {
 		MemberDao dao = MemberDao.getInstance();
 		Connection con = getConnection();
@@ -87,11 +87,11 @@ public class MemberService {
 		MemberDao dao = MemberDao.getInstance();
 		Connection con = getConnection();
 		dao.setConnection(con);
-		MemberVo memberVo = dao.getUserData(mber_sq); 
+		MemberVo memberVo = dao.getUserData(mber_sq); //
 		close(con);
 		return memberVo;
 	}
-
+	
 	public MemberVo myInfo() {
 		return null;
 	}
@@ -102,9 +102,9 @@ public class MemberService {
 		dao.setConnection(con);
 		int count = dao.modify(memberVo);
 		boolean isSuccess = true;
-		if (count > 0) {
+		if(count > 0) {
 			commit(con);
-		} else {
+		}else {
 			rollback(con);
 			isSuccess = false;
 		}
@@ -127,9 +127,9 @@ public class MemberService {
 		dao.setConnection(con);
 		int count = dao.leaveMember(memberVo);
 		boolean isSuccess = true;
-		if (count > 0) {
+		if(count > 0) {
 			commit(con);
-		} else {
+		}else {
 			rollback(con);
 			isSuccess = false;
 		}
@@ -137,4 +137,5 @@ public class MemberService {
 		return isSuccess;
 	}
 
+	
 }

@@ -4,7 +4,7 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
-ArrayList<ActgryVo> list = (ArrayList<ActgryVo>) request.getAttribute("list");
+	ArrayList<ActgryVo> list = (ArrayList<ActgryVo>) request.getAttribute("list");
 %>
 <html>
 <head>
@@ -36,7 +36,7 @@ ArrayList<ActgryVo> list = (ArrayList<ActgryVo>) request.getAttribute("list");
 			<td>삭제</td>
 		</tr>
 		<%
-		for (int i = 0; i < list.size(); i++) {
+			for (int i = 0; i < list.size(); i++) {
 		%>
 		<tr>
 			<td><%=list.get(i).getCtgry_sq()%></td>
@@ -47,7 +47,7 @@ ArrayList<ActgryVo> list = (ArrayList<ActgryVo>) request.getAttribute("list");
 					onclick="deleteCtgry(<%=list.get(i).getCtgry_sq()%>)">삭제</button></td>
 		</tr>
 		<%
-		}
+			}
 		%>
 	</table>
 	<button onclick="actgryRegister()">카테고리 등록</button>

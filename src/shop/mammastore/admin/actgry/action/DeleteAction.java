@@ -37,7 +37,7 @@ public class DeleteAction implements Action {
 			out.close();
 			return null;
 		}
-
+		
 		// ctgry_sq 데이터 vo에 넣기
 		ActgryVo actgryVo = new ActgryVo();
 		actgryVo.setCtgry_sq(Integer.parseInt(ctgry_sq));

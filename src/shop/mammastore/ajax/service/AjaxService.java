@@ -19,78 +19,72 @@ public class AjaxService {
 		dao.setConnection(con);
 		int count = dao.checkId(memberVo);
 		boolean isDuplicate = false;
-		if (count != 0) {
+		if(count!=0) {
 			isDuplicate = true;
 		}
 		close(con);
 		return isDuplicate;
 	}
-
 	public boolean checkEmail(MemberVo memberVo) {
 		AjaxDao dao = AjaxDao.getInstance();
 		Connection con = getConnection();
 		dao.setConnection(con);
 		int count = dao.checkEmail(memberVo);
 		boolean isDuplicate = false;
-		if (count != 0) {
+		if(count!=0) {
 			isDuplicate = true;
 		}
 		close(con);
 		return isDuplicate;
 	}
-
 	public boolean checkPhone(MemberVo memberVo) {
 		AjaxDao dao = AjaxDao.getInstance();
 		Connection con = getConnection();
 		dao.setConnection(con);
 		int count = dao.checkPhone(memberVo);
 		boolean isDuplicate = false;
-		if (count != 0) {
+		if(count!=0) {
 			isDuplicate = true;
 		}
 		close(con);
 		return isDuplicate;
 	}
-
 	public boolean checkAId(AmanagerVo amanagerVo) {
 		AjaxDao dao = AjaxDao.getInstance();
 		Connection con = getConnection();
 		dao.setConnection(con);
 		int count = dao.checkAId(amanagerVo);
 		boolean isDuplicate = false;
-		if (count != 0) {
+		if(count!=0) {
 			isDuplicate = true;
 		}
 		close(con);
 		return isDuplicate;
 	}
-
 	public boolean checkAEmail(AmanagerVo amanagerVo) {
 		AjaxDao dao = AjaxDao.getInstance();
 		Connection con = getConnection();
 		dao.setConnection(con);
 		int count = dao.checkAEmail(amanagerVo);
 		boolean isDuplicate = false;
-		if (count != 0) {
+		if(count!=0) {
 			isDuplicate = true;
 		}
 		close(con);
 		return isDuplicate;
 	}
-
 	public boolean checkAPhone(AmanagerVo amanagerVo) {
 		AjaxDao dao = AjaxDao.getInstance();
 		Connection con = getConnection();
 		dao.setConnection(con);
 		int count = dao.checkAPhone(amanagerVo);
 		boolean isDuplicate = false;
-		if (count != 0) {
+		if(count!=0) {
 			isDuplicate = true;
 		}
 		close(con);
 		return isDuplicate;
 	}
-
 	public AmanagerVo detailMngr(int mngr_sq) {
 		AjaxDao dao = AjaxDao.getInstance();
 		Connection con = getConnection();
@@ -99,7 +93,6 @@ public class AjaxService {
 		close(con);
 		return amanagerVo;
 	}
-
 	public AitemVo showItemList(int ctgry_sq) {
 		AjaxDao dao = AjaxDao.getInstance();
 		Connection con = getConnection();
@@ -108,7 +101,6 @@ public class AjaxService {
 		close(con);
 		return aitemVo;
 	}
-
 	public ArrayList<AitemVo> getItemList(int iCtgry_sq) {
 		AjaxDao dao = AjaxDao.getInstance();
 		Connection con = getConnection();
@@ -117,7 +109,6 @@ public class AjaxService {
 		close(con);
 		return list;
 	}
-
 	public MemberOrderVo inputMberData(int mber_sq) {
 		AjaxDao dao = AjaxDao.getInstance();
 		Connection con = getConnection();

@@ -11,6 +11,7 @@ import shop.mammastore.common.Action;
 import shop.mammastore.common.ActionForward;
 import shop.mammastore.common.LoginManager;
 import shop.mammastore.common.RegExp;
+import shop.mammastore.mamma.vo.OrderVo;
 
 public class ChangeSttusAction implements Action {
 	@Override

@@ -58,8 +58,7 @@ function aDelete(){
 		</tr>
 		<tr>
 			<td>이미지</td>
-			<td><img src="<%=vo.getFl_pth()%>" width="100px" height="100px"
-				alt="" /></td>
+			<td><img src="<%=vo.getFl_pth()%>" width="100px" height="100px" alt="" /></td>
 		</tr>
 		<tr>
 			<td>상품상세설명</td>
@@ -68,7 +67,8 @@ function aDelete(){
 	</table>
 	<button onclick="location.href='/aitem/saleOn?sq=<%=vo.getItm_sq()%>'">상품
 		판매 시작</button>
-	<button onclick="location.href='/aitem/saleOff?sq=<%=vo.getItm_sq()%>'">상품
+	<button
+		onclick="location.href='/aitem/saleOff?sq=<%=vo.getItm_sq()%>'">상품
 		판매 중지</button>
 	<!-- </form> -->
 	<%

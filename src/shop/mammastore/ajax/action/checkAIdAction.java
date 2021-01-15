@@ -8,21 +8,21 @@ import shop.mammastore.ajax.service.AjaxService;
 import shop.mammastore.common.Action;
 import shop.mammastore.common.ActionForward;
 
-public class checkAIdAction implements Action {
+public class checkAIdAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String id = request.getParameter("id");
-
+		
 		AmanagerVo amanagerVo = new AmanagerVo();
 		amanagerVo.setId(id);
-
+		
 		AjaxService svc = new AjaxService();
 		request.setAttribute("isDuplicate", svc.checkAId(amanagerVo));
-
+		
 		ActionForward forward = new ActionForward();
 		forward.setPath("/views/ajax/registerCheck.jsp");
 		return forward;
 	}
-
+	
 }

@@ -17,8 +17,8 @@ public class LeaveAction implements Action {
 		HttpSession session = request.getSession();
 		LoginManager lm = LoginManager.getInstance();
 		String mber_sq = lm.getMemberId(session);
-
-		if (mber_sq == null || mber_sq.equals("")) {
+		
+		if (mber_sq == null||mber_sq.equals("")) {
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('잘못된 접근입니다.'); location.href='/'; </script>");

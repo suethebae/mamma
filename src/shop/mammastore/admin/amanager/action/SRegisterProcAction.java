@@ -17,34 +17,35 @@ import shop.mammastore.common.ActionForward;
 import shop.mammastore.common.BCrypt;
 import shop.mammastore.common.RegExp;
 
+
 public class SRegisterProcAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
+		
 		String id = request.getParameter("id");
 		String pwd = request.getParameter("pwd");
 		String pwdc = request.getParameter("pwdc");
 		String nm = request.getParameter("nm");
 		String email = request.getParameter("email");
 		String phone = request.getParameter("phone");
-
+		
 		if (!RegExp.isValidExp(id, REGEXP_ID) || !RegExp.isValidExp(pwd, REGEXP_PWD)
 				|| !RegExp.isValidExp(nm, REGEXP_NAME) || !pwd.equals(pwdc) || !RegExp.isValidExp(email, REGEXP_EMAIL)
 				|| RegExp.isEmpty(phone)) {
 			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter out = response.getWriter();
-			out.println("<script>alert('잘못된 접근입니다.'); location.href='/'; </script>");
+			PrintWriter out = response.getWriter(); 
+			out.println("<script>alert('잘못된 접근입니다.'); location.href='/'; </script>");	
 			out.close();
 			return null;
 		}
-
+		
 		AmanagerVo amanagerVo = new AmanagerVo();
 		amanagerVo.setId(id);
 		amanagerVo.setPwd(BCrypt.hashpw(pwd, BCrypt.gensalt(12)));
 		amanagerVo.setNm(nm);
 		amanagerVo.setEmail(email);
 		amanagerVo.setPhone(phone);
-
+							
 		AmanagerService svc = new AmanagerService();
 		if (!svc.asregister(amanagerVo)) {
 			response.setContentType("text/html; charset=UTF-8");

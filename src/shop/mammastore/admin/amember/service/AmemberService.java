@@ -40,9 +40,9 @@ public class AmemberService {
 		dao.setConnection(con);
 		int count = dao.modify(amemberVo);
 		boolean isSuccess = true;
-		if (count > 0) {
+		if(count > 0) {
 			commit(con);
-		} else {
+		}else {
 			rollback(con);
 			isSuccess = false;
 		}
@@ -57,14 +57,14 @@ public class AmemberService {
 		dao.setConnection(con);
 		int count = dao.deleteMember(amemberVo);
 		boolean isSuccess = true;
-		if (count > 0) {
+		if(count > 0) {
 			commit(con);
-		} else {
+		}else {
 			rollback(con);
 			isSuccess = false;
 		}
 		close(con);
 		return isSuccess;
 	}
-
+	
 }

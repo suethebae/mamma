@@ -90,7 +90,7 @@ public class MemberController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
+		} 
 		// 회원정보수정
 		else if (command.equals("/modify")) {
 			Action action = new ModifyAction();

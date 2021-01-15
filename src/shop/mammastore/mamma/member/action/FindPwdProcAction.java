@@ -47,7 +47,7 @@ public class FindPwdProcAction implements Action {
 		memberVo.setEmail(email);
 
 		MemberService svc = new MemberService();
-		if (svc.findPwd(memberVo) == null) {
+		if (svc.findPwd(memberVo)==null) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('비밀번호 찾기에 실패하였습니다.'); history.back(); </script>");
@@ -60,18 +60,18 @@ public class FindPwdProcAction implements Action {
 		String tempPwd = "";
 		for (int i = 0; i < 8; i++) {
 			selectPwd = (int) Math.floor(Math.random() * list.length);
-			tempPwd += list[selectPwd];
+			tempPwd+=list[selectPwd];
 		}
 		memberVo.setPwd(BCrypt.hashpw(tempPwd, BCrypt.gensalt(12)));
-		if (!svc.setPwd(memberVo)) {
+		if(!svc.setPwd(memberVo)) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('비밀번호 재설정에 실패하였습니다.'); history.back(); </script>");
 			out.close();
 			return null;
 		}
-
-		request.setAttribute("pwd", tempPwd);
+		
+		request.setAttribute("pwd", tempPwd);		
 		ActionForward forward = new ActionForward();
 		forward.setPath("/views/member/findPwdResult.jsp");
 		return forward;

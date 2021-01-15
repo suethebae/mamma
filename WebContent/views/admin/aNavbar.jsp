@@ -21,14 +21,8 @@
 	function showMemberList() {
 		location.href = "/amember/list";
 	}
-	function showAhelpList() {
-		location.href = "/ahelp/list";
-	}
-	function showOrderList() {
+	function showOrderList(){
 		location.href = "/aorder/list";
-	}
-	function noticeList() {
-		location.href = "/anotice/list";
 	}
 </script>
 </head>
@@ -38,8 +32,6 @@
 	<button onclick="registerItem()">상품등록</button>
 	<button onclick="showActgryList()">카테고리 목록</button>
 	<button onclick="showMemberList()">회원 관리 목록</button>
-	<button onclick="showAhelpList()">1:1 문의 목록 리스트</button>
 	<button onclick="showOrderList()">주문 목록</button>
-	<button onclick="noticeList()">공지사항</button>
 </body>
 </html>

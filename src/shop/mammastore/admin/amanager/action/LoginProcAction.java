@@ -36,7 +36,7 @@ public class LoginProcAction implements Action {
 			out.close();
 			return null;
 		}
-		// 일반 로그인과 관리자 로그인 세션 분리 어떻게 할지 물어봐야함
+		//일반 로그인과 관리자 로그인 세션 분리 어떻게 할지 물어봐야함
 		String mngr_sq = Integer.toString(amanagerVo.getMngr_sq());
 		LoginManager lm = LoginManager.getInstance();
 		lm.setSession(request.getSession(), mngr_sq);

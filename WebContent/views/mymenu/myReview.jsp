@@ -7,8 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<jsp:include page="/views/navbar.jsp"></jsp:include>
 내 리뷰 리스트(리뷰 작성가능하게)
-
+<a href='/'>홈으로</a>
 </body>
 </html>

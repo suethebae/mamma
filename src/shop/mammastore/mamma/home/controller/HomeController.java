@@ -33,8 +33,10 @@ public class HomeController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
-
+		} 
+		
+		
+		
 		if (forward != null) {
 			if (forward.isRedirect()) { // 리다이렉트 -요청값 바뀜 리퀘스트 정보 안남음
 				response.sendRedirect(forward.getPath());

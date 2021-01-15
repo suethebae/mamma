@@ -31,10 +31,10 @@ public class AjaxController extends HttpServlet {
 		String requestURI = request.getRequestURI();
 		String contextPath = request.getContextPath();
 		String command = requestURI.substring(contextPath.length()).replaceAll("/ajax", "");// 여기에 우리가 들고올 마지막 경로를
-																							// 가져온다
+																								// 가져온다
 
 		ActionForward forward = null;
-		// 아이디 체크
+		//아이디 체크
 		if (command.equals("/checkId")) {
 			Action action = new checkIdAction();
 			try {
@@ -84,7 +84,8 @@ public class AjaxController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if (command.equals("/itemList")) {
+		}
+		else if (command.equals("/itemList")) {
 			Action action = new ShowItemListAction();
 			try {
 				forward = action.execute(request, response);
@@ -92,7 +93,7 @@ public class AjaxController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		// 오더폼에서 데이터 가지고 오기
+		//오더폼에서 데이터 가지고 오기
 		else if (command.equals("/inputMberData")) {
 			Action action = new InputMberDataAction();
 			try {
@@ -101,7 +102,11 @@ public class AjaxController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-
+		
+		
+		
+		
+		
 		if (forward != null) {
 			if (forward.isRedirect()) {
 				// 리다이렉트

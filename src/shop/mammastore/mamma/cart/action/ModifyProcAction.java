@@ -10,7 +10,6 @@ import shop.mammastore.common.Action;
 import shop.mammastore.common.ActionForward;
 import shop.mammastore.common.LoginManager;
 import shop.mammastore.mamma.cart.service.CartService;
-import shop.mammastore.mamma.vo.CartListVo;
 import shop.mammastore.mamma.vo.CartVo;
 
 public class ModifyProcAction implements Action {
@@ -34,7 +33,7 @@ public class ModifyProcAction implements Action {
 		if (cart_sq == null || cart_sq.equals("")||itm_cnt == null || itm_cnt.equals("")) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.println("<script>alert('잘못된 접근입니다.'); loaction.href='/'; </script>");
+			out.println("<script>alert('잘못된 접근입니다.'); location.href='/'; </script>");
 			out.close();
 			return null;
 		}

@@ -67,8 +67,7 @@ function aDelete(){
 	</table>
 	<button onclick="location.href='/aitem/saleOn?sq=<%=vo.getItm_sq()%>'">상품
 		판매 시작</button>
-	<button
-		onclick="location.href='/aitem/saleOff?sq=<%=vo.getItm_sq()%>'">상품
+	<button onclick="location.href='/aitem/saleOff?sq=<%=vo.getItm_sq()%>'">상품
 		판매 중지</button>
 	<!-- </form> -->
 	<%

@@ -21,7 +21,7 @@ public class AjaxDao {
 	}
 
 	private static class LazyHolder {
-		private static final AjaxDao INSTANCE = new AjaxDao();
+		private static final AjaxDao INSTANCE =  new AjaxDao();
 	}
 
 	public static AjaxDao getInstance() {
@@ -47,6 +47,7 @@ public class AjaxDao {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
+			close(rs);
 		}
 		return count;
 	}
@@ -66,6 +67,7 @@ public class AjaxDao {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
+			close(rs);
 		}
 		return count;
 	}
@@ -85,6 +87,7 @@ public class AjaxDao {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
+			close(rs);
 		}
 		return count;
 	}
@@ -104,6 +107,7 @@ public class AjaxDao {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
+			close(rs);
 		}
 		return count;
 	}
@@ -123,6 +127,7 @@ public class AjaxDao {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
+			close(rs);
 		}
 		return count;
 	}
@@ -142,6 +147,7 @@ public class AjaxDao {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
+			close(rs);
 		}
 		return count;
 	}
@@ -168,6 +174,7 @@ public class AjaxDao {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
+			close(rs);
 		}
 		return amanagerVo;
 	}
@@ -192,6 +199,7 @@ public class AjaxDao {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
+			close(rs);
 		}
 		return aitemVo;
 	}
@@ -222,6 +230,7 @@ public class AjaxDao {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
+			close(rs);
 		}
 		return list;
 	}
@@ -246,6 +255,7 @@ public class AjaxDao {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
+			close(rs);
 		}
 		return MOVo;
 	}

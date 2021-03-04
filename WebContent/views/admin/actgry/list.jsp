@@ -21,7 +21,12 @@
 		location.href="/actgry/modify?ctgry_sq="+ctgry_sq;
 	}
 	function deleteCtgry(ctgry_sq){
+		if(confirm('카테고리를 삭제 하시겠습니까?')){
 		location.href="/actgry/delete?ctgry_sq="+ctgry_sq;
+		}
+		else{
+		return;
+		}
 	}
 </script>
 </head>

@@ -1,13 +1,9 @@
 package shop.mammastore.ajax.action;
 
-import java.io.PrintWriter;
-import java.util.ArrayList;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import shop.mammastore.admin.vo.AitemVo;
 import shop.mammastore.ajax.service.AjaxService;
 import shop.mammastore.common.Action;
 import shop.mammastore.common.ActionForward;

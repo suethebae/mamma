@@ -27,7 +27,8 @@ public class RegisterResultAction implements Action {
 		
 		// 경로설정
 		ActionForward forward = new ActionForward();
-		forward.setPath("/views/member/registerResult.jsp");
+		forward.setPath("/views/member/loginForm.jsp");
+		forward.setRedirect(true);
 		return forward;
 		
 	}

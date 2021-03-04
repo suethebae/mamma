@@ -21,16 +21,17 @@ public class LogoutAction implements Action {
 		if (mber_sq == null||mber_sq.equals("")) {
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.println("<script>alert('Àß¸øµÈ Á¢±ÙÀÔ´Ï´Ù.'); location.href='/'; </script>");
+			out.println("<script>alert('ì˜ëª»ëœ ì ‘ê·¼ì…ë‹ˆë‹¤.'); location.href='/'; </script>");
 			out.close();
 			return null;
 		}else {
 			lm.removeSession(mber_sq);
 		}
 		
-		
-		ActionForward forward = new ActionForward();
-		forward.setPath("/");
-		return forward;
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		out.println("<script>alert('ë¡œê·¸ì•„ì›ƒ í–ˆìŠµë‹ˆë‹¤.'); location.href='/'; </script>");
+		out.close();
+		return null;
 	}
 }

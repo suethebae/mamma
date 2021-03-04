@@ -83,9 +83,10 @@ public class RegisterProcAction implements Action {
 			out.close();
 			return null;
 		}
-
-		ActionForward forward = new ActionForward();
-		forward.setPath("/views/member/registerResult.jsp");
-		return forward;
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter(); // html에서 alert창을 직접 사용하겠다. + 자바
+		out.println("<script>alert('회원 가입에 성공했습니다.'); location.href='/member/login'; </script>"); // 데이터를 받아서 접근하는게 아니라 강제로 들어왔을때 접근을 막기위해서 씀
+		out.close();
+		return null;
 	}
 }

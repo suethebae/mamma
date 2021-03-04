@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import shop.mammastore.common.Pagenation;
 import shop.mammastore.mamma.vo.AdresVo;
 import shop.mammastore.mamma.vo.CartListVo;
 import shop.mammastore.mamma.vo.CartVo;
@@ -61,6 +62,7 @@ public class OrderDao {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
+			close(rs);
 		}
 		return list;
 	}
@@ -86,6 +88,7 @@ public class OrderDao {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
+			close(rs);
 		}
 		return list;
 	}
@@ -96,8 +99,8 @@ public class OrderDao {
 		int count = 0;
 		try {
 			pstmt = con.prepareStatement(
-					"insert into inf_order_tb (order_code, mber_sq, sttus, all_pc, nm, phone, zip_cd, adres, adres_detail, mssage, agree) values (?,?,?,?,?,?,?,?,?,?,1)");
-			pstmt.setString(1, orderVo.getOrder_code());
+					"insert into inf_order_tb (order_cd, mber_sq, sttus, all_pc, nm, phone, zip_cd, adres, adres_detail, mssage, agree) values (?,?,?,?,?,?,?,?,?,?,1)");
+			pstmt.setString(1, orderVo.getOrder_cd());
 			pstmt.setInt(2, orderVo.getMber_sq());
 			pstmt.setInt(3, orderVo.getSttus());
 			pstmt.setInt(4, orderVo.getAll_pc());
@@ -111,9 +114,9 @@ public class OrderDao {
 			if (count > 0) {
 				for (int i = 0; i < item.size(); i++) {
 					pstmt = con.prepareStatement(
-							"insert into inf_orderdetail_tb (order_code, orderDetail_cd, mber_sq, itm_sq, itm_cnt) values (?,?,?,?,?)");
-					pstmt.setString(1, orderVo.getOrder_code());
-					pstmt.setString(2, orderVo.getOrder_code() + (i + 1));
+							"insert into inf_orderdetail_tb (order_cd, orderDetail_cd, mber_sq, itm_sq, itm_cnt) values (?,?,?,?,?)");
+					pstmt.setString(1, orderVo.getOrder_cd());
+					pstmt.setString(2, orderVo.getOrder_cd() + (i + 1));
 					pstmt.setInt(3, orderVo.getMber_sq());
 					pstmt.setInt(4, item.get(i).getItm_sq());
 					pstmt.setInt(5, item.get(i).getItm_cnt());
@@ -187,19 +190,21 @@ public class OrderDao {
 	}
 
 	// 주문 목록 가지고 오기
-	public ArrayList<OrderListVo> getOrderList(int mber_sq) {
+	public ArrayList<OrderListVo> getOrderList(int mber_sq, Pagenation pagenation, String query) {
 		PreparedStatement pstmt = null; // 쿼리문 작성할 메소드
 		ArrayList<OrderListVo> list = new ArrayList<OrderListVo>();
 		ResultSet rs = null;
 		try {
-			pstmt = con.prepareStatement(
-					"select * from inf_order_tb a inner join inf_mber_tb b on a.mber_sq=b.mber_sq where a.mber_sq=?  order by a.dttm desc");
+			pstmt = con.prepareStatement("select * from inf_order_tb a inner join inf_mber_tb b on a.mber_sq=b.mber_sq"
+					+ query + " where a.mber_sq=? order by a.dttm desc limit ?,?");
 			pstmt.setInt(1, mber_sq);
+			pstmt.setInt(2, pagenation.getStartArticleNumber());
+			pstmt.setInt(3, pagenation.getARTICLE_COUNT_PER_PAGE());
 			rs = pstmt.executeQuery(); // 데이터가 정확히 입력되었으면 카운트가 올라감.
 			while (rs.next()) {
 				OrderListVo OLVo = new OrderListVo();
 				OLVo.setOrder_sq(rs.getInt("a.order_sq"));
-				OLVo.setOrder_code(rs.getString("a.order_code"));
+				OLVo.setOrder_cd(rs.getString("a.order_cd"));
 				OLVo.setMber_sq(rs.getInt("a.mber_sq"));
 				OLVo.setMber_nm(rs.getString("b.nm"));
 				OLVo.setSttus(rs.getInt("a.sttus"));
@@ -217,8 +222,8 @@ public class OrderDao {
 				for (int i = 0; i < list.size(); i++) {
 					ArrayList<OrderItemListVo> itemList = new ArrayList<OrderItemListVo>();
 					pstmt = con.prepareStatement(
-							"select * from inf_orderdetail_tb a inner join inf_itm_tb b on a.itm_sq = b.itm_sq where a.order_code=?");
-					pstmt.setString(1, list.get(i).getOrder_code());
+							"select * from inf_orderdetail_tb a inner join inf_itm_tb b on a.itm_sq = b.itm_sq where a.order_cd=?");
+					pstmt.setString(1, list.get(i).getOrder_cd());
 					rs = pstmt.executeQuery();
 					while (rs.next()) {
 						OrderItemListVo OILVo = new OrderItemListVo();
@@ -237,6 +242,7 @@ public class OrderDao {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
+			close(rs);
 		}
 		return list;
 	}
@@ -265,8 +271,8 @@ public class OrderDao {
 		int count = 0;
 		try {
 			pstmt = con.prepareStatement(
-					"insert into inf_order_tb (order_code, mber_sq, sttus, all_pc, nm, phone, zip_cd, adres, adres_detail, mssage, agree) values (?,?,?,?,?,?,?,?,?,?,1)");
-			pstmt.setString(1, orderVo.getOrder_code());
+					"insert into inf_order_tb (order_cd, mber_sq, sttus, all_pc, nm, phone, zip_cd, adres, adres_detail, mssage, agree) values (?,?,?,?,?,?,?,?,?,?,1)");
+			pstmt.setString(1, orderVo.getOrder_cd());
 			pstmt.setInt(2, orderVo.getMber_sq());
 			pstmt.setInt(3, orderVo.getSttus());
 			pstmt.setInt(4, orderVo.getAll_pc());
@@ -284,14 +290,15 @@ public class OrderDao {
 		}
 		return count;
 	}
-	//단일 주문 orderdetail register
+
+	// 단일 주문 orderdetail register
 	public int registerDetailOne(OrderItemListVo orderDetailVo) {
 		PreparedStatement pstmt = null; // 쿼리문 작성할 메소드
 		int count = 0;
 		try {
 			pstmt = con.prepareStatement(
-					"insert into inf_orderdetail_tb (order_code, orderDetail_cd, mber_sq, itm_sq, itm_cnt) values (?,?,?,?,?)");
-			pstmt.setString(1, orderDetailVo.getOrder_code());
+					"insert into inf_orderdetail_tb (order_cd, orderDetail_cd, mber_sq, itm_sq, itm_cnt) values (?,?,?,?,?)");
+			pstmt.setString(1, orderDetailVo.getOrder_cd());
 			pstmt.setString(2, orderDetailVo.getOrderDetail_cd());
 			pstmt.setInt(3, orderDetailVo.getMber_sq());
 			pstmt.setInt(4, orderDetailVo.getItm_sq());
@@ -301,6 +308,29 @@ public class OrderDao {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
+		}
+		return count;
+	}
+
+	// 페이지네이션
+	public int getOrderCount(int mber_sq, String query) {
+		PreparedStatement pstmt = null; // 쿼리문 작성할 메소드
+		ResultSet rs = null;
+		int count = 0;
+		try {
+			pstmt = con.prepareStatement(
+					"select count(order_sq) from inf_order_tb a inner join inf_mber_tb b on a.mber_sq=b.mber_sq" + query
+							+ " where a.mber_sq=? order by a.dttm desc");
+			pstmt.setInt(1, mber_sq);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				count = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rs);
 		}
 		return count;
 	}

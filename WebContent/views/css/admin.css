@@ -1,0 +1,235 @@
+@charset "UTF-8";
+
+:root {
+  /* color */
+  --color-white: #ffffff;
+  --color-light-white: #eeeeee;
+  --color-dark-white: #bdbdbd;
+
+  --color-gray: #616161;
+  --color-light-gray: #7c7979;
+  --color-dark-gray: #4d4d4d;
+
+  --color-black: #000000;
+
+  --color-yellow: #f5c336;
+  --color-dark-yellow: #de9426;
+  --color-orange: #fa812b;
+
+  --color-blue: #3660f5;
+  --color-red: #f53953;
+
+  /* Font size */
+  --font-large: 48px;
+  --font-medium: 28px;
+  --font-regular: 18px;
+  --font-small: 16px;
+  --font-micro: 14px;
+
+  /* Font weight*/
+  --weight-black: 900;
+  --weight--bold: 700;
+  --weight-regular: 400;
+  --weight-light: 300;
+  --weight-thin: 100;
+
+  /* Size */
+  --size-border-radius: 4px;
+
+  /* Animation */
+  --animation-duration: 300ms;
+}
+
+
+/* Universal tags */
+* {
+	box-sizing: border-box;
+}
+
+/* Typography */
+h1 {
+	font-size: var(--font-large);
+	font-weight: var(--weight-black);
+	color: var(--color-black);
+	margin: 16px 0;
+	/* 위아래/ 양옆 //시계방향*/
+}
+
+h2 {
+	font-size: var(--font-medium);
+	font-weight: var(--weight-black);
+	color: var(--color-black);
+	margin: 8px 0;
+}
+
+h3 {
+	font-size: var(--font-regular);
+	font-weight: var(--weight-black);
+	color: var(--color-black);
+	margin: 8px 0;
+}
+
+p {
+	font-size: var(--font-small);
+	font-weight: var(--weight-regular);
+	color: var(--color-black);
+	margin: 4px 0;
+}
+
+body {
+	margin: 0;
+	font-family: "Noto Sans KR", sans-serif;
+	cursor: default;
+}
+
+nav {
+	height: 5em;
+	background-color: white;
+}
+
+a {
+	text-decoration: none;
+	color: var(--color-gray);
+	cursor: pointer;
+}
+
+ul {
+	padding-left: 0;
+}
+
+li {
+	list-style: none;
+}
+
+button {
+	background-color: transparent;
+	cursor: pointer;
+	border: none;
+	outline: none;
+}
+
+input {
+	border: none;
+	box-shadow: none;
+}
+
+input:focus {
+	background-color: var(--color-light-white);
+	outline: none;
+}
+
+table {
+	border-spacing: 0;
+}
+
+tr.line td,
+tr.line th {
+	border-top: 1px solid #ccc;
+}
+
+th.left {
+	text-align: left;
+}
+
+td.center {
+	text-align: center;
+}
+
+td.right, th.right {
+	text-align: right;
+}
+
+
+#section{
+	max-width: 1280px;
+	margin: 5em auto;	
+}
+
+.main{
+	width: 748px;
+	font-size: 16px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.login__input{
+	width:300px;
+	border-bottom: 1px solid #aaa;
+	margin-top: 16px;
+	margin-bottom: 4px;
+	padding: 10px 0px;
+	font-size: 13px;
+}
+
+.login__button{
+	display: block;
+	background-color: var(--color-yellow);
+	border-radius: 10px;
+	width: 300px;
+	font-size: 16px;
+	font-weight: var(--weight--bold);
+	height: 35px;
+	margin:12px auto;
+}
+
+.main button:hover{
+	background-color: var(--color-dark-yellow);
+}
+
+
+/* nav */
+.nav {
+ 	display: flex;
+ 	border-bottom: 1px solid #ccc;
+}
+
+.nav button {
+	display: block;
+	border-radius: 4px;
+	width: 180px;
+	font-size: 16px;
+	font-weight: var(--weight--bold);
+	height: 35px;
+	margin:12px auto;
+	
+}
+
+.nav button:hover {
+	display: block;
+	border-radius: 4px;
+	width: 180px;
+	font-size: 16px;
+	font-weight: var(--weight--bold);
+	height: 35px;
+	margin:12px auto;
+	color: var(--color-yellow);
+	
+}
+
+/* manager */
+.manager__main{
+	display: flex;
+	width: 748px;
+	font-size: 16px;
+	margin: 0 auto;
+}
+
+.manager__left{
+	border: 1px solid #ccc;
+	width: 25%;
+	height: 600px;
+}
+
+.manager__right{
+	border: 1px solid #ccc;
+	width: 83%;
+}
+
+.manager__btn{
+	border-radius: 4px;
+	width: 180px;
+	font-size: 16px;
+	font-weight: var(--weight--bold);
+	height: 35px;
+	margin:12px auto;
+}

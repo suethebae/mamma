@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-	LoginManager lm = LoginManager.getInstance();
+LoginManager lm = LoginManager.getInstance();
 String member_sq = lm.getMemberId(session);
 %>
 <!DOCTYPE html>
@@ -18,13 +18,13 @@ String member_sq = lm.getMemberId(session);
 	href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
 	integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
 	crossorigin="anonymous">
-<link rel="stylesheet" href="/views/css/style.css">
+<link rel="stylesheet" type="text/css" href="/views/css/style.css">
 
 <title>LOG IN</title>
 
 <script src="https://kit.fontawesome.com/1920467f5c.js"
 	crossorigin="anonymous"></script>
-	<script src="https://code.jquery.com/jquery-3.5.1.js"
+<script src="https://code.jquery.com/jquery-3.5.1.js"
 	integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
 	crossorigin="anonymous"></script>
 <script type="text/javascript">
@@ -47,32 +47,40 @@ String member_sq = lm.getMemberId(session);
 </head>
 
 <body>
-	<jsp:include page="/views/navbar.jsp"></jsp:include>
+	<nav>
+		<jsp:include page="/views/navbar.jsp"></jsp:include>
+	</nav>
 	<!-- 로그인 -->
-	<div class="login">
-		<div class="login__header">
-			<img src="/views/img/login.png" alt="login">
-		</div>
-		<form class="login__main" action="/member/loginProc" method="post"
-			onsubmit="return login()">
-			<div class="login__id">
-				<input type="text" id="id" name="id" placeholder="ID">
+	<section id="login">
+		<div class="login">
+			<div class="login__header">
+				<img src="/views/img/login.png" alt="login">
 			</div>
-			<div class="login__pwd">
-				<input type="password" id="pwd" name="pwd" placeholder="PASSWORD">
-			</div>
-			<button class="login__btn" type="submit">로그인</button>
+			<form action="/member/loginProc" method="post"
+				onsubmit="return login()">
+				<div class="login__main">
+					<div class="login__box">
+						<input type="text" id="id" name="id" placeholder="ID">
+					</div>
+					<div class="login__box">
+						<input type="password" id="pwd" name="pwd" placeholder="PASSWORD">
+					</div>
+				</div>
+				<button class="login__btn" type="submit">로그인</button>
+
+			</form>
+
 			<div class="login__bottom">
 				<div class="login__join">
 					<a href="/member/register">회원가입</a>
 				</div>
 				<div class="login__find">
-					<a href='/member/findId'>아이디 찾기</a> 
-					<span>|</span> 
-					<a href='/member/findPwd'>비밀번호 찾기</a>
+					<a href='/member/findId'>아이디 찾기</a> <span>|</span> <a
+						href='/member/findPwd'>비밀번호 찾기</a>
 				</div>
 			</div>
-		</form>
-	</div>
+
+		</div>
+	</section>
 </body>
 </html>

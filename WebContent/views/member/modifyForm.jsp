@@ -9,6 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원정보수정</title>
+<link rel="stylesheet" type="text/css" href="/views/css/style.css">
 <script src="https://code.jquery.com/jquery-3.5.1.js"
 	integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
 	crossorigin="anonymous"></script>
@@ -200,39 +201,61 @@
 </script>
 </head>
 <body>
-	<a href="/">Mamma store</a>
-	<h1>회원정보</h1>
-	<hr>
-	<form action="/member/modifyProc" method="post" id="mForm">
-		<p>
-			이름
-			<%=memberVo.getNm()%>
-		</p>
-		<p>
-			아이디
-			<%=memberVo.getId()%>
-		</p>
-		<p>
-			비밀번호 <input type="password" id="pwd" name="pwd" oninput="checkPwd()">
-			<span id="pwdMessage">영어 대소문자, 숫자, 특수문자(!@#$%^&*) 4~20자</span>
-		</p>
-		<p>
-			비밀번호 확인 <input type="password" id="pwdc" name="pwdc"
-				oninput="checkPwdc()"> <span id="cpwdMessage"> 비밀번호
-				확인을 입력해 주십시오</span>
-		</p>
-		<p>
-			이메일 <input type="email" id="email" name="email"
-				oninput="checkEmail()" value=<%=memberVo.getEmail()%>> <span
-				id="emailMessage">이메일을 입력해주십시오</span>
-		</p>
-		<p>
-			휴대폰 <input type="tel" id="phone" name="phone" oninput="checkPhone()"
-				value=<%=memberVo.getPhone()%>> <span id="phoneMessage">전화번호를
-				입력해주십시오 </span>
-		</p>
-	</form>
-	<hr>
-	<button onclick="save()">저장하기</button>
+	<nav>
+		<jsp:include page="/views/navbar.jsp"></jsp:include>
+	</nav>
+	<section id="myInfo">
+		<div class="myInfo">
+			<div class="myInfo__header">
+				<img src="/views/img/myinformation.png" alt="myInfo">
+			</div>
+			<div class="myModi__main">
+				<form action="/member/modifyProc" method="post" id="mForm">
+					<table>
+
+						<tr>
+							<td>이름</td>
+							<td class="padding"><%=memberVo.getNm()%></td>
+							<td></td>
+						</tr>
+						<tr class="line">
+							<td>아이디</td>
+							<td class="padding"><%=memberVo.getId()%></td>
+							<td></td>
+						</tr>
+						<tr class="line">
+							<td>비밀번호</td>
+							<td class="padding"><input type="password" id="pwd" name="pwd"
+								oninput="checkPwd()"></td>
+							<td class="padding"><span id="pwdMessage">영어 대소문자, 숫자, 특수문자(!@#$%^&*)
+									4~20자</span></td>
+						</tr>
+						<tr class="line">
+							<td>비밀번호 확인</td>
+							<td class="padding"><input type="password" id="pwdc" name="pwdc"
+								oninput="checkPwdc()"></td>
+							<td class="padding"><span id="cpwdMessage"> 비밀번호 확인을 입력해 주십시오.</span></td>
+						</tr>
+						<tr class="line">
+							<td>이메일</td>
+							<td class="padding"><input type="email" id="email" name="email"
+								oninput="checkEmail()" value=<%=memberVo.getEmail()%>></td>
+							<td class="padding"><span id="emailMessage">이메일을 입력해주십시오.</span></td>
+						</tr>
+						<tr class="line">
+							<td>휴대폰</td>
+							<td class="padding"><input type="tel" id="phone" name="phone"
+								oninput="checkPhone()" value=<%=memberVo.getPhone()%>></td>
+							<td class="padding"><span id="phoneMessage">전화번호를 입력해주십시오.</span></td>
+						</tr>
+					</table>
+				</form>
+				</div>
+				<div class="myModi__btns">
+				<button class="myModi__btn" onclick="save()">저장하기</button>
+				<button class="myModi__btn" onclick="location.href='/mymenu/myInfo'">취소</button>
+				</div>
+		</div>
+	</section>
 </body>
 </html>

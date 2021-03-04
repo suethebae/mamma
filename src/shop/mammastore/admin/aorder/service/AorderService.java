@@ -9,16 +9,17 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import shop.mammastore.admin.aorder.dao.AorderDao;
+import shop.mammastore.common.Pagenation;
 import shop.mammastore.mamma.vo.OrderListVo;
 
 public class AorderService {
-
-	// 주문 목록 불러오기
-	public ArrayList<OrderListVo> getOrderList() {
+	
+	//주문 목록 불러오기
+	public ArrayList<OrderListVo> getOrderList(Pagenation pagenation, String query){
 		AorderDao dao = AorderDao.getInstance();
 		Connection con = getConnection();
 		dao.setConnection(con);
-		ArrayList<OrderListVo> list = dao.getOrderList(); //
+		ArrayList<OrderListVo> list = dao.getOrderList(pagenation, query); //
 		close(con);
 		return list;
 	}
@@ -30,13 +31,23 @@ public class AorderService {
 		dao.setConnection(con);
 		int count = dao.changeSttus(order_sq, sttus);
 		boolean isSuccess = true;
-		if (count > 0) {
+		if(count > 0) {
 			commit(con);
-		} else {
+		}else {
 			rollback(con);
 			isSuccess = false;
 		}
 		close(con);
 		return isSuccess;
+	}
+	
+	//페이지네이션
+	public int getOrderCount(String query) {
+		AorderDao dao = AorderDao.getInstance();
+		Connection con = getConnection();
+		dao.setConnection(con);
+		int count = dao.getOrderCount(query);
+		close(con);
+		return count;
 	}
 }

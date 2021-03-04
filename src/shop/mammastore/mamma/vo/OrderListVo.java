@@ -2,12 +2,11 @@ package shop.mammastore.mamma.vo;
 
 import java.util.ArrayList;
 
-public class OrderListVo extends OrderVo{
+public class OrderListVo extends OrderVo {
 	private String id;
 	private String mber_nm;
 	private ArrayList<OrderItemListVo> itemList;
 
-	
 	public String getId() {
 		return id;
 	}
@@ -15,7 +14,7 @@ public class OrderListVo extends OrderVo{
 	public void setId(String id) {
 		this.id = id;
 	}
-	
+
 	public String getMber_nm() {
 		return mber_nm;
 	}
@@ -31,5 +30,5 @@ public class OrderListVo extends OrderVo{
 	public void setItemList(ArrayList<OrderItemListVo> itemList) {
 		this.itemList = itemList;
 	}
-	
+
 }

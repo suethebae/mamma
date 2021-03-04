@@ -9,6 +9,7 @@ import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import shop.mammastore.admin.amanager.service.AmanagerService;
 import shop.mammastore.admin.vo.AmanagerVo;
@@ -17,10 +18,23 @@ import shop.mammastore.common.ActionForward;
 import shop.mammastore.common.BCrypt;
 import shop.mammastore.common.RegExp;
 
-
 public class RegisterProcAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		// 로그인 확인
+		HttpSession session = request.getSession();
+		String mngr_sq = String.valueOf(session.getAttribute("mngr_sq"));
+		if (mngr_sq.equals("null")) {
+			mngr_sq = null;
+		}
+
+		if (mngr_sq == null || mngr_sq.equals("")) {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('잘못된 접근입니다.'); location.href='/'; </script>");
+			out.close();
+			return null;
+		}
 		
 		String id = request.getParameter("id");
 		String pwd = request.getParameter("pwd");
@@ -28,24 +42,24 @@ public class RegisterProcAction implements Action {
 		String nm = request.getParameter("nm");
 		String email = request.getParameter("email");
 		String phone = request.getParameter("phone");
-		
+
 		if (!RegExp.isValidExp(id, REGEXP_ID) || !RegExp.isValidExp(pwd, REGEXP_PWD)
 				|| !RegExp.isValidExp(nm, REGEXP_NAME) || !pwd.equals(pwdc) || !RegExp.isValidExp(email, REGEXP_EMAIL)
 				|| RegExp.isEmpty(phone)) {
 			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter out = response.getWriter(); 
-			out.println("<script>alert('잘못된 접근입니다.'); location.href='/'; </script>");	
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('잘못된 접근입니다.'); location.href='/'; </script>");
 			out.close();
 			return null;
 		}
-		
+
 		AmanagerVo amanagerVo = new AmanagerVo();
 		amanagerVo.setId(id);
 		amanagerVo.setPwd(BCrypt.hashpw(pwd, BCrypt.gensalt(12)));
 		amanagerVo.setNm(nm);
 		amanagerVo.setEmail(email);
 		amanagerVo.setPhone(phone);
-							
+
 		AmanagerService svc = new AmanagerService();
 		if (!svc.aregister(amanagerVo)) {
 			response.setContentType("text/html; charset=UTF-8");

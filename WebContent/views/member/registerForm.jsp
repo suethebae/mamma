@@ -14,14 +14,13 @@
 	href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
 	integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
 	crossorigin="anonymous">
-<link rel="stylesheet" href="/views/css/style.css">
+<link rel="stylesheet" type="text/css" href="/views/css/style.css">
 
 <title>JOIN</title>
 
 <script src="https://code.jquery.com/jquery-3.5.1.js"
 	integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
 	crossorigin="anonymous"></script>
-
 <script>
 	//아이디 체크
 	var isIdChecked = false;
@@ -307,68 +306,71 @@
 
 </head>
 <body>
-	<jsp:include page="/views/navbar.jsp"></jsp:include>
-	<div class="join">
-		<div class="join__header">
-			<img src="/views/img/join.png" alt="join">
-		</div>
-		<!-- 가입내용 작성란 -->
+	<nav>
+		<jsp:include page="/views/navbar.jsp"></jsp:include>
+	</nav>
+	<section id="join">
+		<div class="join">
+			<div class="join__header">
+				<img src="/views/img/join.png" alt="join">
+			</div>
+			<!-- 가입내용 작성란 -->
 
-		<div class="join__main">
-			<form action="/member/registerProc" method="post" id="mrForm">
-				<div class="join__box">
-					<input class="join_box2" type="text" id="id" name="id"
-						placeholder="아이디 입력" oninput="checkId()"> <span
-						class="join_check" id="idMessage">영어 소문자,숫자 4~16자</span>
-				</div>
-				<div class="join__box">
-					<input class="join_box2" type="password" id="pwd" name="pwd"
-						placeholder="비밀번호 입력" oninput="checkPwd()"> <span
-						class="join_check" id="pwdMessage">영어 대소문자, 숫자,
-						특수문자(!@#$%^&*) 4~20자</span>
-				</div>
-				<div class="join__box">
-					<input class="join_box2" type="password" id="pwdc" name="pwdc"
-						placeholder="비밀번호 확인" oninput="checkPwdc()"> <span
-						class="join_check" id="pwdcMessage">비밀번호 확인을 입력해 주십시오.</span>
-				</div>
-				<div class="join__box">
-					<input class="join_box2" type="text" id="nm" name="nm"
-						placeholder="이름 입력" oninput="checkName()"> <span
-						class="join_check" id="nameMessage">이름을 입력해 주십시오.</span>
-				</div>
-				<div class="join__box">
-					<input class="join_box2" type="email" id="email" name="email"
-						placeholder="이메일" oninput="checkEmail()"> <span
-						class="join_check" id="emailMessage">이메일을 입력해주십시오.</span>
-				</div>
-				<div class="join__box">
-					<input class="join_box2" type="tel" id="phone" name="phone"
-						placeholder="전화번호 입력" oninput="checkPhone()"> <span
-						class="join_check" id="phoneMessage">휴대폰 번호를 입력해주십시오.</span>
-
+			<div class="join__main">
+				<form action="/member/registerProc" method="post" id="mrForm">
+					<div class="join__box">
+						<input class="join_box2" type="text" id="id" name="id"
+							placeholder="아이디" oninput="checkId()"> <span
+							class="join_check" id="idMessage">영어 소문자,숫자 4~16자</span>
+					</div>
+					<div class="join__box">
+						<input class="join_box2" type="password" id="pwd" name="pwd"
+							placeholder="비밀번호" oninput="checkPwd()"> <span
+							class="join_check" id="pwdMessage">영어 대소문자, 숫자,
+							특수문자(!@#$%^&*) 4~20자</span>
+					</div>
+					<div class="join__box">
+						<input class="join_box2" type="password" id="pwdc" name="pwdc"
+							placeholder="비밀번호 확인" oninput="checkPwdc()"> <span
+							class="join_check" id="pwdcMessage">비밀번호 확인을 입력해 주십시오.</span>
+					</div>
+					<div class="join__box">
+						<input class="join_box2" type="text" id="nm" name="nm"
+							placeholder="이름" oninput="checkName()"> <span
+							class="join_check" id="nameMessage">이름을 입력해 주십시오.</span>
+					</div>
+					<div class="join__box">
+						<input class="join_box2" type="email" id="email" name="email"
+							placeholder="이메일" oninput="checkEmail()"> <span
+							class="join_check" id="emailMessage">이메일을 입력해주십시오.</span>
+					</div>
+					<div class="join__box">
+						<input class="join_box2" type="tel" id="phone" name="phone"
+							placeholder="전화번호" oninput="checkPhone()"> <span
+							class="join_check" id="phoneMessage">휴대폰 번호를 입력해주십시오.</span>
+					</div>
 
 					<!-- 약관동의 -->
 					<div class="join__agre">
 						<h3>약관동의</h3>
 						<div class="join__check">
-							<input type="checkbox" id="magre" name="magre"> <label
-								for="margre">이용약관 동의</label><a>약관보기></a>
+							<label><input type="checkbox" id="magre" name="magre">이용약관
+								동의</label><a>약관보기></a>
 						</div>
 
 						<div class="join__check">
-							<input type="checkbox" id="pagre" name="pagre"> <label
-								for="margre">개인정보처리방침 동의</label><a>약관보기></a>
+							<label><input type="checkbox" id="pagre" name="pagre">개인정보처리방침
+								동의</label><a>약관보기></a>
 						</div>
 					</div>
+
+				</form>
+				<div class="join__btns">
+					<button class="join__btn" onclick="register()">등록</button>
+					<button class="join__btn" onclick="cancel()">취소</button>
 				</div>
-			</form>
-			<div class="join__btns">
-				<button class="join__btn" onclick="register()">등록</button>
-				<button class="join__btn" onclick="cancel()">취소</button>
 			</div>
 		</div>
-	</div>
-
+	</section>
 </body>
 </html>

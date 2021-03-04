@@ -60,6 +60,7 @@ public class LoginProcAction implements Action {
 		lm.setSession(request.getSession(), mber_sq);
 		
 		ActionForward forward = new ActionForward();
+		forward.setRedirect(true);
 		forward.setPath("/");
 		return forward;
 	}

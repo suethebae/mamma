@@ -16,7 +16,6 @@ public class MyInfoAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-
 		HttpSession session = request.getSession();
 		LoginManager lm = LoginManager.getInstance();
 		String mber_sq = lm.getMemberId(session);
@@ -28,7 +27,7 @@ public class MyInfoAction implements Action {
 			out.close();
 			return null;
 		}
-		
+
 		MemberService svc = new MemberService();
 		MemberVo memberVo = svc.getUserData(Integer.parseInt(mber_sq));
 		if (memberVo == null) {
@@ -39,7 +38,7 @@ public class MyInfoAction implements Action {
 			return null;
 		}
 		request.setAttribute("memberVo", memberVo);
-		
+
 		// 경로설정
 		ActionForward forward = new ActionForward();
 		forward.setPath("/views/mymenu/myInfo.jsp");

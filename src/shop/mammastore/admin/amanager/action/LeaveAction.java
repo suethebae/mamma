@@ -10,19 +10,20 @@ import shop.mammastore.admin.amanager.service.AmanagerService;
 import shop.mammastore.admin.vo.AmanagerVo;
 import shop.mammastore.common.Action;
 import shop.mammastore.common.ActionForward;
-import shop.mammastore.common.LoginManager;
 import shop.mammastore.common.RegExp;
 
 public class LeaveAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
+		// 로그인 확인
 		HttpSession session = request.getSession();
-		LoginManager lm = LoginManager.getInstance();
-		String mngr_sq = lm.getMemberId(session);
+		String mngr_sq = String.valueOf(session.getAttribute("mngr_sq"));
+		if (mngr_sq.equals("null")) {
+			mngr_sq = null;
+		}
 
-		if (mngr_sq == null) {
-			response.setContentType("text/html;charset=UTF-8");
+		if (mngr_sq == null || mngr_sq.equals("")) {
+			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('잘못된 접근입니다.'); location.href='/'; </script>");
 			out.close();
@@ -41,7 +42,6 @@ public class LeaveAction implements Action {
 
 		AmanagerVo amanagerVo = new AmanagerVo();
 		amanagerVo.setMngr_sq(Integer.parseInt(dmngr_sq));
-		
 
 		AmanagerService svc = new AmanagerService();
 		if (!svc.leave(amanagerVo)) {
@@ -51,7 +51,7 @@ public class LeaveAction implements Action {
 			out.close();
 			return null;
 		}
-
+		
 		ActionForward forward = new ActionForward();
 		forward.setPath("/amanager/list");
 		forward.setRedirect(true);

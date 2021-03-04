@@ -10,12 +10,15 @@ CartListVo cartListVo = (CartListVo) request.getAttribute("cartListVo");
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="/views/css/style.css">
 <script src="https://code.jquery.com/jquery-3.5.1.js"
 	integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
 	crossorigin="anonymous"></script>
 </head>
 <body>
-	<jsp:include page="/views/navbar.jsp"></jsp:include>
+	<nav>
+		<jsp:include page="/views/navbar.jsp"></jsp:include>
+	</nav>
 	장바구니 수정페이지
 	<form action="/cart/modifyProc" method="post" id="modifyCart">
 		<table>

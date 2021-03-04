@@ -1,7 +1,6 @@
 package shop.mammastore.mamma.order.action;
 
 import java.io.PrintWriter;
-import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,8 +10,6 @@ import shop.mammastore.common.Action;
 import shop.mammastore.common.ActionForward;
 import shop.mammastore.common.LoginManager;
 import shop.mammastore.mamma.order.service.OrderService;
-import shop.mammastore.mamma.vo.CartListVo;
-import shop.mammastore.mamma.vo.OrderListVo;
 import shop.mammastore.mamma.vo.OrderVo;
 
 public class CancelAction implements Action {
@@ -27,7 +24,7 @@ public class CancelAction implements Action {
 		if (mber_sq == null||order_sq==null) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.println("<script>alert('잘못된 접근입니다.'); loaction.href='/'; </script>");
+			out.println("<script>alert('잘못된 접근입니다.'); location.href='/'; </script>");
 			out.close();
 			return null;
 		}

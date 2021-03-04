@@ -4,17 +4,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<script>
-	function noticeList() {
-location.href="/notice/list"
-	}
-</script>
+<title>관리자페이지</title>
+<link rel="stylesheet" type="text/css" href="/views/css/admin.css">
 </head>
 <body>
+<nav>
 	<jsp:include page="/views/admin/aNavbar.jsp"></jsp:include>
-	관리자 페이지 메인
-	<input type="button" onclick="noticeList()" value="공지사항">
-	<br>
+</nav> 
+	<section id="section">
+	<div class="main">
+		<h1>mamma store</h1>
+		<h1>매니저님, 환영합니다!</h1>
+	</div>
+	</section>
 </body>
 </html>

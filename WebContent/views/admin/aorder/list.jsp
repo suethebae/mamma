@@ -1,9 +1,17 @@
+<%@page import="shop.mammastore.common.Pagenation"%>
 <%@page import="shop.mammastore.mamma.vo.OrderListVo"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-ArrayList<OrderListVo> list = (ArrayList<OrderListVo>) request.getAttribute("list");
+	ArrayList<OrderListVo> list = (ArrayList<OrderListVo>) request.getAttribute("list");
+Pagenation pagenation = (Pagenation) request.getAttribute("pagenation");
+String pn = request.getParameter("pn");
+String filter = (String) request.getAttribute("filter");
+String keyword = (String) request.getAttribute("keyword");
+String startDate = (String) request.getAttribute("startDate");
+String endDate = (String) request.getAttribute("endDate");
+String sfilter = (String) request.getAttribute("sfilter");
 %>
 <!DOCTYPE html>
 <html>
@@ -62,48 +70,107 @@ ArrayList<OrderListVo> list = (ArrayList<OrderListVo>) request.getAttribute("lis
 	}
 	function chgSttusStart() {
 		var sttus = $('#sttus');
-		var order_sq = $('[name="order_sq"]');
-		if(!order_sq[0]){
+		var order_sq = $('input[name=order_sq]:checked');
+		if (order_sq.length==0) {
 			alert('선택된 주문이 없습니다.');
 			return;
 		}
+
+		if(confirm('배송 중으로 변경 하시겠습니까?')){
 		sttus.val(3);
 		$('#sttusForm').submit();
+		}
 	}
 	function chgSttusEnd() {
 		var sttus = $('#sttus');
-		var order_sq = $('[name="order_sq"]');
-		if(!order_sq[0]){
+		var order_sq = $('input[name=order_sq]:checked');
+		if (order_sq.length==0) {
 			alert('선택된 주문이 없습니다.');
 			return;
 		}
+
+		if(confirm('배송 완료로 변경 하시겠습니까?')){
 		sttus.val(4);
 		$('#sttusForm').submit();
+		}
 	}
 	function chgSttusConfirm() {
 		var sttus = $('#sttus');
-		var order_sq = $('[name="order_sq"]');
-		if(!order_sq[0]){
+		var order_sq = $('input[name=order_sq]:checked');
+		if (order_sq.length==0) {
 			alert('선택된 주문이 없습니다.');
 			return;
 		}
+
+		if(confirm('구매확정으로 변경 하시겠습니까?')){
 		sttus.val(5);
 		$('#sttusForm').submit();
+		}
 	}
 	function chgSttusCancel() {
 		var sttus = $('#sttus');
-		var order_sq = $('[name="order_sq"]');
-		if(!order_sq[0]){
+		var order_sq = $('input[name=order_sq]:checked');
+		if (order_sq.length==0) {
 			alert('선택된 주문이 없습니다.');
 			return;
 		}
+
+		if(confirm('구매 취소로 변경 하시겠습니까?')){
 		sttus.val(6);
 		$('#sttusForm').submit();
+		}
+	}
+	function search() {		
+		var sfilter = $('#sfilter option:selected');
+		var filter = $('#filter option:selected');
+		var keyword = $('#keyword');
+		var startDate = $('#startDate');
+		var endDate = $('#endDate');
+		location.href = "/aorder/list?pn=1&filter=" + filter.val()
+				+ "&keyword=" + keyword.val() + "&startDate=" + startDate.val()
+				+ "&endDate=" + endDate.val()+"&sfilter="+sfilter.val();
+	}
+	function move(pn) {
+		var sfilter = $('#sfilter option:selected');
+		var filter = $('#filter option:selected');
+		var keyword = $('#keyword');
+		var startDate = $('#startDate');
+		var endDate = $('#endDate');
+		location.href = "/aorder/list?pn=" + pn + "&filter=" + filter.val()
+				+ "&keyword=" + keyword.val() + "&startDate=" + startDate.val()
+				+ "&endDate=" + endDate.val()+"&sfilter="+sfilter.val();
 	}
 </script>
 </head>
 <body>
 	주문내역
+	<br />
+	<select name="sfilter" id="sfilter">
+		<option value="" <%=sfilter.equals("") ? "selected" : ""%>>All</option>
+		<option value="1" <%=sfilter.equals("1") ? "selected" : ""%>>결재
+			대기</option>
+		<option value="2" <%=sfilter.equals("2") ? "selected" : ""%>>배송
+			준비</option>
+		<option value="3" <%=sfilter.equals("3") ? "selected" : ""%>>배송
+			중</option>
+		<option value="4" <%=sfilter.equals("4") ? "selected" : ""%>>배송
+			완료</option>
+		<option value="5" <%=sfilter.equals("5") ? "selected" : ""%>>구매
+			확정</option>
+		<option value="6" <%=sfilter.equals("6") ? "selected" : ""%>>주문
+			취소</option>
+	</select>
+	<select name="filter" id="filter">
+		<option value="" <%=filter.equals("") ? "selected" : ""%>>All</option>
+		<option value="id" <%=filter.equals("b.id") ? "selected" : ""%>>ID</option>
+		<option value="order_cd"
+			<%=filter.equals("a.order_cd") ? "selected" : ""%>>주문 코드</option>
+	</select>
+	<input type="text" id="keyword" name="keyword" value="<%=keyword%>" />
+	<input type="date" id="startDate" name="startDate"
+		value="<%=startDate%>" />
+	<input type="date" id="endDate" name="endDate" value="<%=endDate%>" />
+	<button onclick="search()">검색</button>
 	<form action="/aorder/changeSttus" method="post" id="sttusForm">
 		<table border="1">
 			<tr>
@@ -117,12 +184,13 @@ ArrayList<OrderListVo> list = (ArrayList<OrderListVo>) request.getAttribute("lis
 				<th>주문 날짜</th>
 			</tr>
 			<%
-			for (int i = 0; i < list.size(); i++) {
+				for (int i = 0; i < list.size(); i++) {
 			%>
 			<tr onclick="chgDisplay(this)">
 				<td rowspan="1" onclick="event.cancelBubble=true"><input
-					type="checkbox" value="<%=list.get(i).getOrder_sq()%>" name="order_sq"  /></td>
-				<td><%=list.get(i).getOrder_code()%></td>
+					type="checkbox" value="<%=list.get(i).getOrder_sq()%>"
+					name="order_sq" /></td>
+				<td><%=list.get(i).getOrder_cd()%></td>
 				<td><%=list.get(i).getId()%></td>
 				<td><img
 					src="<%=list.get(i).getItemList().get(0).getFl_pth()%>" alt=""
@@ -148,7 +216,7 @@ ArrayList<OrderListVo> list = (ArrayList<OrderListVo>) request.getAttribute("lis
 							<th>상품 총 가격</th>
 						</tr>
 						<%
-						for (int j = 0; j < list.get(i).getItemList().size(); j++) {
+							for (int j = 0; j < list.get(i).getItemList().size(); j++) {
 						%>
 						<tr>
 							<td><%=list.get(i).getItemList().get(j).getOrderDetail_cd()%></td>
@@ -161,7 +229,7 @@ ArrayList<OrderListVo> list = (ArrayList<OrderListVo>) request.getAttribute("lis
 							<td><%=list.get(i).getItemList().get(j).getPc() * list.get(i).getItemList().get(j).getItm_cnt()%></td>
 						</tr>
 						<%
-						}
+							}
 						%>
 						<tr>
 							<td colspan="6">
@@ -187,15 +255,44 @@ ArrayList<OrderListVo> list = (ArrayList<OrderListVo>) request.getAttribute("lis
 				</td>
 			</tr>
 			<%
-			}
+				}
 			%>
 		</table>
-		<input type="hidden" id="sttus" name="sttus" value="0"/><br />
+		<input type="hidden" id="sttus" name="sttus" value="0" /><br />
 	</form>
+	<div>
+		<%
+			if (pagenation.getStartPageNumber() != 1) {
+		%>
+		<a href="#" onclick="move(<%=pagenation.getStartPageNumber() - 1%>)">prev</a>
+		<%
+			}
+		%>
+		<%
+			for (int i = pagenation.getStartPageNumber(); i <= pagenation.getEndPageNumber(); i++) {
+			if (i != Integer.parseInt(pn)) {
+		%>
+		<a href="#" onclick="move(<%=i%>)"><%=i%></a>
+		<%
+			} else {
+		%>
+		<%=i%>
+		<%
+			}
+		}
+		%>
+		<%
+			if (pagenation.getEndPageNumber() != pagenation.getTotalPageCount()) {
+		%>
+		<a href="#" onclick="move(<%=pagenation.getStartPageNumber() + 1%>)">next</a>
+		<%
+			}
+		%>
+	</div>
 	<button onclick="chgSttusStart()">배송 시작</button>
 	<button onclick="chgSttusEnd()">배송 완료</button>
 	<button onclick="chgSttusConfirm()">구매 확정</button>
 	<button onclick="chgSttusCancel()">주문 취소</button>
-	<a href='/'>홈으로</a>
+	<a href='/admin'>홈으로</a>
 </body>
 </html>

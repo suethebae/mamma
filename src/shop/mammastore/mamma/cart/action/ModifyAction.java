@@ -37,7 +37,7 @@ public class ModifyAction implements Action {
 		if (cart_sq == null || cart_sq.equals("")) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.println("<script>alert('잘못된 접근입니다.'); loaction.href='/'; </script>");
+			out.println("<script>alert('잘못된 접근입니다.'); location.href='/'; </script>");
 			out.close();
 			return null;
 		}
@@ -46,7 +46,7 @@ public class ModifyAction implements Action {
 		if (cartListVo == null || cartListVo.equals("")) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.println("<script>alert('장바구니 로딩에 실패했습니다.'); loaction.href='/'; </script>");
+			out.println("<script>alert('장바구니 로딩에 실패했습니다.'); location.href='/'; </script>");
 			out.close();
 			return null;
 		}

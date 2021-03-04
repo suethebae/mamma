@@ -9,18 +9,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import shop.mammastore.admin.aboard.ahelp.action.DeleteAction;
-import shop.mammastore.admin.aboard.ahelp.action.DetailAction;
-import shop.mammastore.admin.aboard.ahelp.action.ModifyAction;
-import shop.mammastore.admin.aboard.ahelp.action.ModifyProcAction;
-import shop.mammastore.admin.aboard.ahelp.action.WriteAction;
-import shop.mammastore.admin.aboard.ahelp.action.WriteProcAction;
+import shop.mammastore.admin.aboard.anotice.action.DeleteAction;
+import shop.mammastore.admin.aboard.anotice.action.DetailAction;
+import shop.mammastore.admin.aboard.anotice.action.ListAction;
+import shop.mammastore.admin.aboard.anotice.action.ModifyAction;
+import shop.mammastore.admin.aboard.anotice.action.ModifyProcAction;
+import shop.mammastore.admin.aboard.anotice.action.RegisterAction;
+import shop.mammastore.admin.aboard.anotice.action.RegisterProcAction;
 import shop.mammastore.common.Action;
 import shop.mammastore.common.ActionForward;
 
 @WebServlet("/anotice/*")
 //웹서블릿 어노테이션으로 모든 .do 파일이 이쪽으로 온다
-public class ANoticeController extends HttpServlet {
+public class AnoticeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response)
@@ -33,8 +34,7 @@ public class ANoticeController extends HttpServlet {
 																								// 가져온다
 		ActionForward forward = null;
 
-		
-		// 문의 게시판 상세 페이지
+		// 공지사항 게시글 상세 페이지
 		if (command.equals("/detail")) {
 			Action action = new DetailAction();
 			try {
@@ -43,25 +43,25 @@ public class ANoticeController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		// 문의 게시판 글쓰기 폼으로 가기
-		else if (command.equals("/write")) {
-			Action action = new WriteProcAction();
+		// 공지사항 글쓰기 폼으로 가기
+		else if (command.equals("/registerProc")) {
+			Action action = new RegisterProcAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-		// 문의 게시판 글 등록
+		// 공지사항 글 등록
 		else if (command.equals("/register")) {
-			Action action = new WriteAction();
+			Action action = new RegisterAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-		// 문의 게시판 글 수정 폼으로 가기
+		// 공지사항 게시글 수정하기
 		else if (command.equals("/modify")) {
 			Action action = new ModifyAction();
 			try {
@@ -70,7 +70,7 @@ public class ANoticeController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		// 문의 게시판 글 수정 완료하기
+		// 공지사항 게시글 수정 폼으로 가기
 		else if (command.equals("/modifyProc")) {
 			Action action = new ModifyProcAction();
 			try {
@@ -79,9 +79,18 @@ public class ANoticeController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		// 문의 게시판 글 삭제하기
+		// 공지사항 글 삭제하기
 		else if (command.equals("/delete")) {
 			Action action = new DeleteAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		// 공지사항 리스트
+		else if (command.equals("/list")) {
+			Action action = new ListAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

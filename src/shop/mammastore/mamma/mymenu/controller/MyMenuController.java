@@ -17,10 +17,6 @@ import shop.mammastore.mamma.mymenu.action.MyPageAction;
 import shop.mammastore.mamma.mymenu.action.MyHelpAction;
 import shop.mammastore.mamma.mymenu.action.MyReviewAction;
 
-
-
-
-
 @WebServlet("/mymenu/*")
 //웹서블릿 어노테이션으로 모든 .do 파일이 이쪽으로 온다
 public class MyMenuController extends HttpServlet {
@@ -36,7 +32,7 @@ public class MyMenuController extends HttpServlet {
 																								// 가져온다
 
 		ActionForward forward = null;
-		//
+		// 마이페이지 메인
 		if (command.equals("/myPage")) {
 			Action action = new MyPageAction();
 			try {

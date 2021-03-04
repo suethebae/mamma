@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import shop.mammastore.admin.vo.AmemberVo;
+import shop.mammastore.common.Pagenation;
 
 public class AmemberDao {
 
@@ -29,26 +30,15 @@ public class AmemberDao {
 		this.con = con;
 	}
 
-	/*
-	 * // 매니저 로그인 정보 public AmemberVo getLoginInfo(String id) { PreparedStatement
-	 * pstmt = null; ResultSet rs = null; // DB의 결과문(쿼리값)을 받아와야함. 우선 빈값으로 설정하자.
-	 * AmemberVo amemberVo = null; try { pstmt = con.
-	 * prepareStatement("select mngr_sq, id, pwd from inf_mngr_tb where id=? and del_fl=0"
-	 * ); pstmt.setString(1, id); rs = pstmt.executeQuery(); while (rs.next()) { //
-	 * 다음줄이 null(false) 될떄까지 반복실행 amemberVo = new AmemberVo();
-	 * amemberVo.setMngr_sq(rs.getInt("mngr_sq"));
-	 * amemberVo.setId(rs.getString("id")); amemberVo.setPwd(rs.getString("pwd")); }
-	 * } catch (Exception e) { e.printStackTrace(); } finally { close(pstmt);
-	 * close(rs); } return amemberVo; }
-	 */
-
 	// 매니저가 회원 목록 가져오기
-	public ArrayList<AmemberVo> getMberList() {
+	public ArrayList<AmemberVo> getMberList(Pagenation pagenation, String query) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null; // DB의 결과문(쿼리값)을 받아와야함. 우선 빈값으로 설정하자.
 		ArrayList<AmemberVo> list = new ArrayList<AmemberVo>();
 		try {
-			pstmt = con.prepareStatement("select * from inf_mber_tb where del_fl=0");
+			pstmt = con.prepareStatement("select * from inf_mber_tb where del_fl=0"+query+" limit ?,?");
+			pstmt.setInt(1, pagenation.getStartArticleNumber());
+			pstmt.setInt(2, pagenation.getARTICLE_COUNT_PER_PAGE());
 			rs = pstmt.executeQuery();
 			while (rs.next()) { // 다음줄이 null(false) 될떄까지 반복실행
 				AmemberVo amemberVo = new AmemberVo();
@@ -128,6 +118,26 @@ public class AmemberDao {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
+		}
+		return count;
+	}
+
+	// 페이지네이션
+	public int getMemberCount(String query) {
+		PreparedStatement pstmt = null; // 쿼리문 작성할 메소드
+		ResultSet rs = null;
+		int count = 0;
+		try {
+			pstmt = con.prepareStatement("select count(mber_sq) from inf_mber_tb where del_fl=0" + query);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				count = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rs);
 		}
 		return count;
 	}

@@ -14,7 +14,7 @@ AmemberVo amemberVo = (AmemberVo) request.getAttribute("amemberVo");
 	crossorigin="anonymous"></script>
 <script type="text/javascript">
 //이름 체크
-var isNameChecked = false;
+var isNameChecked = true;
 function initCheckName() {
 	isNameChecked = false;
 }
@@ -22,11 +22,12 @@ function checkName() {
 	var nm = $('#nm');
 	initCheckName()
 	if (!nm.val() || nm.val() == "") {
-		$('#nameMessage').text('한글 2~8자 ');
+		$('#nameMessage').text('한글 2~8자');
 		isNameChecked = false;
 		return;
 	} else {
 		isNameChecked = true;
+		$('#nameMessage').text('사용 가능한 이름입니다.');
 	}
 
 	var regExp = new RegExp("^[가-힣]{2,8}$", "g");
@@ -48,7 +49,7 @@ function checkEmail() {
 	initCheckEmail();
 	var email = $('#email');
 	if (!email.val() || email.val() == "") {
-		$('#emailMessage').text('이메일 양식');
+		$('#emailMessage').text('이메일을 입력해 주세요');
 		isEmailChecked = false;
 		return;
 	} else {
@@ -64,6 +65,7 @@ function checkEmail() {
 		return;
 	} else {
 		isEmailChecked = true;
+		$('#emailMessage').text('사용가능한 이메일 형식입니다.');
 	}
 
 	if (email.val() != '<%=amemberVo.getEmail()%>') {
@@ -115,6 +117,7 @@ function checkPhone() {
 		isPhoneChecked = false;
 		return;
 	} else {
+		$('#phoneMessage').text('사용가능한 전화번호 형식입니다.');
 		isPhoneChecked = true;
 	}
 	if (phone.val() != '<%=amemberVo.getPhone()%>') {

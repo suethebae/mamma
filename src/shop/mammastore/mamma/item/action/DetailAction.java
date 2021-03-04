@@ -1,6 +1,7 @@
 package shop.mammastore.mamma.item.action;
 
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,6 +11,8 @@ import shop.mammastore.admin.vo.AitemVo;
 import shop.mammastore.common.Action;
 import shop.mammastore.common.ActionForward;
 import shop.mammastore.common.Parser;
+import shop.mammastore.mamma.board.review.service.ReviewService;
+import shop.mammastore.mamma.vo.ReviewNameVo;
 
 public class DetailAction implements Action {
 	@Override
@@ -20,7 +23,7 @@ public class DetailAction implements Action {
 		if (itm_sq == null || itm_sq.equals("")) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.println("<script>alert('잘못된 접근입니다.'); loaction.href='/'; </script>");
+			out.println("<script>alert('잘못된 접근입니다.'); location.href='/'; </script>");
 			out.close();
 			return null;
 		}
@@ -32,7 +35,7 @@ public class DetailAction implements Action {
 		if (aitemVo == null) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.println("<script>alert('잘못된 접근입니다.'); loaction.href='/'; </script>");
+			out.println("<script>alert('잘못된 접근입니다.'); location.href='/'; </script>");
 			out.close();
 			return null;
 		}
@@ -40,7 +43,18 @@ public class DetailAction implements Action {
 		aitemVo.setCntnt(Parser.chgToHTML(aitemVo.getCntnt()));
 		// 받아온 데이터 업로드
 		request.setAttribute("aitemVo", aitemVo);
-
+		
+		ArrayList<ReviewNameVo> list = null;
+		ReviewService svc1 = new ReviewService();
+		list = svc1.getReviewPreview(Integer.parseInt(itm_sq));
+		if(list == null) {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('잘못된 접근입니다.'); location.href='/'; </script>");
+			out.close();
+			return null;
+		}
+		request.setAttribute("list", list);
 		// 경로설정
 		ActionForward forward = new ActionForward();
 		forward.setPath("/views/item/detail.jsp");

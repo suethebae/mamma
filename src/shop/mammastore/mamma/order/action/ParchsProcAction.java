@@ -29,7 +29,7 @@ public class ParchsProcAction implements Action {
 		if (mber_sq == null) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.println("<script>alert('잘못된 접근입니다.'); loaction.href='/'; </script>");
+			out.println("<script>alert('잘못된 접근입니다.'); location.href='/'; </script>");
 			out.close();
 			return null;
 		}
@@ -51,7 +51,7 @@ public class ParchsProcAction implements Action {
 		if(cart_sq==null||RegExp.isEmpty(nm)||RegExp.isEmpty(pc)||RegExp.isEmpty(phone)||RegExp.isEmpty(email)||RegExp.isEmpty(zip_cd)||RegExp.isEmpty(adres)||agree==null) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.println("<script>alert('잘못된 접근입니다.'); loaction.href='/'; </script>");
+			out.println("<script>alert('잘못된 접근입니다.'); location.href='/'; </script>");
 			out.close();
 			return null;
 		}
@@ -70,14 +70,14 @@ public class ParchsProcAction implements Action {
 		SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
 		Date now = new Date();
 		int rNum = (int)Math.floor(Math.random()*90000)+10000;
-		String order_code=format.format(now)+rNum;
+		String order_cd=format.format(now)+rNum;
 		
 		//결재 상태 지정
 		int sttus = 2;
 		
 		//orderVo에 입력
 		OrderVo orderVo = new OrderVo();
-		orderVo.setOrder_code(order_code);
+		orderVo.setOrder_cd(order_cd);
 		orderVo.setMber_sq(Integer.parseInt(mber_sq));
 		orderVo.setSttus(sttus);
 		orderVo.setAll_pc(Integer.parseInt(pc));

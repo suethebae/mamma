@@ -10,15 +10,16 @@ import java.util.ArrayList;
 
 import shop.mammastore.admin.amember.dao.AmemberDao;
 import shop.mammastore.admin.vo.AmemberVo;
+import shop.mammastore.common.Pagenation;
 
 public class AmemberService {
 
 	// 매니저가 회원 목록을 불러오기
-	public ArrayList<AmemberVo> getMberList() {
+	public ArrayList<AmemberVo> getMberList(Pagenation pagenation, String query) {
 		AmemberDao dao = AmemberDao.getInstance();
 		Connection con = getConnection();
 		dao.setConnection(con);
-		ArrayList<AmemberVo> list = dao.getMberList();
+		ArrayList<AmemberVo> list = dao.getMberList(pagenation, query);
 		close(con);
 		return list;
 	}
@@ -40,9 +41,9 @@ public class AmemberService {
 		dao.setConnection(con);
 		int count = dao.modify(amemberVo);
 		boolean isSuccess = true;
-		if(count > 0) {
+		if (count > 0) {
 			commit(con);
-		}else {
+		} else {
 			rollback(con);
 			isSuccess = false;
 		}
@@ -57,14 +58,24 @@ public class AmemberService {
 		dao.setConnection(con);
 		int count = dao.deleteMember(amemberVo);
 		boolean isSuccess = true;
-		if(count > 0) {
+		if (count > 0) {
 			commit(con);
-		}else {
+		} else {
 			rollback(con);
 			isSuccess = false;
 		}
 		close(con);
 		return isSuccess;
 	}
-	
+
+	// 페이지네이션
+	public int getMemberCount(String query) {
+		AmemberDao dao = AmemberDao.getInstance();
+		Connection con = getConnection();
+		dao.setConnection(con);
+		int count = dao.getMemberCount(query);
+		close(con);
+		return count;
+	}
+
 }

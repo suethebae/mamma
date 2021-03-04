@@ -56,6 +56,7 @@ public class CartService {
 		close(con);
 		return isSuccess;
 	}
+
 	public boolean delete(int cart_sq) {
 		CartDao dao = CartDao.getInstance();
 		Connection con = getConnection();
@@ -71,6 +72,7 @@ public class CartService {
 		close(con);
 		return isSuccess;
 	}
+
 	public boolean deleteAll(int mber_sq) {
 		CartDao dao = CartDao.getInstance();
 		Connection con = getConnection();
@@ -87,7 +89,7 @@ public class CartService {
 		return isSuccess;
 	}
 
-	//카트 리스트 불러오기
+	// 카트 리스트 불러오기
 	public ArrayList<CartListVo> getCartList(int imber_sq) {
 		CartDao dao = CartDao.getInstance();
 		Connection con = getConnection();
@@ -96,6 +98,5 @@ public class CartService {
 		close(con);
 		return list;
 	}
-
 
 }

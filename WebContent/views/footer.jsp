@@ -21,7 +21,7 @@ String member_sq = lm.getMemberId(session);
 			<div class="footer__info">
 				<span>lechance7@naver.com | 0507-1327-3547 ㅣ 운영 시간: 월 - 금요일 /
 					주말, 공휴일 휴무 / 13:00 - 17:00 <br>상호 : 맘마상점 | 대표 : 하지윤
-				</span> <br> <span>주소 : 대구광역시 동구 둔산로2길 18-1</span> <br> <span>사업자등록번호
+				</span> <br> <span>사업자등록번호
 					: 889-04-01185 | 통신판매 : 제 2019-대구동구-0114 호 | Hosting by 우리조</span>
 			</div>
 			<div class="footer__mainmenu">

@@ -49,8 +49,7 @@ ArrayList<ReviewNameVo> list = (ArrayList<ReviewNameVo>) request.getAttribute("l
 							<%=aitemVo.getNm()%>
 						</div>
 						<div class="item__detail__amount">
-							재고
-							<%=aitemVo.getPc()%><span class="cntnt"></span>
+							<%=aitemVo.getPc()%><span class="money"></span>
 						</div>
 							<hr>
 						<div class="item__detail__btns">

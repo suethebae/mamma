@@ -73,8 +73,8 @@ public class CartDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			close(pstmt);
 			close(rs);
+			close(pstmt);
 		}
 		return list;
 	}
@@ -109,8 +109,8 @@ public class CartDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			close(pstmt);
 			close(rs);
+			close(pstmt);
 		}
 		return memberVo;
 	}

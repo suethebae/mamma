@@ -71,8 +71,8 @@ public class AitemDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			close(pstmt);
 			close(rs);
+			close(pstmt);
 		}
 		return list;
 	}
@@ -99,8 +99,8 @@ public class AitemDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			close(pstmt);
 			close(rs);
+			close(pstmt);
 		}
 		return aitemVo;
 	}

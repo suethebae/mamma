@@ -44,8 +44,8 @@ public class AmanagerDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			close(pstmt);
 			close(rs);
+			close(pstmt);
 		}
 		return count;
 	}
@@ -67,8 +67,8 @@ public class AmanagerDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			close(pstmt);
 			close(rs);
+			close(pstmt);
 		}
 		return amanagerVo;
 	}
@@ -117,8 +117,8 @@ public class AmanagerDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			close(pstmt);
 			close(rs);
+			close(pstmt);
 		}
 		return list;
 	}
@@ -167,8 +167,8 @@ public class AmanagerDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			close(pstmt);
 			close(rs);
+			close(pstmt);
 		}
 		return amanagerVo;
 	}

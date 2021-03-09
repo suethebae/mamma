@@ -44,6 +44,7 @@ public class AjaxDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
+			close(rs);
 			close(pstmt);
 		}
 		return count;
@@ -62,6 +63,7 @@ public class AjaxDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
+			close(rs);
 			close(pstmt);
 		}
 		return count;
@@ -80,6 +82,7 @@ public class AjaxDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
+			close(rs);
 			close(pstmt);
 		}
 		return count;
@@ -98,6 +101,7 @@ public class AjaxDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
+			close(rs);
 			close(pstmt);
 		}
 		return count;
@@ -116,6 +120,7 @@ public class AjaxDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
+			close(rs);
 			close(pstmt);
 		}
 		return count;
@@ -134,6 +139,7 @@ public class AjaxDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
+			close(rs);
 			close(pstmt);
 		}
 		return count;
@@ -159,9 +165,90 @@ public class AjaxDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
+			close(rs);
 			close(pstmt);
 		}
 		return amanagerVo;
 	}
+
+	public AitemVo showItemList(int ctgry_sq) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		AitemVo aitemVo = new AitemVo();
+		try {
+			pstmt = con.prepareStatement(
+					"select itm_sq, ctgry_sq, pc, nm, thumb_pth from inf_itm_tb where ctgry_sq=? and del_fl=0");
+			pstmt.setInt(1, ctgry_sq);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				aitemVo.setItm_sq(rs.getInt("itm_sq"));
+				aitemVo.setCtgry_sq(rs.getInt("ctgry_sq"));
+				aitemVo.setPc(rs.getInt("pc"));
+				aitemVo.setNm(rs.getString("nm"));
+				aitemVo.setThumb_pth(rs.getString("thumb_pth"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return aitemVo;
+	}
+
+	public ArrayList<AitemVo> getItemList(int iCtgry_sq) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList<AitemVo> list = new ArrayList<AitemVo>();
+		try {
+			if (iCtgry_sq == 0) {
+				pstmt = con.prepareStatement("select itm_sq, ctgry_sq, pc, nm, fl_pth from inf_itm_tb where del_fl=0 and sttus_fl=1");
+			} else {
+				pstmt = con.prepareStatement(
+						"select itm_sq, ctgry_sq, pc, nm, fl_pth from inf_itm_tb where del_fl=0 and sttus_fl=1 and ctgry_sq=?");
+				pstmt.setInt(1, iCtgry_sq);
+			}
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				AitemVo aitemVO = new AitemVo();
+				aitemVO.setItm_sq(rs.getInt("itm_sq"));
+				aitemVO.setCtgry_sq(rs.getInt("ctgry_sq"));
+				aitemVO.setPc(rs.getInt("pc"));
+				aitemVO.setNm(rs.getString("nm"));
+				aitemVO.setFl_pth(rs.getString("fl_pth"));
+				list.add(aitemVO);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return list;
+	}
 	
+	public MemberOrderVo inputMberData(int mber_sq) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		MemberOrderVo MOVo = new MemberOrderVo();
+		try {
+			pstmt = con.prepareStatement("select * from inf_mber_tb a left join inf_adres_tb b on a.mber_sq=b.mber_sq and b.adres_base=true where a.mber_sq=?");
+			pstmt.setInt(1, mber_sq);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				MOVo.setNm(rs.getString("a.nm"));
+				MOVo.setPhone(rs.getString("a.phone"));
+				MOVo.setEmail(rs.getString("a.email"));
+				MOVo.setAdres(rs.getString("b.adres"));
+				MOVo.setAdres_detail(rs.getString("b.adres_detail"));
+				MOVo.setZip_cd(rs.getString("b.zip_cd"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return MOVo;
+	}
 }

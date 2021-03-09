@@ -70,8 +70,8 @@ public class MemberDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			close(pstmt);
 			close(rs);
+			close(pstmt);
 		}
 		return memberVo;
 	}
@@ -106,8 +106,8 @@ public class MemberDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			close(pstmt);
 			close(rs);
+			close(pstmt);
 		}
 		return memberVo;
 	}
@@ -129,8 +129,8 @@ public class MemberDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			close(pstmt);
 			close(rs);
+			close(pstmt);
 		}
 		return vo;
 	}
@@ -203,8 +203,8 @@ public class MemberDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			close(pstmt);
 			close(rs);
+			close(pstmt);
 		}
 		return memberVo;
 	}
@@ -243,6 +243,10 @@ public class MemberDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
+<<<<<<< Updated upstream
+=======
+			close(rs);
+>>>>>>> Stashed changes
 			close(pstmt);
 		}
 		return vo;
